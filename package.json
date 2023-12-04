@@ -1,0 +1,19 @@
+{
+  "name": "mern_app",
+  "version": "1.0.0",
+  "type": "module",
+	"private": true,
+	"workspaces": [
+		"client",
+		"server"
+	],
+  "scripts": {
+    "start": "concurrently \"npm run client\" \"npm run server\"",
+    "client": "cd client && npm run dev",
+    "server": "cd server && npm run dev"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^6.2.1"
+  }
+}
