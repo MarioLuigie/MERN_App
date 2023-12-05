@@ -6,6 +6,7 @@ const router = express.Router();//create express Router instance/object for crea
 
 //GET request serving/handle
 router.get("/", getPosts);
+//POST request serving/handle
 router.post("/", createPost);
 
 export default router;
