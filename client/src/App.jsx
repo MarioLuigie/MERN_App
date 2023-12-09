@@ -1,28 +1,40 @@
-import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
-import DeleteIcon from '@mui/icons-material/Delete';
-import AlarmIcon from '@mui/icons-material/Alarm';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import IconButton from '@mui/material/IconButton';
+/* eslint-disable react/no-unknown-property */
+// /** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { 
+  Container,
+  AppBar,
+  Typography,
+  Grow,
+  Grid
+} from "@mui/material";
+
+import Posts from "./components/content/Posts";
+import Form from "./components/content/Form";
+
+const styles = css`
+  .appBar {
+    background-color: #0e0e0e;
+    padding: 15px;
+  }
+
+  span {
+    color: #52ffbd;
+    font-size: 1.5rem;
+    font-family: 'Gloria Hallelujah', 'Roboto', sans-serif;
+  }
+`
 
 export default function App() {
 
   return (
-    <>
-      <Button startIcon={<SendIcon />} variant="contained" onClick={() => {console.log("Click")}}>Send</Button>
-
-      <IconButton aria-label="delete">
-        <DeleteIcon />
-      </IconButton>
-
-      <IconButton color="secondary" aria-label="add an alarm">
-  <AlarmIcon />
-</IconButton>
-
-<IconButton color="primary" aria-label="add to shopping cart">
-  <AddShoppingCartIcon />
-</IconButton>
-    </>
+    <div css={styles}>
+      <Container maxWidth="lg">
+        <AppBar position="fixed" className="appBar">
+          <Typography variant="h4" align="left"><span>your</span>MEMORIES!</Typography>
+        </AppBar>
+      </Container>
+    </div>
   )
 }
 
