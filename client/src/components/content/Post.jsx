@@ -10,7 +10,7 @@ export default function Post() {
 
   return (
     <div css={styles}>
-      <h1>POST</h1>
+      {/* <h1>POST</h1> */}
     </div>
   )
 }

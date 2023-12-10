@@ -9,15 +9,23 @@ import {
   Paper
 } from "@mui/material";
 
+import StyledDropzone from "./StyledDropzone";
+
 const styles = css`
+  padding: 20px 0;
+
   .paper {
-    padding: 15px;
+    padding: 35px 15px;
   }
 
   .form {
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
+
+  .fileInput {
+
   }
 `
 
@@ -27,7 +35,7 @@ export default function Form() {
     title: "",
     message: "",
     tags: "",
-    selectedFile: ""
+    acceptedFiles: null
   }
 
   const [postData, setPostData] = useState(initPostData);
@@ -39,9 +47,18 @@ export default function Form() {
     });
   }
 
+  const onDrop = (acceptedFiles) => {
+    setPostData({
+      ...postData,
+      acceptedFiles
+    });
+  }
+
   const handleSubmit = () => {
 
   }
+
+  console.log(postData.acceptedFiles);
 
   return (
     <div css={styles}>
@@ -64,6 +81,25 @@ export default function Form() {
             value={postData.title}
             onChange={handleChange}
           />
+          <TextField 
+            name="message" 
+            variant="outlined" 
+            label="Message" 
+            fullWidth 
+            value={postData.message}
+            onChange={handleChange}
+          />
+          <TextField 
+            name="tags" 
+            variant="outlined" 
+            label="Tags" 
+            fullWidth 
+            value={postData.tags}
+            onChange={handleChange}
+          />
+          <div>
+            <StyledDropzone onDrop={onDrop} />
+          </div>
         </form>
       </Paper>
     </div>

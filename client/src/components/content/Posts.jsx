@@ -14,9 +14,9 @@ export default function Posts() {
   console.log(postsList);
   return (
     <div css={styles}>
-      <h1>POSTS</h1>
+      {/* <h1>POSTS</h1>
       <Post />
-      <Post />
+      <Post /> */}
     </div>
   )
 }
