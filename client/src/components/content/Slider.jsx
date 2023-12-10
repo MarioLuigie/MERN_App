@@ -29,7 +29,7 @@ export default function Slider() {
           color="textSecondary" 
           paragraph
         >
-          Hello everyone! This is the place for sharing emotions from your live! You may show photos and videos here! Let`s create your special places!
+          Hello everyone! This is the place for sharing emotions from your live! You may show photos and videos here! Let`s create something special!
         </Typography>
       </Container>
     </div>

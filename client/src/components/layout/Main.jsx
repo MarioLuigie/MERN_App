@@ -21,7 +21,7 @@ export default function Main() {
 
   useEffect(() => {
     console.log("UseEffect - datas readed.");
-    dispatch(actions.readPosts());
+    dispatch(actions.getPosts());
   }, [dispatch]);
 
   return (

@@ -13,7 +13,7 @@ const styles = css`
   }
 
   span {
-    color: #52ffbd;
+    color: #58c2ff;
     font-size: 1.5rem;
     font-family: 'Gloria Hallelujah', 'Roboto', sans-serif;
   }
