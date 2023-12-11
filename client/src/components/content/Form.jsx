@@ -54,8 +54,8 @@ export default function Form() {
     });
   }
 
-  const handleSubmit = () => {
-
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
   }
 
   console.log(postData.acceptedFiles);
@@ -97,7 +97,7 @@ export default function Form() {
             value={postData.tags}
             onChange={handleChange}
           />
-          <div>
+          <div className="fileInput">
             <StyledDropzone onDrop={onDrop} />
           </div>
         </form>

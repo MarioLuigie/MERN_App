@@ -23,7 +23,7 @@ export default function Footer() {
 
   return (
     <div css={styles}>
-      <p className="sign">ARWcode 2023 &copy; Powered by MUI and MERN stack</p>
+      <p className="sign">ARWcode 2023 &copy; Powered by MUI and MERN stack | yourMemories 1.0.0</p>
     </div>
   )
 }

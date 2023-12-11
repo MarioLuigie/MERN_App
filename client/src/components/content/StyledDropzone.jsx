@@ -42,10 +42,14 @@ export default function StyledDropzone({
     isFocused,
     isDragAccept,
     isDragReject
-  } = useDropzone({accept: {
+  } = useDropzone({
+    accept: {
       'image/jpeg': [".jpeg"], 
       'image/png': [".png"]
-    }, onDrop});
+    }, 
+    maxFiles: 4, 
+    onDrop
+  });
 
   const style = useMemo(() => ({
     ...baseStyle,
@@ -60,7 +64,7 @@ export default function StyledDropzone({
 
   const files = acceptedFiles.map(file => (
     <li key={file.path}>
-      {file.path} - {file.size} bytes
+      {file.path} - {(file.size / 1024**2).toFixed(2)} MB
     </li>
   ));
 
