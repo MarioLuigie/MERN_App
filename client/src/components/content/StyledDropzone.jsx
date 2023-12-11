@@ -3,6 +3,8 @@
 import React, {useMemo} from 'react';
 import {useDropzone} from 'react-dropzone';
 
+import { countBytes } from "../../utils/counters.js";
+
 const baseStyle = {
   flex: 1,
   display: 'flex',
@@ -64,7 +66,7 @@ export default function StyledDropzone({
 
   const files = acceptedFiles.map(file => (
     <li key={file.path}>
-      {file.path} - {(file.size / 1024**2).toFixed(2)} MB
+      {file.path} - {countBytes(file.size, "MB")} MB
     </li>
   ));
 
