@@ -15,6 +15,7 @@
 export const createPost = async (req, res) => {
   const post = req.body;
   const newPost = new PostMessage(post);
+  console.log(newPost, "regBody");
 
   try {
     await newPost.save();

@@ -4,6 +4,8 @@ const postsReducer = (postsList = ["posts"], action) => {
   switch(action.type) {
     case type.READ_POSTS:
       return action.data;
+    case type.CREATE_POST:
+      return [...postsList, action.data];
     default:
       return postsList;
   }

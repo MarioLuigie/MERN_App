@@ -2,6 +2,7 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { 
   TextField,
   Button,
@@ -10,6 +11,7 @@ import {
 } from "@mui/material";
 
 import StyledDropzone from "./StyledDropzone";
+import * as actions from "../../redux/actions/posts.js";
 
 const styles = css`
   padding: 20px 0;
@@ -64,6 +66,7 @@ export default function Form() {
   }
 
   const [postData, setPostData] = useState(initPostData);
+  const dispatch = useDispatch();
 
   const handleChange = (evt) => {
     setPostData({
@@ -81,6 +84,12 @@ export default function Form() {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+
+    const { creator, title, message, tags, acceptedFiles } = postData;
+    const newPost = {creator, title, message, tags, acceptedFiles};
+
+    dispatch(actions.postPost(newPost));
+    // console.log(postData);
   }
 
   const handleClear = () => {
