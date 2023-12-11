@@ -27,6 +27,31 @@ const styles = css`
   .fileInput {
 
   }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .submitBtn{
+    background-color: black;
+
+    &:hover {
+      background-color: #1b1b1b;
+    }
+  }
+
+  .clearBtn {
+    color: black;
+    background-color: white;
+    border-color: #1b1b1b;
+
+    &:hover {
+      background-color: #f5f5f5;
+      border-color: #1b1b1b;
+    }
+  }
 `
 
 export default function Form() {
@@ -56,6 +81,10 @@ export default function Form() {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+  }
+
+  const handleClear = () => {
+    console.log("clear");
   }
 
   console.log(postData.acceptedFiles);
@@ -99,6 +128,10 @@ export default function Form() {
           />
           <div className="fileInput">
             <StyledDropzone onDrop={onDrop} />
+          </div>
+          <div className="buttons">
+            <Button className="submitBtn" variant="contained" size="large" type="submit" fullWidth>Submit</Button>
+            <Button className="clearBtn" variant="outlined" size="large" fullWidth onClick={handleClear}>Clear</Button>
           </div>
         </form>
       </Paper>
