@@ -92,6 +92,7 @@ export default function Form() {
   }
 
   const handleClear = () => {
+    setPostData(initPostData);
     console.log("clear");
   }
 
