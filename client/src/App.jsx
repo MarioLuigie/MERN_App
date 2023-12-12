@@ -1,9 +1,5 @@
 import { 
   Container,
-  AppBar,
-  Typography,
-  Grow,
-  Grid
 } from "@mui/material";
 
 import Header from "./components/layout/Header";
@@ -17,8 +13,8 @@ export default function App() {
       <Container maxWidth="lg" sx={{padding: 0}}>
         <Header />
         <Main />
-        <Footer />
       </Container>
+      <Footer />
     </>
   )
 }

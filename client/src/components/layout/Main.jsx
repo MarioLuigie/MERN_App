@@ -29,10 +29,10 @@ export default function Main() {
       <Grow in timeout={700}>
         <Container>
           <Grid container justifyContent="space-between" alignItems="stretch" spacing={4}>
-            <Grid item xs={12} sm={7}>
+            <Grid item xs={12} sm={6} xl={7}>
               <Posts />
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={6} xl={5}>
               <Form />
             </Grid>
           </Grid>

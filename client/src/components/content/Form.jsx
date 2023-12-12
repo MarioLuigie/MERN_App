@@ -84,13 +84,10 @@ export default function Form() {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    console.log(postData, "from submit");
 
-    const { creator, title, message, tags, acceptedFiles } = postData;
-    const newPost = {creator, title, message, tags, acceptedFiles};
-
-    console.log(newPost, "from submit");
-
-    dispatch(actions.postPost(newPost));
+    dispatch(actions.postPost(postData));
+    setPostData(initPostData);
     // console.log(postData);
   }
 
