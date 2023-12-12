@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 //Create mongoose Schema (Document)
 const postSchema = mongoose.Schema({
-  creator: {type: String},
-  title: {type: String},
-  message: {type: String},
-  tags: [String],
+  creator: String,
+  title: String,
+  message: String,
+  tags: String,
   acceptedFiles: [String],
   likeCount: {
     type: Number,

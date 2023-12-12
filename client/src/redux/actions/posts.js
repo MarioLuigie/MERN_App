@@ -1,4 +1,4 @@
-import * as api from "../api/api.js";
+import * as api from "../api/postsApi";
 import { posts as type} from "../../constants/actionTypes.js";
 
 export const getPosts = () => async (dispatch) => {

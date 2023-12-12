@@ -62,7 +62,7 @@ export default function Form() {
     title: "",
     message: "",
     tags: "",
-    acceptedFiles: null
+    acceptedFiles: []
   }
 
   const [postData, setPostData] = useState(initPostData);
@@ -88,6 +88,8 @@ export default function Form() {
     const { creator, title, message, tags, acceptedFiles } = postData;
     const newPost = {creator, title, message, tags, acceptedFiles};
 
+    console.log(newPost, "from submit");
+
     dispatch(actions.postPost(newPost));
     // console.log(postData);
   }
@@ -97,6 +99,7 @@ export default function Form() {
   }
 
   console.log(postData.acceptedFiles);
+  console.log(postData);
 
   return (
     <div css={styles}>
@@ -140,7 +143,7 @@ export default function Form() {
           </div>
           <div className="buttons">
             <Button className="submitBtn" variant="contained" size="large" type="submit" fullWidth>Submit</Button>
-            <Button className="clearBtn" variant="outlined" size="large" fullWidth onClick={handleClear}>Clear</Button>
+            <Button className="clearBtn" variant="outlined" size="large" type="reset" fullWidth onClick={handleClear}>Clear</Button>
           </div>
         </form>
       </Paper>
