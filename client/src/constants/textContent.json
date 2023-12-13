@@ -19,7 +19,12 @@
         ]
       },
       "help": {
-
+        "title": "Help",
+        "links": [
+          "Privacy",
+          "Blog",
+          "FAQs"
+        ]
       }
     },
     "signature": {

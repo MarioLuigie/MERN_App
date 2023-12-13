@@ -2,7 +2,13 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { 
-  Grid
+  Container,
+  Grid,
+  Link,
+  Typography,
+  IconButton,
+  BottomNavigation, 
+  BottomNavigationAction,
 } from "@mui/material";
 
 import FooterItem from "../content/FooterItem";
@@ -10,11 +16,16 @@ import jsonData from "../../constants/textContent.json";
 
 const styles = css`
   background-color: black;
-  height: 300px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 30px 0;
+
+  .links {
+    width: 100%;
+    padding: 30px 0 40px;
+  }
 
   .sign {
     width: 100%;
@@ -31,6 +42,8 @@ const styles = css`
   span {
     font-size: 0.8rem;
   }
+
+
 `
 
 export default function Footer() {
@@ -41,25 +54,24 @@ export default function Footer() {
   const powered = jsonData.footer.signature.powered;
   const ver = jsonData.footer.signature.ver;
 
+  const socialMedia = {
+    facebook: "#",
+    instagram: "#",
+    youtube: "#",
+    linkedIn: "#",
+  }
+
   return (
     <div css={styles}>
-      <Grid container spacing={4} style={{backgroundColor: "transparent"}}>
-        <Grid item>
-          <FooterItem 
-            section={sections.about}
-          />
-        </Grid>
-        {/* <Grid item>
-          <FooterItem 
-            section={sections.contactUs}
-          />
-        </Grid>
-        <Grid item>
-          <FooterItem 
-            section={sections.help}
-          />
-        </Grid> */}
-      </Grid>
+      <div className='links'>
+        <Container>
+          <Grid container justifyContent='space-between'>
+            <FooterItem section={sections.about}/>
+            <FooterItem section={sections.contactUs}/>
+            <FooterItem section={sections.help}/>
+          </Grid>
+        </Container>
+      </div>
       <div className='sign'>
         <p>
           {house}
@@ -71,3 +83,21 @@ export default function Footer() {
     </div>
   )
 }
+
+{/* <Grid container spacing={4} style={{backgroundColor: "transparent"}}>
+<Grid item>
+  <FooterItem 
+    section={sections.about}
+  />
+</Grid>
+<Grid item>
+  <FooterItem 
+    section={sections.contactUs}
+  />
+</Grid>
+<Grid item>
+  <FooterItem 
+    section={sections.help}
+  />
+</Grid>
+</Grid> */}
