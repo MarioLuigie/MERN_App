@@ -1,0 +1,32 @@
+{
+  "footer": {
+    "sections": {
+      "about": {
+        "title": "About",
+        "links": [
+          "Blog",
+          "Demo",
+          "Terms of Service"
+        ]
+      },
+      "contactUs": {
+        "title": "Contact Us",
+        "links": [
+          "Job",
+          "Support",
+          "Contact",
+          "Sponsorships"
+        ]
+      },
+      "help": {
+
+      }
+    },
+    "signature": {
+      "house": "ARWcode 2023 ",
+      "rights": "©",
+      "powered": " Powered by MUI and MERN stack | ",
+      "ver": " yourMemories 1.0.0"
+    }
+  }
+}

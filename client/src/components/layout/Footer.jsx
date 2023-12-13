@@ -1,6 +1,12 @@
 /* eslint-disable react/no-unknown-property */
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { 
+  Grid
+} from "@mui/material";
+
+import FooterItem from "../content/FooterItem";
+import jsonData from "../../constants/textContent.json";
 
 const styles = css`
   background-color: black;
@@ -11,19 +17,57 @@ const styles = css`
   align-items: center;
 
   .sign {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 7px;
     color: #cecece;
     font-size: 0.6rem;
     font-weight: 100;
-    position: absolute;
-    bottom: 7px;
+  }
+
+  span {
+    font-size: 0.8rem;
   }
 `
 
 export default function Footer() {
+  const sections = jsonData.footer.sections;
+
+  const house = jsonData.footer.signature.house;
+  const rights = jsonData.footer.signature.rights;
+  const powered = jsonData.footer.signature.powered;
+  const ver = jsonData.footer.signature.ver;
 
   return (
     <div css={styles}>
-      <p className="sign">ARWcode 2023 &copy; Powered by MUI and MERN stack | yourMemories 1.0.0</p>
+      <Grid container spacing={4} style={{backgroundColor: "transparent"}}>
+        <Grid item>
+          <FooterItem 
+            section={sections.about}
+          />
+        </Grid>
+        {/* <Grid item>
+          <FooterItem 
+            section={sections.contactUs}
+          />
+        </Grid>
+        <Grid item>
+          <FooterItem 
+            section={sections.help}
+          />
+        </Grid> */}
+      </Grid>
+      <div className='sign'>
+        <p>
+          {house}
+          <span>{rights}</span>
+          {powered}
+          <span>{ver}</span>
+          </p>
+      </div>
     </div>
   )
 }
