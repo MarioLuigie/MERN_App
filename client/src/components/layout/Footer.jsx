@@ -83,21 +83,3 @@ export default function Footer() {
     </div>
   )
 }
-
-{/* <Grid container spacing={4} style={{backgroundColor: "transparent"}}>
-<Grid item>
-  <FooterItem 
-    section={sections.about}
-  />
-</Grid>
-<Grid item>
-  <FooterItem 
-    section={sections.contactUs}
-  />
-</Grid>
-<Grid item>
-  <FooterItem 
-    section={sections.help}
-  />
-</Grid>
-</Grid> */}

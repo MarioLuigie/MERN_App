@@ -13,13 +13,25 @@
   }
 
 export const createPost = async (req, res) => {
-  const post = req.body;
-
-  const newPost = new PostMessage(post);
-  console.log(newPost, "regBody");
-  console.log(post, "regBody");
-
   try {
+    const { 
+      creator, 
+      title, 
+      message, 
+      tags, 
+      acceptedFiles 
+    } = req.body;
+
+    const newPost = new PostMessage({
+      creator,
+      title,
+      message,
+      tags,
+      acceptedFiles
+    });
+    
+    console.log(newPost, "regBody");
+
     await newPost.save();
     res.status(201).json(newPost)
     console.log(newPost);
