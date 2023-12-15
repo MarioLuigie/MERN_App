@@ -33,8 +33,13 @@ const styles = css`
     white-space: nowrap;
   }
 
-  .a {
+  .footerItem {
     min-width: 120px;
+    text-align: center;
+
+    @media screen and (min-width: 600px) {
+      text-align: left;
+    }
   }
 `
 
@@ -44,7 +49,7 @@ export default function FooterItem({
 
   return (
     <Grid item xs={12} sm={6} md={4} css={styles}>
-      <div className='a'>
+      <div className='footerItem'>
         <Typography variant="h6" className="title">
           {section.title}
         </Typography>

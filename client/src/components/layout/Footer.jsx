@@ -11,7 +11,14 @@ import {
   BottomNavigationAction,
 } from "@mui/material";
 
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import YoutubeIcon from '@mui/icons-material/Youtube';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+
+
 import FooterItem from "../content/FooterItem";
+import FooterSocial from "../content/FooterSocial";
 import jsonData from "../../constants/textContent.json";
 
 const styles = css`
@@ -39,11 +46,13 @@ const styles = css`
     font-weight: 100;
   }
 
+  p {
+    text-align: center;
+  }
+
   span {
     font-size: 0.8rem;
   }
-
-
 `
 
 export default function Footer() {
@@ -57,7 +66,7 @@ export default function Footer() {
   const socialMedia = {
     facebook: "#",
     instagram: "#",
-    youtube: "#",
+    youtube: "https://www.youtube.com/",
     linkedIn: "#",
   }
 
@@ -69,6 +78,7 @@ export default function Footer() {
             <FooterItem section={sections.about}/>
             <FooterItem section={sections.contactUs}/>
             <FooterItem section={sections.help}/>
+            <FooterSocial socialMedia={socialMedia} />
           </Grid>
         </Container>
       </div>
