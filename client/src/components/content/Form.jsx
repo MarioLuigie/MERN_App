@@ -3,6 +3,7 @@
 import { css } from '@emotion/react';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useCallback } from "react";
 import { 
   TextField,
   Button,
@@ -75,12 +76,12 @@ export default function Form() {
     });
   }
 
-  const onDrop = (acceptedFiles) => {
+  const onDrop = useCallback(acceptedFiles => {
     setPostData({
       ...postData,
       acceptedFiles
     });
-  }
+  }, []);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();

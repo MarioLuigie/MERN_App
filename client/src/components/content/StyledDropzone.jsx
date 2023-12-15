@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, {useMemo} from 'react';
-import {useDropzone} from 'react-dropzone';
+import { useDropzone } from 'react-dropzone';
 
 import { countBytes } from "../../utils/counters.js";
 
@@ -10,6 +10,7 @@ const baseStyle = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  justifyContent: "center",
   padding: '20px',
   borderWidth: 2,
   borderRadius: 4,
@@ -19,6 +20,8 @@ const baseStyle = {
   color: '#bdbdbd',
   outline: 'none',
   transition: 'border .24s ease-in-out',
+  minHeight: "90px",
+  textAlign: "center"
 };
 
 const focusedStyle = {
@@ -43,7 +46,8 @@ export default function StyledDropzone({
     acceptedFiles,
     isFocused,
     isDragAccept,
-    isDragReject
+    isDragReject,
+    isDragActive
   } = useDropzone({
     accept: {
       'image/jpeg': [".jpeg"], 
@@ -74,8 +78,14 @@ export default function StyledDropzone({
     <div>
       <div {...getRootProps({style})}>
         <input {...getInputProps()} />
-        <p>{`Drag 'n' drop some files here, or click to select files`}</p>
-        <small>(Only *.jpeg and *.png images will be accepted)</small>
+        {
+          isDragActive 
+            ? <p>Drop some files here...</p>
+            : <div>
+                <p>{`Drag 'n' drop some files here, or click to select files`}</p>
+                <small>Only *.jpeg and *.png images will be accepted</small>
+              </div>
+        }
       </div>
       <aside style={{padding: "10px", color: "lightgray"}}>
         <ul style={{listStyle: "none", paddingTop: "20px"}}>{files}</ul>
@@ -84,14 +94,3 @@ export default function StyledDropzone({
   );
 }
 
-// const {
-//   getRootProps,
-//   getInputProps,
-//   acceptedFiles,
-//   isFocused,
-//   isDragAccept,
-//   isDragReject
-// } = useDropzone({accept: {
-//     'image/jpeg': [".jpeg"], 
-//     'image/png': [".png"]
-//   }, onDrop, disabled: true});
