@@ -1,11 +1,38 @@
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+// /** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import React, {useMemo} from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useCallback } from "react";
+import { IconButton } from "@mui/material";
+import CancelIcon from '@mui/icons-material/Cancel';
 
 import { countBytes } from "../../utils/counters.js";
+
+const styles = css`
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  .uploadedFileWrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .uploadedFile {
+    background-color: #e6e6e6;
+    padding: 7px;
+    border-radius: 4px;
+    color: #b3b3b3;
+  }
+
+  .closeIcon {
+    color: #cecece;
+  }
+`
 
 const baseStyle = {
   flex: 1,
@@ -52,6 +79,12 @@ export default function StyledDropzone({
     }
   }, []);
 
+  const removeUploadedFile = (filePath) => () => {
+    setUploadedFiles(prevFiles => [
+      ...prevFiles.filter(file => file.path !== filePath)
+    ]);
+  }
+
   const {
     getRootProps,
     getInputProps,
@@ -82,8 +115,13 @@ export default function StyledDropzone({
   console.log(uploadedFiles);
 
   const files = uploadedFiles.map(file => (
-    <li key={file.path}>
-      {file.path} - {countBytes(file.size, "MB")} MB
+    <li key={file.path} className="uploadedFileWrapper">
+      <div className="uploadedFile">
+        {file.path} - {countBytes(file.size, "MB")} MB
+      </div>
+      <IconButton onClick={removeUploadedFile(file.path)} style={{padding: "4px"}}>
+        <CancelIcon className="closeIcon" />
+      </IconButton>
     </li>
   ));
 
@@ -100,8 +138,8 @@ export default function StyledDropzone({
               </div>
         }
       </div>
-      <aside style={{padding: "10px", color: "lightgray"}}>
-        <ul style={{listStyle: "none", paddingTop: "20px"}}>{files}</ul>
+      <aside style={{padding: "10px"}}>
+        <ul style={{listStyle: "none", paddingTop: "20px"}} css={styles}>{files}</ul>
       </aside>
     </div>
   );
