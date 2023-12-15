@@ -3,7 +3,6 @@
 import { css } from '@emotion/react';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useCallback } from "react";
 import { 
   TextField,
   Button,
@@ -90,6 +89,7 @@ export default function Form() {
 
   const handleClear = () => {
     setPostData(initPostData);
+    setUploadedFiles([]);
     console.log("clear");
   }
 

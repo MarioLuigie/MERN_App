@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, {useMemo} from 'react';
 import { useDropzone } from 'react-dropzone';
+import { useCallback } from "react";
 
 import { countBytes } from "../../utils/counters.js";
 
@@ -41,11 +43,14 @@ export default function StyledDropzone({
   uploadedFiles
 }) {
 
-  const onDrop = acceptedFiles => {
+  const onDrop = useCallback(acceptedFiles => {
     if (acceptedFiles.length) {
-      setUploadedFiles(acceptedFiles);
+      setUploadedFiles(prevFiles => [
+        ...prevFiles,
+        ...acceptedFiles
+      ]);
     }
-  };
+  }, []);
 
   const {
     getRootProps,
