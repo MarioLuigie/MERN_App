@@ -17,7 +17,11 @@ import YoutubeIcon from '@mui/icons-material/Youtube';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const styles = css`
-  padding-top: "30px";
+  padding-top: 30px;
+
+  @media screen and (min-width: 600px) {
+    padding-top: 60px;
+  }
 
   .icon {
     color: white;

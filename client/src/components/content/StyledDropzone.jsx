@@ -37,13 +37,19 @@ const rejectStyle = {
 };
 
 export default function StyledDropzone({
-  onDrop
+  setUploadedFiles,
+  uploadedFiles
 }) {
+
+  const onDrop = acceptedFiles => {
+    if (acceptedFiles.length) {
+      setUploadedFiles(acceptedFiles);
+    }
+  };
 
   const {
     getRootProps,
     getInputProps,
-    acceptedFiles,
     isFocused,
     isDragAccept,
     isDragReject,
@@ -68,7 +74,9 @@ export default function StyledDropzone({
     isDragReject
   ]);
 
-  const files = acceptedFiles.map(file => (
+  console.log(uploadedFiles);
+
+  const files = uploadedFiles.map(file => (
     <li key={file.path}>
       {file.path} - {countBytes(file.size, "MB")} MB
     </li>

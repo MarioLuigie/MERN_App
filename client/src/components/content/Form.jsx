@@ -62,10 +62,10 @@ export default function Form() {
     creator: "",
     title: "",
     message: "",
-    tags: "",
-    acceptedFiles: []
+    tags: ""
   }
 
+  const [uploadedFiles, setUploadedFiles] = useState([]);
   const [postData, setPostData] = useState(initPostData);
   const dispatch = useDispatch();
 
@@ -76,19 +76,15 @@ export default function Form() {
     });
   }
 
-  const onDrop = useCallback(acceptedFiles => {
-    setPostData({
-      ...postData,
-      acceptedFiles
-    });
-  }, []);
-
   const handleSubmit = (evt) => {
     evt.preventDefault();
     console.log(postData, "from submit");
 
-    dispatch(actions.postPost(postData));
+    const files = uploadedFiles.map(file => file.path);
+
+    dispatch(actions.postPost({...postData, files}));
     setPostData(initPostData);
+    setUploadedFiles([]);
     // console.log(postData);
   }
 
@@ -138,7 +134,7 @@ export default function Form() {
             onChange={handleChange}
           />
           <div className="fileInput">
-            <StyledDropzone onDrop={onDrop} />
+            <StyledDropzone setUploadedFiles={setUploadedFiles} uploadedFiles={uploadedFiles} />
           </div>
           <div className="buttons">
             <Button className="submitBtn" variant="contained" size="large" type="submit" fullWidth>Submit</Button>

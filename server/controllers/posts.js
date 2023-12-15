@@ -19,7 +19,7 @@ export const createPost = async (req, res) => {
       title, 
       message, 
       tags, 
-      acceptedFiles 
+      files
     } = req.body;
 
     const newPost = new PostMessage({
@@ -27,7 +27,7 @@ export const createPost = async (req, res) => {
       title,
       message,
       tags,
-      acceptedFiles
+      files
     });
     
     console.log(newPost, "regBody");
