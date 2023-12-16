@@ -7,6 +7,7 @@ import { css } from '@emotion/react';
 import React, {useMemo} from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useCallback } from "react";
+import { Tooltip } from 'react-tooltip'
 import { IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import DoneIcon from '@mui/icons-material/Done';
@@ -35,7 +36,7 @@ const styles = css`
     font-size: 0.9rem;
   }
 
-  .a {
+  .closeIconWrapper {
     position: absolute;
     right: -10px;
     top: -8px;
@@ -43,19 +44,19 @@ const styles = css`
     background-color: #e6e6e6;
   }
 
-  .cancelIcon {
+  .closeIcon {
     color: #818181;
     font-size: 0.9rem;
   }
 
   .successIcon {
-    color: #1cad54;
+    color: #8dc572;
     font-size: 1.4rem;
     margin-left: 13px;
   }
 
   .rejectedIcon {
-    color: #fc7373;
+    color: #be6464;
     font-size: 1.2rem;
     margin-left: 13px;
   }
@@ -163,35 +164,51 @@ export default function StyledDropzone({
   const successFiles = uploadedFiles.map(file => (
     <li key={file.path} className="uploadedFileWrapper">
       <div className="uploadedFile">
-        <div>
+        <div data-tooltip-id="anchorSuccess">
           {file.path} - {countBytes(file.size, "MB")} MB
         </div>
+        <Tooltip 
+          id="anchorSuccess" 
+          place="top"
+          style={{backgroundColor: "#8dc572", zIndex: "2"}}
+        >
+          Success uploaded!
+        </Tooltip>
         <IconButton 
           onClick={removeUploadedFile(file.path)} 
-          className="a"
+          className="closeIconWrapper"
         >
-          <CloseIcon className="cancelIcon" />
+          <CloseIcon className="closeIcon" />
         </IconButton>
       </div>
       <DoneIcon className="successIcon" />
     </li>
   ));
 
-  const errorFiles = refusedFiles.map(({ file }) => (
+  const errorFiles = refusedFiles.map(({ file, errors }) => (
     <li key={file.path} className="uploadedFileWrapper">
       <div className="uploadedFile">
-        <div>
+        <div data-tooltip-id="anchorFailed">
           {file.path} - {countBytes(file.size, "MB")} MB
         </div>
+        <Tooltip 
+          id="anchorFailed" 
+          place="top"
+          style={{backgroundColor: "#be6464", zIndex: "2"}}
+        >
+        {errors.map((error, i) => (
+          <p key={i}>{error.message}</p>
+        ))}
+        </Tooltip>
         <IconButton 
           onClick={removeRefusedFile(file.path)} 
-          className="a"
+          className="closeIconWrapper"
         >
-          <CloseIcon className="cancelIcon" />
+          <CloseIcon className="closeIcon" />
         </IconButton>
       </div>
       <DoDisturbIcon className="rejectedIcon" />
-  </li>
+    </li>
   ));
 
   return (
@@ -208,8 +225,18 @@ export default function StyledDropzone({
         }
       </div>
       <aside style={{paddingTop: "12px"}}>
-        <ul style={{listStyle: "none", paddingTop: "20px"}} css={styles}>{successFiles}</ul>
-        <ul style={{listStyle: "none", paddingTop: "20px"}} css={styles}>{errorFiles}</ul>
+        <ul 
+          style={{listStyle: "none", paddingTop: "20px"}} 
+          css={styles}
+        >
+          {successFiles}
+        </ul>
+        <ul 
+          style={{listStyle: "none", paddingTop: "20px"}} 
+          css={styles}
+        >
+          {errorFiles}
+        </ul>
       </aside>
     </div>
   );
