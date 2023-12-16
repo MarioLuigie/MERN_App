@@ -19,6 +19,7 @@ const styles = css`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding: 6px 0;
 
   .uploadedFileWrapper {
     display: flex;
@@ -171,6 +172,7 @@ export default function StyledDropzone({
           id="anchorSuccess" 
           place="top"
           style={{backgroundColor: "#8dc572", zIndex: "2"}}
+          opacity={0.5}
         >
           Success uploaded!
         </Tooltip>
@@ -195,6 +197,7 @@ export default function StyledDropzone({
           id="anchorFailed" 
           place="top"
           style={{backgroundColor: "#be6464", zIndex: "2"}}
+          opacity={0.5}
         >
         {errors.map((error, i) => (
           <p key={i}>{error.message}</p>
@@ -226,13 +229,13 @@ export default function StyledDropzone({
       </div>
       <aside style={{paddingTop: "12px"}}>
         <ul 
-          style={{listStyle: "none", paddingTop: "20px"}} 
+          style={{listStyle: "none"}} 
           css={styles}
         >
           {successFiles}
         </ul>
         <ul 
-          style={{listStyle: "none", paddingTop: "20px"}} 
+          style={{listStyle: "none"}} 
           css={styles}
         >
           {errorFiles}
