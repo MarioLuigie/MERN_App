@@ -8,14 +8,16 @@ import React, {useMemo} from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useCallback } from "react";
 import { IconButton } from "@mui/material";
-import CancelIcon from '@mui/icons-material/Cancel';
+import CloseIcon from '@mui/icons-material/Close';
+import DoneIcon from '@mui/icons-material/Done';
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 
 import { countBytes } from "../../utils/counters.js";
 
 const styles = css`
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 12px;
 
   .uploadedFileWrapper {
     display: flex;
@@ -23,14 +25,39 @@ const styles = css`
   }
 
   .uploadedFile {
-    background-color: #e6e6e6;
-    padding: 7px;
+    background-color: #eeeeee;
+    padding: 5px 8px;
     border-radius: 4px;
-    color: #b3b3b3;
+    color: #c5c5c5;
+    position: relative;
+    min-width: 190px;
+    border: #c9c9c9 1px solid;
+    font-size: 0.9rem;
   }
 
-  .closeIcon {
-    color: #cecece;
+  .a {
+    position: absolute;
+    right: -10px;
+    top: -8px;
+    padding: 2px;
+    background-color: #e6e6e6;
+  }
+
+  .cancelIcon {
+    color: #818181;
+    font-size: 0.9rem;
+  }
+
+  .successIcon {
+    color: #1cad54;
+    font-size: 1.4rem;
+    margin-left: 13px;
+  }
+
+  .rejectedIcon {
+    color: #fc7373;
+    font-size: 1.2rem;
+    margin-left: 13px;
   }
 `
 
@@ -67,22 +94,41 @@ const rejectStyle = {
 
 export default function StyledDropzone({
   setUploadedFiles,
-  uploadedFiles
+  uploadedFiles,
+  setRefusedFiles,
+  refusedFiles
 }) {
 
-  const onDrop = useCallback(acceptedFiles => {
-    if (acceptedFiles.length) {
+  const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
+    if (acceptedFiles?.length) {
       setUploadedFiles(prevFiles => [
         ...prevFiles,
         ...acceptedFiles
       ]);
     }
+
+    if (rejectedFiles?.length) {
+      setRefusedFiles(prevFiles => [
+        ...prevFiles,
+        ...rejectedFiles
+      ]);
+    }
   }, []);
 
-  const removeUploadedFile = (filePath) => () => {
+  console.log(refusedFiles);
+
+  const removeUploadedFile = filePath => () => {
     setUploadedFiles(prevFiles => [
       ...prevFiles.filter(file => file.path !== filePath)
     ]);
+  }
+
+  const removeRefusedFile = filePath => () => {
+    setRefusedFiles(prevFiles => [
+      ...prevFiles.filter(({ file }) => file.path !== filePath)
+    ]);
+
+    console.log("remove rejected");
   }
 
   const {
@@ -114,15 +160,38 @@ export default function StyledDropzone({
 
   console.log(uploadedFiles);
 
-  const files = uploadedFiles.map(file => (
+  const successFiles = uploadedFiles.map(file => (
     <li key={file.path} className="uploadedFileWrapper">
       <div className="uploadedFile">
-        {file.path} - {countBytes(file.size, "MB")} MB
+        <div>
+          {file.path} - {countBytes(file.size, "MB")} MB
+        </div>
+        <IconButton 
+          onClick={removeUploadedFile(file.path)} 
+          className="a"
+        >
+          <CloseIcon className="cancelIcon" />
+        </IconButton>
       </div>
-      <IconButton onClick={removeUploadedFile(file.path)} style={{padding: "4px"}}>
-        <CancelIcon className="closeIcon" />
-      </IconButton>
+      <DoneIcon className="successIcon" />
     </li>
+  ));
+
+  const errorFiles = refusedFiles.map(({ file }) => (
+    <li key={file.path} className="uploadedFileWrapper">
+      <div className="uploadedFile">
+        <div>
+          {file.path} - {countBytes(file.size, "MB")} MB
+        </div>
+        <IconButton 
+          onClick={removeRefusedFile(file.path)} 
+          className="a"
+        >
+          <CloseIcon className="cancelIcon" />
+        </IconButton>
+      </div>
+      <DoDisturbIcon className="rejectedIcon" />
+  </li>
   ));
 
   return (
@@ -138,8 +207,9 @@ export default function StyledDropzone({
               </div>
         }
       </div>
-      <aside style={{padding: "10px"}}>
-        <ul style={{listStyle: "none", paddingTop: "20px"}} css={styles}>{files}</ul>
+      <aside style={{paddingTop: "12px"}}>
+        <ul style={{listStyle: "none", paddingTop: "20px"}} css={styles}>{successFiles}</ul>
+        <ul style={{listStyle: "none", paddingTop: "20px"}} css={styles}>{errorFiles}</ul>
       </aside>
     </div>
   );

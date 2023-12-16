@@ -65,6 +65,7 @@ export default function Form() {
   }
 
   const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [refusedFiles, setRefusedFiles] = useState([]);
   const [postData, setPostData] = useState(initPostData);
   const dispatch = useDispatch();
 
@@ -82,14 +83,17 @@ export default function Form() {
     const files = uploadedFiles.map(file => file.path);
 
     dispatch(actions.postPost({...postData, files}));
+    
     setPostData(initPostData);
     setUploadedFiles([]);
+    setRefusedFiles([]);
     // console.log(postData);
   }
 
   const handleClear = () => {
     setPostData(initPostData);
     setUploadedFiles([]);
+    setRefusedFiles([]);
     console.log("clear");
   }
 
@@ -134,11 +138,33 @@ export default function Form() {
             onChange={handleChange}
           />
           <div className="fileInput">
-            <StyledDropzone setUploadedFiles={setUploadedFiles} uploadedFiles={uploadedFiles} />
+            <StyledDropzone 
+              setUploadedFiles={setUploadedFiles} 
+              uploadedFiles={uploadedFiles} 
+              setRefusedFiles={setRefusedFiles}
+              refusedFiles={refusedFiles}
+            />
           </div>
           <div className="buttons">
-            <Button className="submitBtn" variant="contained" size="large" type="submit" fullWidth>Submit</Button>
-            <Button className="clearBtn" variant="outlined" size="large" type="reset" fullWidth onClick={handleClear}>Clear</Button>
+            <Button 
+              className="submitBtn" 
+              variant="contained" 
+              size="large" 
+              type="submit" 
+              fullWidth
+            >
+              Submit
+            </Button>
+            <Button 
+              className="clearBtn" 
+              variant="outlined" 
+              size="large" 
+              type="reset" 
+              fullWidth 
+              onClick={handleClear}
+            >
+              Clear
+            </Button>
           </div>
         </form>
       </Paper>
