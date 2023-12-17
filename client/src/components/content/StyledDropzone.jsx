@@ -117,7 +117,7 @@ export default function StyledDropzone({
     }
   }, []);
 
-  console.log(refusedFiles);
+  console.log("Rejected files:", refusedFiles);
 
   const removeUploadedFile = filePath => () => {
     setUploadedFiles(prevFiles => [
@@ -160,7 +160,7 @@ export default function StyledDropzone({
     isDragReject
   ]);
 
-  console.log(uploadedFiles);
+  console.log("Uploaded files:", uploadedFiles);
 
   const successFiles = uploadedFiles.map(file => (
     <li key={file.path} className="uploadedFileWrapper">
@@ -172,7 +172,7 @@ export default function StyledDropzone({
           id="anchorSuccess" 
           place="top"
           style={{backgroundColor: "#8dc572", zIndex: "2"}}
-          opacity={0.5}
+          opacity={0.6}
         >
           Success uploaded!
         </Tooltip>
@@ -197,10 +197,10 @@ export default function StyledDropzone({
           id="anchorFailed" 
           place="top"
           style={{backgroundColor: "#be6464", zIndex: "2"}}
-          opacity={0.5}
+          opacity={0.6}
         >
-        {errors.map((error, i) => (
-          <p key={i}>{error.message}</p>
+        {errors.map(error => (
+          <p key={error.code}>{error.message}</p>
         ))}
         </Tooltip>
         <IconButton 
