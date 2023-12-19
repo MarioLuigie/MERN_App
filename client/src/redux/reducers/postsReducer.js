@@ -1,6 +1,6 @@
 import { posts as type } from "../../constants/actionTypes.js";
 
-const postsReducer = (postsList = ["posts"], action) => {
+const postsReducer = (postsList = [], action) => {
   switch(action.type) {
     case type.READ_POSTS:
       return action.data;

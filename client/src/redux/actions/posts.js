@@ -13,10 +13,26 @@ export const getPosts = () => async (dispatch) => {
 }
 
 export const postPost = (newPost) => async (dispatch) => {
+  const { creator, title, message, tags, files } = newPost;
+
+  const formData = new FormData();
+
+  formData.append("creator", creator);
+  formData.append("title", title);
+  formData.append("message", message);
+  formData.append("tags", tags);
+  formData.append("files", files);
+  
+  console.log("utworzona form data", formData);
+
+  formData.forEach(function(value, key) {
+    console.log(key, value);
+  });
+  
+  
   try {
-    const { data } = await api.postPost(newPost);
+    const { data } = await api.postPost(formData);
     console.log(data);
-    console.log(newPost);
 
     dispatch({type: type.CREATE_POST, data})
   } catch (err) {
