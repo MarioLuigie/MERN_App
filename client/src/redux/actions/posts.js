@@ -13,10 +13,32 @@ export const getPosts = () => async (dispatch) => {
 }
 
 export const postPost = (newPost) => async (dispatch) => {
+  const { creator, title, message, tags, files } = newPost;
+
+  console.log(files);
+  console.log(newPost);
+
+  const formData = new FormData();
+
+  formData.append("creator", creator);
+  formData.append("title", title);
+  formData.append("message", message);
+  formData.append("tags", tags);
+  files.forEach((file) => {
+    formData.append("files", file);
+  });
+
+  console.log("utworzona form data", formData);//[]
+
+  //Iterate on formData, because it is a special object, and common console log may be badly resolve to show what is inside of formdata
+  formData.forEach(function(value, key) {
+    console.log(key, value);
+  });//[content]
+  
+  
   try {
-    const { data } = await api.postPost(newPost);
+    const { data } = await api.postPost(formData);
     console.log(data);
-    console.log(newPost);
 
     dispatch({type: type.CREATE_POST, data})
   } catch (err) {

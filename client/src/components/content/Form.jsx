@@ -80,7 +80,8 @@ export default function Form() {
     evt.preventDefault();
     console.log(postData, "from submit");
 
-    const files = uploadedFiles.map(file => file.path);
+    const files = uploadedFiles;
+    console.log("UploadeFiles:", files);
 
     dispatch(actions.postPost({...postData, files}));
     

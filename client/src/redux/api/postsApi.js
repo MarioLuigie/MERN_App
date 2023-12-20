@@ -8,7 +8,11 @@ export const getPosts = () => {
   return data;
 }
 
-export const postPost = (newPost) => {
-  const data = postsAxios.post("/posts", newPost);
+export const postPost = (formData) => {
+  const data = postsAxios.post("/posts", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data"
+    }
+  });
   return data;
 }

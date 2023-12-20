@@ -18,9 +18,15 @@ export const createPost = async (req, res) => {
       creator, 
       title, 
       message, 
-      tags, 
-      files
+      tags
     } = req.body;
+
+    console.log("req body:", req.body);
+
+    const files = req.files.map(file => file.filename);
+    
+    console.log("files uploaded:", files);
+    console.log("req.files:", req.files);
 
     const newPost = new PostMessage({
       creator,
@@ -34,7 +40,7 @@ export const createPost = async (req, res) => {
 
     await newPost.save();
     res.status(201).json(newPost)
-    console.log(newPost);
+    console.log("Post with files uploaded successfully!", newPost);
   } catch (err) {
     res.status(409).json({ message: err.message });
     console.log(err);
