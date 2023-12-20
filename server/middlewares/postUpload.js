@@ -12,8 +12,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-const multerUpload = () => (
+const postUpload = () => (
   upload.array("files", 4)
 )
 
-export default multerUpload;
+export default postUpload;
