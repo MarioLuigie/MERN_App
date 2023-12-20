@@ -228,18 +228,23 @@ export default function StyledDropzone({
         }
       </div>
       <aside style={{paddingTop: "12px"}}>
-        <ul 
-          style={{listStyle: "none"}} 
-          css={styles}
-        >
-          {successFiles}
-        </ul>
-        <ul 
-          style={{listStyle: "none"}} 
-          css={styles}
-        >
-          {errorFiles}
-        </ul>
+        {uploadedFiles.length || refusedFiles.length
+          ? <div>
+              <ul 
+            style={{listStyle: "none"}} 
+            css={styles}
+          >
+            {successFiles}
+          </ul>
+          <ul 
+            style={{listStyle: "none"}} 
+            css={styles}
+          >
+            {errorFiles}
+          </ul>
+          </div>
+          : <p style={{padding: "15px 0", textAlign: "center", color: "#bdbdbd"}}>no files chosen</p>
+        }
       </aside>
     </div>
   );

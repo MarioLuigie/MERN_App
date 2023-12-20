@@ -11,7 +11,9 @@ const styles = css`
 
 export default function Posts() {
   const postsList = useSelector(store => store.postsList);
+
   console.log(postsList);
+  
   return (
     <div css={styles}>
       {/* <h1>POSTS</h1>
