@@ -14,7 +14,6 @@ import StyledDropzone from "./StyledDropzone";
 import * as actions from "../../redux/actions/posts.js";
 
 const styles = css`
-  padding: 20px 0;
 
   .paper {
     padding: 35px 15px;

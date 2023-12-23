@@ -4,18 +4,7 @@ import { css } from '@emotion/react';
 import { 
   Container,
   Grid,
-  Link,
-  Typography,
-  IconButton,
-  BottomNavigation, 
-  BottomNavigationAction,
 } from "@mui/material";
-
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import YoutubeIcon from '@mui/icons-material/Youtube';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-
 
 import FooterItem from "../content/FooterItem";
 import FooterSocial from "../content/FooterSocial";
@@ -28,6 +17,7 @@ const styles = css`
   flex-direction: column;
   align-items: center;
   padding: 30px 0;
+  margin-top: 25px;
 
   .links {
     width: 100%;
