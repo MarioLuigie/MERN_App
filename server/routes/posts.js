@@ -9,6 +9,7 @@ const router = express.Router();//create express Router instance/object for crea
 router.get("/", controllers.getPosts);
 //POST request serving/handle
 router.post("/", postUpload(), controllers.createPost);
+router.patch("/:id", controllers.updatePost);
 
 export default router;
 

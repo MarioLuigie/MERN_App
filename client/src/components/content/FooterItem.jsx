@@ -3,13 +3,9 @@
 import { css } from '@emotion/react';
 import { PropTypes } from "prop-types";
 import { 
-  Container,
   Grid,
   Link,
   Typography,
-  IconButton,
-  BottomNavigation, 
-  BottomNavigationAction,
 } from "@mui/material";
 
 const styles = css`
