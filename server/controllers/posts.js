@@ -73,11 +73,11 @@ export const deletePost = async (req, res) => {
   const { id: _id} = req.params;
 
   try {
-    const deletedItem = await PostMessage.findByIdAndDelete(_id);
-		res.json(_id)
+    const deletedPost = await PostMessage.findByIdAndDelete(_id);
+		res.json(_id);
 
-		console.log(`Item deleted...`);
-		console.log(deletedItem);
+		console.log("Post deleted successfully!");
+		console.log(deletedPost);
 
   } catch (err) {
     res.status(409).json({ message: err.message });
