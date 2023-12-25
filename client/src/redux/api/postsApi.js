@@ -21,3 +21,9 @@ export const updatePost = (id, editedPost) => {
   const data = postsAxios.patch(`/posts/${id}`, editedPost);
   return data;
 }
+
+export const deletePost = (id) => {
+  const data = postsAxios.delete(`/posts/${id}`);
+  console.log(data);
+  return data;
+}

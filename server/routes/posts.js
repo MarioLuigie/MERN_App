@@ -10,6 +10,7 @@ router.get("/", controllers.getPosts);
 //POST request serving/handle
 router.post("/", postUpload(), controllers.createPost);
 router.patch("/:id", controllers.updatePost);
+router.delete("/:id", controllers.deletePost);
 
 export default router;
 

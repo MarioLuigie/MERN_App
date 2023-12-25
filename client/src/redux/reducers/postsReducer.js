@@ -13,7 +13,8 @@ const postsReducer = (postsList = [], action) => {
           : post
       ));
     case type.DELETE_POST:
-      return postsList.filter(post => post._id !== action.data._id);
+      console.log(action.data);
+      return postsList.filter(post => post._id !== action.data);
     case type.DELETE_POSTS:
       return [];
     default:

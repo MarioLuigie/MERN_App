@@ -58,3 +58,15 @@ export const updatePost = (id, editedPost) => async (dispatch) => {
     console.error("Something went wrong...UPDATE ERROR", err.message);
   }
 }
+
+export const deletePost = (id) => async (dispatch) => {
+  console.log(id);
+  try {
+    const { data } = await api.deletePost(id);
+    console.log(data);
+
+    dispatch({type: type.DELETE_POST, data});
+  } catch (err) {
+    console.error("Something went wrong...UPDATE ERROR", err.message);
+  }
+}

@@ -14,6 +14,9 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUpAlt";
 import DeleteIcon from "@mui/icons-material/Delete";
 import MoreIcon from "@mui/icons-material/MoreHoriz";
 import moment from "moment";
+import {  useDispatch } from "react-redux";
+
+import * as actions from "../../redux/actions/posts.js";
 
 const styles = css`
 
@@ -67,9 +70,15 @@ export default function Post({
   post,
   setCurrentId
 }) {
+  const dispatch = useDispatch();
 
   const editPost = () => {
     setCurrentId(post._id);
+  }
+
+  const deletePost = () => {
+    dispatch(actions.deletePost(post._id));
+    console.log(post._id);
   }
 
   return (
@@ -105,7 +114,7 @@ export default function Post({
             </IconButton>
             <p>{post.likeCount}</p>
             </div>
-            <IconButton className="button" size="small" onClick={() => {}}>
+            <IconButton className="button" size="small" onClick={deletePost}>
               <DeleteIcon />
             </IconButton>
           </CardActions>
