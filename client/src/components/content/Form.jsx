@@ -1,14 +1,15 @@
 /* eslint-disable react/no-unknown-property */
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { 
   TextField,
   Button,
   Typography,
   Paper
 } from "@mui/material";
+import { PropTypes } from "prop-types";
 
 import StyledDropzone from "./StyledDropzone";
 import * as actions from "../../redux/actions/posts.js";
@@ -55,7 +56,10 @@ const styles = css`
   }
 `
 
-export default function Form() {
+export default function Form({
+  currentId,
+  setCurrentId
+}) {
   const initPostData = {
     creator: "",
     title: "",
@@ -68,6 +72,20 @@ export default function Form() {
   const [postData, setPostData] = useState(initPostData);
   const dispatch = useDispatch();
 
+  const editedPost = useSelector(store => 
+    currentId 
+      ? store.postsList.find(post => post._id === currentId) 
+      : null
+  );
+
+  console.log("Edited post:", editedPost);
+
+  useEffect(() => {
+    if (editedPost) {
+      setPostData(editedPost);
+    }
+  }, [editedPost]);
+
   const handleChange = (evt) => {
     setPostData({
       ...postData,
@@ -75,26 +93,27 @@ export default function Form() {
     });
   }
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    console.log(postData, "from submit");
-
-    const files = uploadedFiles;
-    console.log("UploadeFiles:", files);
-
-    dispatch(actions.postPost({...postData, files}));
-    
-    setPostData(initPostData);
-    setUploadedFiles([]);
-    setRefusedFiles([]);
-    // console.log(postData);
-  }
-
   const handleClear = () => {
     setPostData(initPostData);
     setUploadedFiles([]);
     setRefusedFiles([]);
+    setCurrentId(null);
     console.log("clear");
+  }
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    console.log(postData, "from submit");
+
+    if (currentId) {
+      dispatch(actions.updatePost(currentId, postData));
+    } else {
+      const files = uploadedFiles;
+      console.log("UploadeFiles:", files);
+      dispatch(actions.createPost({...postData, files}));
+    }
+
+    handleClear();
   }
 
   console.log(postData.acceptedFiles);
@@ -170,4 +189,9 @@ export default function Form() {
       </Paper>
     </div>
   )
+}
+
+Form.propTypes = {
+  currentId: PropTypes.string,
+  setCurrentId: PropTypes.func
 }

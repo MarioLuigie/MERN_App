@@ -8,11 +8,16 @@ export const getPosts = () => {
   return data;
 }
 
-export const postPost = (formData) => {
+export const createPost = (formData) => {
   const data = postsAxios.post("/posts", formData, {
     headers: {
       "Content-Type": "multipart/form-data"
     }
   });
+  return data;
+}
+
+export const updatePost = (id, editedPost) => {
+  const data = postsAxios.patch(`/posts/${id}`, editedPost);
   return data;
 }

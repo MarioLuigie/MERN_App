@@ -12,7 +12,7 @@ export const getPosts = () => async (dispatch) => {
   }
 }
 
-export const postPost = (newPost) => async (dispatch) => {
+export const createPost = (newPost) => async (dispatch) => {
   const { creator, title, message, tags, files } = newPost;
 
   console.log(files);
@@ -37,11 +37,24 @@ export const postPost = (newPost) => async (dispatch) => {
   
   
   try {
-    const { data } = await api.postPost(formData);
+    const { data } = await api.createPost(formData);
     console.log(data);
 
     dispatch({type: type.CREATE_POST, data})
   } catch (err) {
     console.error("Something went wrong...CREATE ERROR", err.message);
+  }
+}
+
+export const updatePost = (id, editedPost) => async (dispatch) => {
+  console.log("ID from redux action:", id);
+  console.log("Edited post from redux action:", editedPost);
+  try {
+    const { data } = await api.updatePost(id, editedPost);
+    console.log(data);
+
+    dispatch({type: type.UPDATE_POST, data});
+  } catch (err) {
+    console.error("Something went wrong...UPDATE ERROR", err.message);
   }
 }

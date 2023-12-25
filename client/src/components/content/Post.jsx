@@ -63,14 +63,21 @@ const styles = css`
  }
 `
 
-export default function Post({ post }) {
+export default function Post({ 
+  post,
+  setCurrentId
+}) {
+
+  const editPost = () => {
+    setCurrentId(post._id);
+  }
 
   return (
     <div css={styles}>
       <Card className="card">
         <CardMedia 
           className="media"
-          image={post.files[0]}
+          image={post.files[0] || "null"}
           title={post.title}
         />
         <div className="timeOverlay">
@@ -78,7 +85,7 @@ export default function Post({ post }) {
           <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
         </div>
         <div className="moreOverlay">
-          <IconButton className="button" size="small" onClick={() => {}}>
+          <IconButton className="button" size="small" onClick={editPost}>
             <MoreIcon />
           </IconButton>
         </div>
@@ -109,5 +116,6 @@ export default function Post({ post }) {
 }
 
 Post.propTypes = {
-  post: PropTypes.object
+  post: PropTypes.object,
+  setCurrentId: PropTypes.func
 }

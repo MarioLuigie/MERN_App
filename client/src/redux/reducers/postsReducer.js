@@ -6,6 +6,16 @@ const postsReducer = (postsList = [], action) => {
       return action.data;
     case type.CREATE_POST:
       return [...postsList, action.data];
+    case type.UPDATE_POST:
+      return postsList.map(post => (
+        post._id === action.data._id
+          ? {...post, ...action.data}
+          : post
+      ));
+    case type.DELETE_POST:
+      return postsList.filter(post => post._id !== action.data._id);
+    case type.DELETE_POSTS:
+      return [];
     default:
       return postsList;
   }

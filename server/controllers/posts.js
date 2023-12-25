@@ -1,5 +1,6 @@
   //Mongoose Model importing (Collection)
   import PostMessage from "../models/postMessage.js";
+  import mongoose from "mongoose";
 
   export const getPosts = async (req, res) => {
     try {
@@ -60,7 +61,7 @@ export const updatePost = async (req, res) => {
 
     res.json(updatedPost);
 
-    console.log("Post updated successfully!");
+    console.log("Post updated successfully!", updatedPost);
     
   } catch (err) {
     res.status(409).json({ message: err.message });
