@@ -76,9 +76,12 @@ export default function Post({
     setCurrentId(post._id);
   }
 
+  const likePost = () => {
+    dispatch(actions.likePost(post._id));
+  }
+
   const deletePost = () => {
     dispatch(actions.deletePost(post._id));
-    console.log(post._id);
   }
 
   return (
@@ -103,13 +106,14 @@ export default function Post({
         </div>
         <div>
           <CardContent>
+            <Typography variant="h6" gutterBottom>{post.title}</Typography>
             <Typography variant="h6" gutterBottom>{post.message}</Typography>
           </CardContent>
         </div>
         <div>
           <CardActions className="actions">
             <div className="likes">
-            <IconButton className="button" size="small" onClick={() => {}}>
+            <IconButton className="button" size="small" onClick={likePost}>
               <ThumbUpIcon />
             </IconButton>
             <p>{post.likeCount}</p>

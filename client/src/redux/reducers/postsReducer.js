@@ -7,6 +7,7 @@ const postsReducer = (postsList = [], action) => {
     case type.CREATE_POST:
       return [...postsList, action.data];
     case type.UPDATE_POST:
+    case type.UPDATE_LIKES:
       return postsList.map(post => (
         post._id === action.data._id
           ? {...post, ...action.data}

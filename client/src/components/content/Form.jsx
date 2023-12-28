@@ -123,7 +123,9 @@ export default function Form({
     <div css={styles}>
       <Paper className="paper">
         <form className="form" autoComplete="off" noValidate onSubmit={handleSubmit}>
-          <Typography variant="h6">Create memory</Typography>
+          <Typography variant="h6">
+            {currentId ? "Edit memory" : "Create memory"}
+          </Typography>
           <TextField 
             name="creator" 
             variant="outlined" 

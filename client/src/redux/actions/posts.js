@@ -59,6 +59,18 @@ export const updatePost = (id, editedPost) => async (dispatch) => {
   }
 }
 
+export const likePost = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.likePost(id);
+    console.log("LIKE:", data);
+
+    dispatch({type: type.UPDATE_LIKES, data});
+
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export const deletePost = (id) => async (dispatch) => {
   console.log(id);
   try {

@@ -25,7 +25,7 @@ export default function Main() {
   useEffect(() => {
     console.log("UseEffect - datas readed.");
     dispatch(actions.getPosts());
-  }, [dispatch]);
+  }, [currentId, dispatch]);
 
   return (
     <div css={styles}>
