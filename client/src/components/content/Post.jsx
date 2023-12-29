@@ -107,7 +107,7 @@ export default function Post({
         <div>
           <CardContent>
             <Typography variant="h6" gutterBottom>{post.title}</Typography>
-            <Typography variant="h6" gutterBottom>{post.message}</Typography>
+            <Typography component="p" variant="body2" color="textSecondary">{post.message}</Typography>
           </CardContent>
         </div>
         <div>
