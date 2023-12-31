@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const url = "http://localhost:5000";
-const postsAxios = axios.create({baseURL: url});
+const postsAxios = axios.create({baseURL: `${url}/api`});
 
 export const getPosts = () => {
   const data =  postsAxios.get("/posts");

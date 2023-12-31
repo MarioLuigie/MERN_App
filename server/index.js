@@ -10,7 +10,7 @@ dotenv.config();
 
 app.use(cors());
 app.use(express.json());
-app.use("/posts", postRoutes);
+app.use("/api/posts", postRoutes);
 
 const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT;
