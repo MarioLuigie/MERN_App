@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // const url = import.meta.env.VITE_REACT_APP_API_URL;
-const url = "https://mern-app-marioluigie.vercel.app";
+const url = "https://mern-app-client-qrzvwh0ga-mariuszs-projects-0104ff99.vercel.app";
 const postsAxios = axios.create({baseURL: `${url}/api`});
 
 console.log(url);
