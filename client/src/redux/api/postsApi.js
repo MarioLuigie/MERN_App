@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "https://mern-app-marioluigie.vercel.app";
+const url = "";
 const postsAxios = axios.create({baseURL: `${url}/api`});
 
 export const getPosts = () => {
