@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "";
+const url = import.meta.env.VITE_REACT_APP_API_URL;
 const postsAxios = axios.create({baseURL: `${url}/api`});
 
 export const getPosts = () => {
