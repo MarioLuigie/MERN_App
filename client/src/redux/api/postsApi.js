@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = process.env.NODE_ENV === 'production' ? "https://mern-app-marioluigie.vercel.app" : "http://localhost:5000";
+const url = "https://mern-app-client-5alzumqf4-mariuszs-projects-0104ff99.vercel.app/"
 const postsAxios = axios.create({baseURL: `${url}/api`});
 
 export const getPosts = () => {
