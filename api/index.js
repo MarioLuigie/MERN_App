@@ -9,7 +9,9 @@ const app = express();
 dotenv.config();
 
 app.use(cors({
-  origin: ["https://mern-app-client-phi.vercel.app"]
+  origin: 'https://yourmemories.vercel.app',
+  methods: 'GET, POST, PUT, DELETE',
+  allowedHeaders: 'Content-Type',
 }));
 app.use(express.json());
 app.use("/api/posts", postRoutes);
