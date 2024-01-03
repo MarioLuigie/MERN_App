@@ -5,14 +5,14 @@
   "private": true,
   "workspaces": [
     "client",
-    "server"
+    "api"
   ],
   "scripts": {
-    "start": "cd server && npm run start",
-    "dev": "concurrently \"npm run client\" \"npm run server\"",
-    "client": "cd client && npm run dev",
-    "server": "cd server && npm run dev",
-    "build": "cd client && npm run build"
+		"api": "cd api && npm run dev",
+		"client": "cd client && npm run dev",
+		"build": "cd client && npm run build",
+		"start": "cd api && npm run start",
+		"dev": "concurrently \"npm run api\" \"npm run client\""
   },
   "dependencies": {
     "debug": "^4.3.4",
