@@ -12,7 +12,8 @@
     "dev": "concurrently \"npm run client\" \"npm run server\"",
     "client": "cd client && npm run dev",
     "server": "cd server && npm run dev",
-    "vercel-build": "vite build"
+    "vercel-build": "vite build",
+    "build": "cd client && npm run build"
   },
   "dependencies": {
     "debug": "^4.3.4",
