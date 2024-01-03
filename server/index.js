@@ -10,7 +10,7 @@ dotenv.config();
 
 app.use(cors(
   {
-    origin: ["https://mern-app-client-oufp.vercel.app"],
+    origin: ["https://mern-app-client-oufp.vercel.app", "https://mern-app-marioluigie.vercel.app/"],
     methods: ["POST", "GET"],
     credentials: true
   }
