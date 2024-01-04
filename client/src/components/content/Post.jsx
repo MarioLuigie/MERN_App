@@ -17,6 +17,7 @@ import moment from "moment";
 import {  useDispatch } from "react-redux";
 
 import * as actions from "../../redux/actions/posts.js";
+// import image from "../../../../api/uploads/1703801554909.jpg"
 
 const styles = css`
 
@@ -89,7 +90,7 @@ export default function Post({
       <Card className="card">
         <CardMedia 
           className="media"
-          image={post.files[0] || "null"}
+          image={'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'}
           title={post.title}
         />
         <div className="timeOverlay">
