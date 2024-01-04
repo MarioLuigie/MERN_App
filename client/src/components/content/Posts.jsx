@@ -36,7 +36,7 @@ export default function Posts({
               spacing={3}
             >
               {postsList.map((post) => (
-                <Grid item xs={12} sm={12} key={post._id}>
+                <Grid item xs={12} sm={12} lg={6} key={post._id}>
                   <Post post={post} setCurrentId={setCurrentId} />
                 </Grid>
               ))}
