@@ -8,11 +8,7 @@ import postRoutes from "./routes/posts.js";
 const app = express();
 dotenv.config();
 
-app.use(cors({
-  origin: 'https://yourmemories.vercel.app',
-  methods: 'GET, POST, PUT, DELETE',
-  allowedHeaders: 'Content-Type',
-}));
+app.use(cors());
 app.use(express.json());
 app.use("/api/posts", postRoutes);
 
