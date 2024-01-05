@@ -90,7 +90,7 @@ export default function Post({
       <Card className="card">
         <CardMedia 
           className="media"
-          image={'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'}
+          image={'https://images.pexels.com/photos/1020017/pexels-photo-1020017.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}
           title={post.title}
         />
         <div className="timeOverlay">
