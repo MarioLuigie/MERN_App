@@ -8,6 +8,8 @@ import { PropTypes } from "prop-types";
 import Post from "./Post";
 
 const styles = css`
+  padding-bottom: 20px;
+  
   .postsContainer {
 
   }

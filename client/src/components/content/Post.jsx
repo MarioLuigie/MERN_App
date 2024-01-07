@@ -87,7 +87,7 @@ export default function Post({
 
   return (
     <div css={styles}>
-      <Card className="card">
+      <Card className="card" elevation={6}>
         <CardMedia 
           className="media"
           image={'https://images.pexels.com/photos/1020017/pexels-photo-1020017.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}

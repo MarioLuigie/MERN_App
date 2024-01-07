@@ -121,7 +121,7 @@ export default function Form({
 
   return (
     <div css={styles}>
-      <Paper className="paper">
+      <Paper className="paper" elevation={6}>
         <form className="form" autoComplete="off" noValidate onSubmit={handleSubmit}>
           <Typography variant="h6">
             {currentId ? "Edit memory" : "Create memory"}

@@ -7,7 +7,6 @@ import {
 } from "@mui/material";
 
 const styles = css`
-  margin-top: 160px;
   padding: 0 0 90px;
 `
 
