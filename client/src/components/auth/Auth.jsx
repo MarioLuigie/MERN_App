@@ -19,11 +19,11 @@ const styles = css`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 40px 20px;
   }
 
   .avatar {
-
+    margin-bottom: 20px;
   }
 `
 
