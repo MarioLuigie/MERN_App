@@ -33,14 +33,16 @@ export default function Auth() {
   return (
     <div css={styles}>
       <Slider />
-      <Container maxWidth="xs">
-        <Paper className="paper" elevation={3}>
-          <Avatar className="avatar">
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography variant="h5">{isSignup ? "Sign Up" : "Sign In"}</Typography>
-        </Paper>
-      </Container>
+      <Grow in timeout={700}>
+        <Container maxWidth="xs">
+          <Paper className="paper" elevation={3}>
+            <Avatar className="avatar">
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography variant="h5">{isSignup ? "Sign Up" : "Sign In"}</Typography>
+          </Paper>
+        </Container>
+      </Grow>
     </div>
   )
 }
