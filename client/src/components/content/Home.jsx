@@ -12,6 +12,7 @@ import {
 import Posts from "../content/Posts";
 import Form from "../content/Form";
 import * as actions from "../../redux/actions/posts";
+import Slider from "./Slider";
 
 const styles = css`
 
@@ -30,6 +31,7 @@ export default function Home() {
 
   return (
     <div css={styles}>
+      <Slider />
       <Grow in timeout={700}>
         <Container>
           <Grid container justifyContent="space-between" alignItems="stretch" spacing={4}>

@@ -8,9 +8,11 @@ import {
   Paper,
   Grid,
   Container,
+  Grow
 } from "@mui/material";
-
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+
+import Slider from "../content/Slider";
 
 const styles = css`
   .paper {
@@ -30,6 +32,7 @@ export default function Auth() {
 
   return (
     <div css={styles}>
+      <Slider />
       <Container maxWidth="xs">
         <Paper className="paper" elevation={3}>
           <Avatar className="avatar">
