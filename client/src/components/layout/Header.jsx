@@ -2,7 +2,7 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import Bar from "../content/Bar";
+import Navbar from "../content/Navbar";
 import Slider from "../content/Slider";
 
 const styles = css`
@@ -11,7 +11,7 @@ export default function Header() {
 
   return (
     <div css={styles}>
-      <Bar />
+      <Navbar />
       <Slider />
     </div>
   )

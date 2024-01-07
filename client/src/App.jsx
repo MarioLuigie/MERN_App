@@ -10,8 +10,8 @@ export default function App() {
 
   return (
     <>
+      <Header />
       <Container maxWidth="lg" sx={{padding: 0}}>
-        <Header />
         <Main />
       </Container>
       <Footer />

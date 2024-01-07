@@ -27,12 +27,13 @@ const styles = css`
     font-weight: 300;
     display: inline-block;
     white-space: nowrap;
+    text-decoration: none;
   }
 
   .footerItem {
     min-width: 120px;
     text-align: center;
-
+    
     @media screen and (min-width: 600px) {
       text-align: left;
     }
