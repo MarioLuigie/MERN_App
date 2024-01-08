@@ -9,8 +9,7 @@ import {
   Paper,
   Grid,
   Container,
-  Grow,
-  TextField
+  Grow
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
@@ -68,72 +67,80 @@ export default function Auth() {
 
   return (
     <div css={styles}>
-      <Slider />
-      <Grow in timeout={700}>
-        <Container maxWidth="xs">
-          <Paper className="paper" elevation={6}>
-            <Avatar className="avatar">
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography variant="h5">
-              {isSignup ? "Sign Up" : "Sign In"}
-            </Typography>
-            <form className="form" onSubmit={handleSubmit}>
-              <Grid container spacing={2}>
-                {isSignup && (
-                  <>
+      <Grid container>
+        <Grid item xs={12} sm={12} lg={6}>
+          <Grow in timeout={700}>
+            <div><Slider /></div>
+          </Grow>
+        </Grid>
+        <Grid item xs={12} sm={12} lg={6}>
+          <Grow in timeout={700}>
+            <Container maxWidth="xs">
+              <Paper className="paper" elevation={6}>
+                <Avatar className="avatar">
+                  <LockOutlinedIcon />
+                </Avatar>
+                <Typography variant="h5">
+                  {isSignup ? "Sign Up" : "Sign In"}
+                </Typography>
+                <form className="form" onSubmit={handleSubmit}>
+                  <Grid container spacing={2}>
+                    {isSignup && (
+                      <>
+                        <Input 
+                          name="firstName"
+                          label="First Name"
+                          type="text"
+                          isAutoFocus={true}
+                          isHalf={false}
+                          handleChange={handleChange}
+                        />
+                        <Input 
+                          name="lastName"
+                          label="Last Name"
+                          type="text"
+                          isAutoFocus={false}
+                          isHalf={false}
+                          handleChange={handleChange}
+                        />
+                      </>
+                    )}
                     <Input 
-                      name="firstName"
-                      label="First Name"
-                      type="text"
-                      isAutoFocus={true}
-                      isHalf={false}
-                      handleChange={handleChange}
-                    />
-                    <Input 
-                      name="lastName"
-                      label="Last Name"
-                      type="text"
+                      name="email"
+                      label="Email"
+                      type="email"
                       isAutoFocus={false}
                       isHalf={false}
                       handleChange={handleChange}
                     />
-                  </>
-                )}
-                <Input 
-                  name="email"
-                  label="Email"
-                  type="email"
-                  isAutoFocus={false}
-                  isHalf={false}
-                  handleChange={handleChange}
-                />
-                <Input 
-                  name="password"
-                  label="Password"
-                  type={isPasswordHidden ? "password" : "text"}
-                  isAutoFocus={false}
-                  isHalf={false}
-                  handleChange={handleChange}
-                  handleShowPassword={handleShowPassword}
-                />
-                {isSignup && 
-                  <Input 
-                    name="confirmPassword"
-                    label="Confirm Password"
-                    type={isPasswordHidden ? "password" : "text"}
-                    isAutoFocus={false}
-                    isHalf={false}
-                    handleChange={handleChange}
-                    handleShowPassword={handleShowPassword}
-                  />
-                }
-              </Grid>
-              <Button className="submitBtn" type="submit" fullWidth variant="contained">{isSignup ? "Sign Up" : "Sign In"}</Button>
-            </form>
-          </Paper>
-        </Container>
-      </Grow>
+                    <Input 
+                      name="password"
+                      label="Password"
+                      type={isPasswordHidden ? "password" : "text"}
+                      isAutoFocus={false}
+                      isHalf={false}
+                      handleChange={handleChange}
+                      handleShowPassword={handleShowPassword}
+                    />
+                    {isSignup && 
+                      <Input 
+                        name="confirmPassword"
+                        label="Confirm Password"
+                        type={isPasswordHidden ? "password" : "text"}
+                        isAutoFocus={false}
+                        isHalf={false}
+                        handleChange={handleChange}
+                        handleShowPassword={handleShowPassword}
+                      />
+                    }
+                  </Grid>
+                  <Button className="submitBtn" type="submit" fullWidth variant="contained">{isSignup ? "Sign Up" : "Sign In"}</Button>
+                </form>
+              </Paper>
+            </Container>
+          </Grow>
+        </Grid>
+      </Grid>
     </div>
   )
 }

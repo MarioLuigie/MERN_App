@@ -27,9 +27,8 @@
         ]
       }
     },
+    "info": "© 2024 ARWcode. All rights reserved. Use of this site constitutes acceptance of our User Agreement and Privacy Policy and Cookie Statement and Your Europe Privacy Rights. YourMemories may earn a portion of sales from products that are purchased through our site as part of our Affiliate Partnerships with retailers. The material on this site may not be reproduced, distributed, transmitted, cached or otherwise used, except with the prior written permission of ARWcode. Ad Choices",
     "signature": {
-      "house": "ARWcode 2023 ",
-      "rights": "©",
       "powered": " Powered by MUI and MERN stack | ",
       "ver": " yourMemories 1.0.0"
     }

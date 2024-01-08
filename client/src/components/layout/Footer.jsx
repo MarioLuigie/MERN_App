@@ -24,20 +24,36 @@ const styles = css`
     padding: 30px 0 40px;
   }
 
+  .info {
+    width: 100%;
+    max-width: 920px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #868686;
+    font-size: 0.8rem;
+    font-weight: 100;
+    padding: 15px;
+
+    &__content {
+      text-align: justify;
+      line-height: 1.2rem;
+    }
+  } 
+
   .sign {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    bottom: 7px;
-    color: #cecece;
-    font-size: 0.6rem;
+    color: #868686;
+    font-size: 0.7rem;
     font-weight: 100;
-  }
+    padding: 10px 15px 0;
 
-  p {
-    text-align: center;
+    &__content {
+      text-align: center;
+    }
   }
 
   span {
@@ -48,10 +64,9 @@ const styles = css`
 export default function Footer() {
   const sections = jsonData.footer.sections;
 
-  const house = jsonData.footer.signature.house;
-  const rights = jsonData.footer.signature.rights;
   const powered = jsonData.footer.signature.powered;
   const ver = jsonData.footer.signature.ver;
+  const info = jsonData.footer.info;
 
   const socialMedia = {
     facebook: "#",
@@ -72,10 +87,13 @@ export default function Footer() {
           </Grid>
         </Container>
       </div>
-      <div className='sign'>
-        <p>
-          {house}
-          <span>{rights}</span>
+      <div className="info">
+        <p className="info__content">
+          {info}
+        </p>
+      </div>
+      <div className="sign">
+        <p className="sign__content">
           {powered}
           <span>{ver}</span>
           </p>
