@@ -23,7 +23,7 @@ const styles = css`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 30px;
+    padding: 40px 30px 10px;
     width: 100%;
   }
 
@@ -33,27 +33,41 @@ const styles = css`
 
   .form {
     width: 100%;
-    padding: 40px 0;
+    padding: 40px 0 15px;
   }
 
   .submitBtn {
     background-color: black;
     color: white;
-    margin: 35px 0 0;
+    margin-top: 35px;
 
     &:hover {
       background-color: #1b1b1b;
     }
   }
+
+  .requestBtn {
+    background-color: transparent;
+    color: #141414;
+    margin-top: 7px;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
 `
 
 export default function Auth() {
-  const isSignup = true;
 
   const [ isPasswordHidden, setIsPasswordHidden ] = useState(true);
+  const [ isSignUp, setIsSignUp ] = useState(false);
+
+  const handleChangeSign = () => {
+    setIsSignUp(prevState => !prevState);
+  }
 
   const handleSubmit = (evt) => {
-    evt.preventDefault;
+    evt.preventDefault();
     console.log("Auth form");
   }
 
@@ -81,18 +95,18 @@ export default function Auth() {
                   <LockOutlinedIcon />
                 </Avatar>
                 <Typography variant="h5">
-                  {isSignup ? "Sign Up" : "Sign In"}
+                  {isSignUp ? "Sign Up" : "Sign In"}
                 </Typography>
                 <form className="form" onSubmit={handleSubmit}>
                   <Grid container spacing={2}>
-                    {isSignup && (
+                    {isSignUp && (
                       <>
                         <Input 
                           name="firstName"
                           label="First Name"
                           type="text"
                           isAutoFocus={true}
-                          isHalf={false}
+                          isHalf={true}
                           handleChange={handleChange}
                         />
                         <Input 
@@ -100,7 +114,7 @@ export default function Auth() {
                           label="Last Name"
                           type="text"
                           isAutoFocus={false}
-                          isHalf={false}
+                          isHalf={true}
                           handleChange={handleChange}
                         />
                       </>
@@ -122,10 +136,10 @@ export default function Auth() {
                       handleChange={handleChange}
                       handleShowPassword={handleShowPassword}
                     />
-                    {isSignup && 
+                    {isSignUp && 
                       <Input 
                         name="confirmPassword"
-                        label="Confirm Password"
+                        label="Repeat Password"
                         type={isPasswordHidden ? "password" : "text"}
                         isAutoFocus={false}
                         isHalf={false}
@@ -134,7 +148,23 @@ export default function Auth() {
                       />
                     }
                   </Grid>
-                  <Button className="submitBtn" type="submit" fullWidth variant="contained">{isSignup ? "Sign Up" : "Sign In"}</Button>
+                  <Button 
+                    className="submitBtn" 
+                    type="submit" 
+                    fullWidth 
+                    variant="contained"
+                  >
+                    {isSignUp ? "Sign Up" : "Sign In"}
+                  </Button>
+                  <Button 
+                    className="requestBtn" 
+                    type="button" 
+                    fullWidth 
+                    variant="text"
+                    onClick={handleChangeSign}
+                  >
+                    {isSignUp ? "ALREADY HAVE AN ACCOUNT? SIGN IN" : "DON'T HAVE AN ACCOUNT? SIGN UP"}
+                  </Button>
                 </form>
               </Paper>
             </Container>

@@ -21,7 +21,7 @@ export default function Slider() {
           color="textPrimary" 
           gutterBottom
         >
-          Let`s share!
+          <p>Let`s share!</p>
         </Typography>
         <Typography 
           variant="h5" 
