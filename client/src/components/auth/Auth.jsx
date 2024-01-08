@@ -12,6 +12,7 @@ import {
   Grow
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { GoogleLogin } from "@react-oauth/google";
 
 import Slider from "../content/Slider";
 import Input from "./Input";
@@ -36,10 +37,14 @@ const styles = css`
     padding: 40px 0 15px;
   }
 
+  .googleLogin {
+    padding: 40px 0 16px;
+    width: 100%;
+  }
+
   .submitBtn {
     background-color: black;
     color: white;
-    margin-top: 35px;
 
     &:hover {
       background-color: #1b1b1b;
@@ -62,7 +67,7 @@ export default function Auth() {
   const [ isPasswordHidden, setIsPasswordHidden ] = useState(true);
   const [ isSignUp, setIsSignUp ] = useState(false);
 
-  const handleChangeSign = () => {
+  const switchMode = () => {
     setIsSignUp(prevState => !prevState);
   }
 
@@ -77,6 +82,14 @@ export default function Auth() {
 
   const handleShowPassword = () => {
     setIsPasswordHidden(prevState => !prevState);
+  }
+
+  const googleAuthSuccess = credentialResponse => {
+    console.log(credentialResponse);
+  }
+
+  const googleAuthError = () => {
+    console.log('Login Failed');
   }
 
   return (
@@ -148,6 +161,12 @@ export default function Auth() {
                       />
                     }
                   </Grid>
+                  <div className="googleLogin">
+                    <GoogleLogin 
+                      onSuccess={googleAuthSuccess}
+                      onError={googleAuthError}
+                    />
+                  </div>
                   <Button 
                     className="submitBtn" 
                     type="submit" 
@@ -161,7 +180,7 @@ export default function Auth() {
                     type="button" 
                     fullWidth 
                     variant="text"
-                    onClick={handleChangeSign}
+                    onClick={switchMode}
                   >
                     {isSignUp ? "ALREADY HAVE AN ACCOUNT? SIGN IN" : "DON'T HAVE AN ACCOUNT? SIGN UP"}
                   </Button>
