@@ -92,6 +92,10 @@ export default function Auth() {
     console.log('Login Failed');
   }
 
+  const handleClickGoogleBtn = () => {
+    console.log("Google button clicked");
+  }
+
   return (
     <div css={styles}>
       <Grid container>
@@ -163,8 +167,16 @@ export default function Auth() {
                   </Grid>
                   <div className="googleLogin">
                     <GoogleLogin 
+                      className="a"
                       onSuccess={googleAuthSuccess}
                       onError={googleAuthError}
+                      click_listener={handleClickGoogleBtn}
+                      width="335"
+                      logo_alignment="center"
+                      text="signin_with"
+                      theme="outline"
+                      locale="yi_US"
+                      ux_mode="popup"
                     />
                   </div>
                   <Button 

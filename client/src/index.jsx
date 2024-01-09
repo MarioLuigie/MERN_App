@@ -10,7 +10,7 @@ import "./index.scss";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <GoogleOAuthProvider clientId="">
+    <GoogleOAuthProvider clientId="988570206494-hma6hf4h3t5sudsbdfs9186vhhjodp13.apps.googleusercontent.com">
       <Provider store={store}>
         <Router>
           <App />
