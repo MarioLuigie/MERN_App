@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 import Slider from "../content/Slider";
 import Input from "./Input";
@@ -24,7 +25,7 @@ const styles = css`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 30px 10px;
+    padding: 40px 30px 20px;
     width: 100%;
   }
 
@@ -38,8 +39,19 @@ const styles = css`
   }
 
   .googleLogin {
-    padding: 40px 0 16px;
     width: 100%;
+
+    &__line {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #a7a7a7;
+      padding: 30px 0 15px;
+    }
+  }
+
+  .submitBtnWrapper {
+    padding-top: 50px;
   }
 
   .submitBtn {
@@ -51,14 +63,21 @@ const styles = css`
     }
   }
 
+  .requestBtnWrapper {
+    padding-top: 5px;
+  }
+
   .requestBtn {
     background-color: transparent;
     color: #141414;
-    margin-top: 7px;
 
     &:hover {
       background-color: transparent;
     }
+  }
+
+  .custom-google-login-button .MuiButton-height {
+    height: 50px;
   }
 `
 
@@ -84,11 +103,18 @@ export default function Auth() {
     setIsPasswordHidden(prevState => !prevState);
   }
 
-  const googleAuthSuccess = credentialResponse => {
-    console.log(credentialResponse);
+  const googleSuccess = async (credencialResponse) => {
+    //funkcja zwraca poświadczenie w odpowiedzi-obiekt token zakodowany
+    const token = credencialResponse;
+    const tokenDecoded = jwtDecode(token.credential);
+
+    console.log(token);
+    console.log(tokenDecoded);
+    console.log(tokenDecoded.email);
   }
 
-  const googleAuthError = () => {
+  const googleError = (err) => {
+    console.log('Login Failed', err);
     console.log('Login Failed');
   }
 
@@ -116,6 +142,23 @@ export default function Auth() {
                 </Typography>
                 <form className="form" onSubmit={handleSubmit}>
                   <Grid container spacing={2}>
+                    <Grid item className="googleLogin">
+                      <GoogleLogin 
+                        onSuccess={googleSuccess}
+                        onError={googleError}
+                        click_listener={handleClickGoogleBtn}
+                        width="335"
+                        size="large"
+                        logo_alignment="center"
+                        text="signin_with"
+                        theme="outline"
+                        locale="yi_US"
+                        ux_mode="popup"
+                        cookiePolicy="single_host_origin"
+                        className="custom-google-login-button"
+                      />
+                      <div className="googleLogin__line">or</div>
+                    </Grid>
                     {isSignUp && (
                       <>
                         <Input 
@@ -156,46 +199,35 @@ export default function Auth() {
                     {isSignUp && 
                       <Input 
                         name="confirmPassword"
-                        label="Repeat Password"
-                        type={isPasswordHidden ? "password" : "text"}
+                        label="Confirm Password"
+                        type="password"
                         isAutoFocus={false}
                         isHalf={false}
                         handleChange={handleChange}
-                        handleShowPassword={handleShowPassword}
                       />
                     }
                   </Grid>
-                  <div className="googleLogin">
-                    <GoogleLogin 
-                      className="a"
-                      onSuccess={googleAuthSuccess}
-                      onError={googleAuthError}
-                      click_listener={handleClickGoogleBtn}
-                      width="335"
-                      logo_alignment="center"
-                      text="signin_with"
-                      theme="outline"
-                      locale="yi_US"
-                      ux_mode="popup"
-                    />
+                  <div className="submitBtnWrapper">
+                  <Button 
+                      className="submitBtn" 
+                      type="submit" 
+                      fullWidth 
+                      variant="contained"
+                    >
+                      {isSignUp ? "Sign Up" : "Sign In"}
+                    </Button>
                   </div>
-                  <Button 
-                    className="submitBtn" 
-                    type="submit" 
-                    fullWidth 
-                    variant="contained"
-                  >
-                    {isSignUp ? "Sign Up" : "Sign In"}
-                  </Button>
-                  <Button 
-                    className="requestBtn" 
-                    type="button" 
-                    fullWidth 
-                    variant="text"
-                    onClick={switchMode}
-                  >
-                    {isSignUp ? "ALREADY HAVE AN ACCOUNT? SIGN IN" : "DON'T HAVE AN ACCOUNT? SIGN UP"}
-                  </Button>
+                  <div className="requestBtnWrapper">
+                    <Button 
+                      className="requestBtn" 
+                      type="button" 
+                      fullWidth 
+                      variant="text"
+                      onClick={switchMode}
+                    >
+                      {isSignUp ? "ALREADY HAVE AN ACCOUNT? SIGN IN" : "DON'T HAVE AN ACCOUNT? SIGN UP"}
+                    </Button>
+                  </div>
                 </form>
               </Paper>
             </Container>

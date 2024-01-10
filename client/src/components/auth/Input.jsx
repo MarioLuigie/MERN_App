@@ -29,6 +29,15 @@ export default function Input({
         required
         variant="outlined"
         onChange={handleChange}
+        InputProps={name === 'password' ? {
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton onClick={handleShowPassword}>
+                {type === 'password' ? <VisibilityIcon /> : <VisibilityOffIcon />}
+              </IconButton>
+            </InputAdornment>
+          ),
+        } : null}
       />
     </Grid>
   )
