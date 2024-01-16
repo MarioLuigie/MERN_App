@@ -6,3 +6,8 @@ export const posts = {
   DELETE_POST: "DELETE_POST",
   DELETE_POSTS: "DELETE_POSTS"
 }
+
+export const auth = {
+  AUTH: "AUTH",
+  LOGOUT: "LOGOUT"
+}

@@ -8,7 +8,9 @@ import {
   Avatar,
   Button
 } from "@mui/material";
+import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const styles = css`
   margin-bottom: 160px;
@@ -40,20 +42,29 @@ const styles = css`
   }
 
   .profile {
-
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
   .purple {
-
+    font-size: 16px;
+    color: black;
+    width: 30px;
+    height: 30px;
   }
 
   .userName {
-
+    font-size: 14px;
   }
 
   .logout {
     background-color: #242424;
-    color: #ebebeb
+    color: #ebebeb;
+
+        &:hover {
+      background-color: transparent;
+    }
   }
 
   .login {
@@ -67,7 +78,16 @@ const styles = css`
 `
 
 export default function Navbar() {
-  const user = null;
+  // const user = null;
+  const [user, setUser] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  console.log("User auth", user);
+
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("profile")));
+  }, [location]);
 
   return (
     <div css={styles}>
@@ -88,17 +108,22 @@ export default function Navbar() {
             ? <div className="profile">
                 <Avatar 
                   className="purple" 
-                  alt={user.result.name}
-                  src={user.result.imageUrl}
+                  alt={user.name}
+                  src={user.picture}
                 >
-                  {user.result.name.charAt(0)}
+                  {user.name.charAt(0)}
                 </Avatar>
-                <Typography className="userName" variant="h6">
-                  {user.result.name}
+                <Typography className="userName" variant="subtitle1">
+                  {user.name}
                 </Typography>
                 <Button 
                   className="logout"
                   variant="contained" 
+                  onClick={() => {
+                    setUser(null);
+                    localStorage.clear();
+                    navigate("/auth");
+                  }}
                 >
                   Logout
                 </Button>

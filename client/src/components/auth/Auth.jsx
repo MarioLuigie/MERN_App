@@ -2,6 +2,8 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { 
   Typography, 
   Avatar,
@@ -13,10 +15,10 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
 
 import Slider from "../content/Slider";
 import Input from "./Input";
+import * as actions from "../../redux/actions/auth.js";
 
 const styles = css`
   padding-bottom: 20px;
@@ -85,6 +87,8 @@ export default function Auth() {
 
   const [ isPasswordHidden, setIsPasswordHidden ] = useState(true);
   const [ isSignUp, setIsSignUp ] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const switchMode = () => {
     setIsSignUp(prevState => !prevState);
@@ -103,14 +107,14 @@ export default function Auth() {
     setIsPasswordHidden(prevState => !prevState);
   }
 
-  const googleSuccess = async (credencialResponse) => {
-    //funkcja zwraca poświadczenie w odpowiedzi-obiekt token zakodowany
-    const token = credencialResponse;
-    const tokenDecoded = jwtDecode(token.credential);
-
-    console.log(token);
-    console.log(tokenDecoded);
-    console.log(tokenDecoded.email);
+  const googleSuccess = async (credentialResponse) => {
+    console.log(credentialResponse);
+    try {
+      dispatch(actions.downloadToken(credentialResponse));
+      navigate("/");
+    } catch (err) {
+      console.log("googleSuccess error:", err);
+    }
   }
 
   const googleError = (err) => {
@@ -144,7 +148,7 @@ export default function Auth() {
                   <Grid container spacing={2}>
                     <Grid item className="googleLogin">
                       <GoogleLogin 
-                        onSuccess={googleSuccess}
+                        onSuccess={(credentialResponse) => googleSuccess(credentialResponse)}
                         onError={googleError}
                         click_listener={handleClickGoogleBtn}
                         width="335"

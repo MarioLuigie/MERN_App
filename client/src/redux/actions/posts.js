@@ -73,6 +73,7 @@ export const likePost = (id) => async (dispatch) => {
 
 export const deletePost = (id) => async (dispatch) => {
   console.log(id);
+
   try {
     const { data } = await api.deletePost(id);
     console.log(data);
@@ -82,3 +83,4 @@ export const deletePost = (id) => async (dispatch) => {
     console.error("Something went wrong...UPDATE ERROR", err.message);
   }
 }
+
