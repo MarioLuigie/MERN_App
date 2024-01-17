@@ -32,7 +32,7 @@ const styles = css`
     color: #868686;
     font-size: 0.8rem;
     font-weight: 100;
-    padding: 15px;
+    padding: 15px 30px;
 
     &__content {
       text-align: justify;

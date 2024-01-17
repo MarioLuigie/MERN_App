@@ -19,6 +19,12 @@ const styles = css`
   .video {
     object-fit: initial;
   }
+
+  .slider {
+    width: 100%;
+    margin-top: 160px;
+    position: absolute;
+  }
 `
 
 export default function LandingPage() {
@@ -26,13 +32,13 @@ export default function LandingPage() {
   return (
     <div css={styles}>
       {/* <Container > */}
-        {/* <Grid container >
+        <Grid container >
           <Grid item xs={12} sm={12} lg={6}>
             <Grow in timeout={700}>
-              <div><Slider /></div>
+              <div className="slider"><Slider config={{headingColor: "white", headingWeight: 700, contentColor: "white"}}/></div>
             </Grow>
           </Grid>
-        </Grid> */}
+        </Grid>
         <div style={{backgroundColor: "black"}}>
           <video autoPlay loop muted className="video">
             <source src={videoSource} type="video/mp4"/>

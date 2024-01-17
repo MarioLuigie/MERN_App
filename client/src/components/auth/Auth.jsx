@@ -84,7 +84,9 @@ const styles = css`
   }
 `
 
-export default function Auth() {
+export default function Auth({
+  config
+}) {
 
   const [ isPasswordHidden, setIsPasswordHidden ] = useState(true);
   const [ isSignUp, setIsSignUp ] = useState(false);
@@ -133,7 +135,7 @@ export default function Auth() {
         <Grid container>
           <Grid item xs={12} sm={12} lg={6}>
             <Grow in timeout={700}>
-              <div><Slider /></div>
+              <div><Slider config={{headingColor: "black", headingWeight: 200, contentColor: "black"}}/></div>
             </Grow>
           </Grid>
           <Grid item xs={12} sm={12} lg={6}>

@@ -24,7 +24,8 @@ const styles = css`
   }
 
   span {
-    color: #58c2ff;
+    /* color: #58c2ff; */
+    color: #FFDA2A;
     font-size: 1.5rem;
     font-family: 'Gloria Hallelujah', 'Roboto', sans-serif;
   }
