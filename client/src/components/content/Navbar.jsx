@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const styles = css`
-  margin-bottom: 160px;
+  /* margin-bottom: 160px; */
   .appBar {
     background-color: #0e0e0e;
     padding: 15px;

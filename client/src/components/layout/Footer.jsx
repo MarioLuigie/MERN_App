@@ -17,7 +17,6 @@ const styles = css`
   flex-direction: column;
   align-items: center;
   padding: 30px 0;
-  margin-top: 25px;
 
   .links {
     width: 100%;

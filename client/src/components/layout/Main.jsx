@@ -8,7 +8,6 @@ import Auth from "../auth/Auth";
 import LandingPage from "../pages/LandingPage";
 
 const styles = css`
-
 `
 export default function Main() {
 

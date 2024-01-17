@@ -14,7 +14,7 @@ import Form from "../content/Form";
 import * as actions from "../../redux/actions/posts";
 
 const styles = css`
-
+  padding-top: 160px;
 `
 
 export default function Home() {
@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <div css={styles}>
       <Grow in timeout={700}>
-        <Container>
+        <Container maxWidth="lg">
           <Grid container justifyContent="space-between" alignItems="stretch" spacing={4}>
             <Grid item xs={12} sm={6} xl={7}>
               <Posts 

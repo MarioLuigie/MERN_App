@@ -21,7 +21,8 @@ import Input from "./Input";
 import * as actions from "../../redux/actions/auth.js";
 
 const styles = css`
-  padding-bottom: 20px;
+  padding-bottom: 45px;
+  padding-top: 160px;
 
   .paper {
     display: flex;
@@ -128,116 +129,118 @@ export default function Auth() {
 
   return (
     <div css={styles}>
-      <Grid container>
-        <Grid item xs={12} sm={12} lg={6}>
-          <Grow in timeout={700}>
-            <div><Slider /></div>
-          </Grow>
-        </Grid>
-        <Grid item xs={12} sm={12} lg={6}>
-          <Grow in timeout={700}>
-            <Container maxWidth="xs">
-              <Paper className="paper" elevation={6}>
-                <Avatar className="avatar">
-                  <LockOutlinedIcon />
-                </Avatar>
-                <Typography variant="h5">
-                  {isSignUp ? "Sign Up" : "Sign In"}
-                </Typography>
-                <form className="form" onSubmit={handleSubmit}>
-                  <Grid container spacing={2}>
-                    <Grid item className="googleLogin">
-                      <GoogleLogin 
-                        onSuccess={(credentialResponse) => googleSuccess(credentialResponse)}
-                        onError={googleError}
-                        click_listener={handleClickGoogleBtn}
-                        width="335"
-                        size="large"
-                        logo_alignment="center"
-                        text="signin_with"
-                        theme="outline"
-                        locale="yi_US"
-                        ux_mode="popup"
-                        cookiePolicy="single_host_origin"
-                        className="custom-google-login-button"
-                      />
-                      <div className="googleLogin__line">or</div>
-                    </Grid>
-                    {isSignUp && (
-                      <>
-                        <Input 
-                          name="firstName"
-                          label="First Name"
-                          type="text"
-                          isAutoFocus={true}
-                          isHalf={true}
-                          handleChange={handleChange}
+      <Container maxWidth="lg">
+        <Grid container>
+          <Grid item xs={12} sm={12} lg={6}>
+            <Grow in timeout={700}>
+              <div><Slider /></div>
+            </Grow>
+          </Grid>
+          <Grid item xs={12} sm={12} lg={6}>
+            <Grow in timeout={700}>
+              <Container maxWidth="xs">
+                <Paper className="paper" elevation={6}>
+                  <Avatar className="avatar">
+                    <LockOutlinedIcon />
+                  </Avatar>
+                  <Typography variant="h5">
+                    {isSignUp ? "Sign Up" : "Sign In"}
+                  </Typography>
+                  <form className="form" onSubmit={handleSubmit}>
+                    <Grid container spacing={2}>
+                      <Grid item className="googleLogin">
+                        <GoogleLogin 
+                          onSuccess={(credentialResponse) => googleSuccess(credentialResponse)}
+                          onError={googleError}
+                          click_listener={handleClickGoogleBtn}
+                          width="335"
+                          size="large"
+                          logo_alignment="center"
+                          text="signin_with"
+                          theme="outline"
+                          locale="yi_US"
+                          ux_mode="popup"
+                          cookiePolicy="single_host_origin"
+                          className="custom-google-login-button"
                         />
-                        <Input 
-                          name="lastName"
-                          label="Last Name"
-                          type="text"
-                          isAutoFocus={false}
-                          isHalf={true}
-                          handleChange={handleChange}
-                        />
-                      </>
-                    )}
-                    <Input 
-                      name="email"
-                      label="Email"
-                      type="email"
-                      isAutoFocus={false}
-                      isHalf={false}
-                      handleChange={handleChange}
-                    />
-                    <Input 
-                      name="password"
-                      label="Password"
-                      type={isPasswordHidden ? "password" : "text"}
-                      isAutoFocus={false}
-                      isHalf={false}
-                      handleChange={handleChange}
-                      handleShowPassword={handleShowPassword}
-                    />
-                    {isSignUp && 
+                        <div className="googleLogin__line">or</div>
+                      </Grid>
+                      {isSignUp && (
+                        <>
+                          <Input 
+                            name="firstName"
+                            label="First Name"
+                            type="text"
+                            isAutoFocus={true}
+                            isHalf={true}
+                            handleChange={handleChange}
+                          />
+                          <Input 
+                            name="lastName"
+                            label="Last Name"
+                            type="text"
+                            isAutoFocus={false}
+                            isHalf={true}
+                            handleChange={handleChange}
+                          />
+                        </>
+                      )}
                       <Input 
-                        name="confirmPassword"
-                        label="Confirm Password"
-                        type="password"
+                        name="email"
+                        label="Email"
+                        type="email"
                         isAutoFocus={false}
                         isHalf={false}
                         handleChange={handleChange}
                       />
-                    }
-                  </Grid>
-                  <div className="submitBtnWrapper">
-                  <Button 
-                      className="submitBtn" 
-                      type="submit" 
-                      fullWidth 
-                      variant="contained"
-                    >
-                      {isSignUp ? "Sign Up" : "Sign In"}
-                    </Button>
-                  </div>
-                  <div className="requestBtnWrapper">
+                      <Input 
+                        name="password"
+                        label="Password"
+                        type={isPasswordHidden ? "password" : "text"}
+                        isAutoFocus={false}
+                        isHalf={false}
+                        handleChange={handleChange}
+                        handleShowPassword={handleShowPassword}
+                      />
+                      {isSignUp && 
+                        <Input 
+                          name="confirmPassword"
+                          label="Confirm Password"
+                          type="password"
+                          isAutoFocus={false}
+                          isHalf={false}
+                          handleChange={handleChange}
+                        />
+                      }
+                    </Grid>
+                    <div className="submitBtnWrapper">
                     <Button 
-                      className="requestBtn" 
-                      type="button" 
-                      fullWidth 
-                      variant="text"
-                      onClick={switchMode}
-                    >
-                      {isSignUp ? "ALREADY HAVE AN ACCOUNT? SIGN IN" : "DON'T HAVE AN ACCOUNT? SIGN UP"}
-                    </Button>
-                  </div>
-                </form>
-              </Paper>
-            </Container>
-          </Grow>
+                        className="submitBtn" 
+                        type="submit" 
+                        fullWidth 
+                        variant="contained"
+                      >
+                        {isSignUp ? "Sign Up" : "Sign In"}
+                      </Button>
+                    </div>
+                    <div className="requestBtnWrapper">
+                      <Button 
+                        className="requestBtn" 
+                        type="button" 
+                        fullWidth 
+                        variant="text"
+                        onClick={switchMode}
+                      >
+                        {isSignUp ? "ALREADY HAVE AN ACCOUNT? SIGN IN" : "DON'T HAVE AN ACCOUNT? SIGN UP"}
+                      </Button>
+                    </div>
+                  </form>
+                </Paper>
+              </Container>
+            </Grow>
+          </Grid>
         </Grid>
-      </Grid>
+      </Container>
     </div>
   )
 }
