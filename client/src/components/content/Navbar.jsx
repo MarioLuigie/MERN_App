@@ -93,7 +93,7 @@ export default function Navbar() {
   const logout = () => {
     setUser(null);
     localStorage.clear();
-    navigate("/auth");
+    navigate("/");
   }
 
   return (
