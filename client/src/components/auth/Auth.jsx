@@ -111,7 +111,7 @@ export default function Auth() {
     console.log(credentialResponse);
     try {
       dispatch(actions.downloadToken(credentialResponse));
-      navigate("/");
+      navigate("/home");
     } catch (err) {
       console.log("googleSuccess error:", err);
     }

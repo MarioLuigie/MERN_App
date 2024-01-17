@@ -96,7 +96,7 @@ export default function Navbar() {
           <Typography
             className="brand__text" 
             component={Link} 
-            to="/"
+            to={user ? "/home" : "/auth"}
             variant="h4" 
             align="left"
           >
