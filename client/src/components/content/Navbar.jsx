@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const styles = css`
-  /* margin-bottom: 160px; */
+
   .appBar {
     background-color: #0e0e0e;
     padding: 15px;
@@ -89,6 +89,12 @@ export default function Navbar() {
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [location]);
 
+  const logout = () => {
+    setUser(null);
+    localStorage.clear();
+    navigate("/auth");
+  }
+
   return (
     <div css={styles}>
       <AppBar position="fixed" className="appBar">
@@ -119,11 +125,7 @@ export default function Navbar() {
                 <Button 
                   className="logout"
                   variant="contained" 
-                  onClick={() => {
-                    setUser(null);
-                    localStorage.clear();
-                    navigate("/auth");
-                  }}
+                  onClick={logout}
                 >
                   Logout
                 </Button>
