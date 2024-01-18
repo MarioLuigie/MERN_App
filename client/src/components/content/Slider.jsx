@@ -22,7 +22,7 @@ export default function Slider({
           variant="h2" 
           align="center" 
           color={config.headingColor} 
-          sx={{fontWeight: config.headingWeight}}
+          sx={{fontWeight: config.headingWeight, textShadow: config.headingShadow}}
           gutterBottom
         >
           <p>Let`s share!</p>
@@ -31,6 +31,7 @@ export default function Slider({
           variant="h5" 
           align="center" 
           color={config.contentColor} 
+          sx={{textShadow: config.contentShadow}}
           paragraph
         >
           Hello everyone! This is the place for sharing emotions from your live! You may show photos and videos here! Let`s create something special!

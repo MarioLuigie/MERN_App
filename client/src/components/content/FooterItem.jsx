@@ -17,13 +17,13 @@ const styles = css`
   align-items: center;
   
   .title {
-    color: white;
+    color: #f8f8f8;
     display: inline-block;
     white-space: nowrap;
   }
 
   .link {
-    color: white;
+    color: #cacaca;
     font-weight: 300;
     display: inline-block;
     white-space: nowrap;

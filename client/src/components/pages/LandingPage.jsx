@@ -22,7 +22,7 @@ const styles = css`
 
   .slider {
     width: 100%;
-    margin-top: 160px;
+    margin-top: 180px;
     position: absolute;
   }
 `
@@ -35,7 +35,17 @@ export default function LandingPage() {
         <Grid container >
           <Grid item xs={12} sm={12} lg={6}>
             <Grow in timeout={700}>
-              <div className="slider"><Slider config={{headingColor: "white", headingWeight: 700, contentColor: "white"}}/></div>
+              <div className="slider">
+                <Slider 
+                  config={
+                    {
+                      headingColor: "white", 
+                      headingWeight: 700, 
+                      contentColor: "white"
+                    }
+                  }
+                />
+              </div>
             </Grow>
           </Grid>
         </Grid>

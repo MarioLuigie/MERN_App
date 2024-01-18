@@ -8,6 +8,7 @@ import {
   Avatar,
   Button
 } from "@mui/material";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -33,8 +34,9 @@ const styles = css`
   .brand {
 
     &__text {
-      color: white;
+      color: #f0f0f0;
       text-decoration: none;
+      padding-left: 10px;
     }
   }
 
@@ -68,9 +70,11 @@ const styles = css`
     }
   }
 
-  .login {
+  .signin {
     background-color: transparent;
     font-family: sans-serif;
+    display: flex;
+    gap: 5px;
 
     &:hover {
       background-color: transparent;
@@ -131,15 +135,18 @@ export default function Navbar() {
                   Logout
                 </Button>
               </div>
-            : <Button 
-                className="login"
-                variant="contained"
-                component={Link} 
-                to="/auth"
-              >
-                Sign In
-              </Button>
-          }
+            : <div>
+                <Button 
+                  className="signin"
+                  variant="contained"
+                  component={Link} 
+                  to="/auth"
+                >
+                  <AccountCircleIcon sx={{fontSize: 27, color: "#999999"}} />
+                  Sign In
+                </Button>
+              </div>
+            }
         </Toolbar>
       </AppBar>
     </div>
