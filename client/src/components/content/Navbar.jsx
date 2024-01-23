@@ -13,11 +13,13 @@ import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import { useAppContext } from '../../context/context.jsx';
+
 const styles = css`
 
   .appBar {
     background-color: #0e0e0e;
-    padding: 15px;
+    padding: 15px 0;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -36,12 +38,11 @@ const styles = css`
     &__text {
       color: #f0f0f0;
       text-decoration: none;
-      padding-left: 10px;
+      padding-left: 20px;
     }
   }
 
   .toolbar {
-
   }
 
   .profile {
@@ -74,19 +75,34 @@ const styles = css`
     background-color: transparent;
     font-family: sans-serif;
     display: flex;
-    gap: 5px;
+    gap: 6px;
 
     &:hover {
       background-color: transparent;
     }
   }
+
+  .desk {
+    display: none;
+
+    @media screen and (min-width: 600px) {
+      display: block;
+    }
+  }
+
+  .mobile {
+    display: block;
+
+    @media screen and (min-width: 600px) {
+      display: none;
+    }
+  }
 `
 
 export default function Navbar() {
-  // const user = null;
-  const [user, setUser] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
+  const { user, setUser } = useAppContext();
 
   console.log("User auth", user);
 
@@ -105,7 +121,7 @@ export default function Navbar() {
       <AppBar position="fixed" className="appBar">
         <div className="brand">
           <Typography
-            className="brand__text" 
+            className="brand__text desk" 
             component={Link} 
             to={user ? "/home" : "/"}
             variant="h4" 
@@ -113,19 +129,28 @@ export default function Navbar() {
           >
             <span>your</span>MEMORIES!
           </Typography>
+          <Typography
+            className="brand__text mobile" 
+            component={Link} 
+            to={user ? "/home" : "/"}
+            variant="h4" 
+            align="left"
+          >
+            <span>your</span>M!
+          </Typography>
         </div>
         <Toolbar className="toolbar">
           {user
             ? <div className="profile">
                 <Avatar 
                   className="purple" 
-                  alt={user.name}
-                  src={user.picture}
+                  alt={user?.name}
+                  src={user?.picture}
                 >
-                  {user.name.charAt(0)}
+                  {user?.name.charAt(0)}
                 </Avatar>
                 <Typography className="userName" variant="subtitle1">
-                  {user.name}
+                  {user?.name}
                 </Typography>
                 <Button 
                   className="logout"

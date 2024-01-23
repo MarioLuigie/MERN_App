@@ -133,11 +133,11 @@ export default function Auth({
     <div css={styles}>
       <Container maxWidth="lg">
         <Grid container>
-          <Grid item xs={12} sm={12} lg={6}>
+          {/* <Grid item xs={12} sm={12} lg={6}>
             <Grow in timeout={700}>
               <div><Slider config={{headingColor: "black", headingWeight: 200, contentColor: "black"}}/></div>
             </Grow>
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} sm={12} lg={6}>
             <Grow in timeout={700}>
               <Container maxWidth="xs">

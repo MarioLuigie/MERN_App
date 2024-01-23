@@ -15,7 +15,7 @@ export default function Main() {
     <main css={styles}>
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
-        <Route exact path="/home" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
       </Routes>
     </main>
