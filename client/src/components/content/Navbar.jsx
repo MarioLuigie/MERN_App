@@ -9,11 +9,13 @@ import {
   Button
 } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { useAppContext } from '../../context/context.jsx';
+import { auth as type } from "../../constants/actionTypes.js";
 
 const styles = css`
 
@@ -103,6 +105,7 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, setUser } = useAppContext();
+  const dispatch = useDispatch();
 
   console.log("User auth", user);
 
@@ -111,8 +114,7 @@ export default function Navbar() {
   }, [location]);
 
   const logout = () => {
-    setUser(null);
-    localStorage.clear();
+    dispatch({type: type.LOGOUT})
     navigate("/");
   }
 
@@ -147,7 +149,7 @@ export default function Navbar() {
                   alt={user?.name}
                   src={user?.picture}
                 >
-                  {user?.name.charAt(0)}
+                  {/* {user?.name.charAt(0)} */}
                 </Avatar>
                 <Typography className="userName" variant="subtitle1">
                   {user?.name}

@@ -16,7 +16,6 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { GoogleLogin } from "@react-oauth/google";
 
-import Slider from "../content/Slider";
 import Input from "./Input";
 import * as actions from "../../redux/actions/auth.js";
 
@@ -43,6 +42,9 @@ const styles = css`
 
   .googleLogin {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     &__line {
       display: flex;
@@ -77,10 +79,6 @@ const styles = css`
     &:hover {
       background-color: transparent;
     }
-  }
-
-  .custom-google-login-button .MuiButton-height {
-    height: 50px;
   }
 `
 
@@ -133,12 +131,7 @@ export default function Auth({
     <div css={styles}>
       <Container maxWidth="lg">
         <Grid container>
-          {/* <Grid item xs={12} sm={12} lg={6}>
-            <Grow in timeout={700}>
-              <div><Slider config={{headingColor: "black", headingWeight: 200, contentColor: "black"}}/></div>
-            </Grow>
-          </Grid> */}
-          <Grid item xs={12} sm={12} lg={6}>
+          <Grid item xs={12} sm={12} lg={12}>
             <Grow in timeout={700}>
               <Container maxWidth="xs">
                 <Paper className="paper" elevation={6}>
@@ -155,15 +148,15 @@ export default function Auth({
                           onSuccess={(credentialResponse) => googleSuccess(credentialResponse)}
                           onError={googleError}
                           click_listener={handleClickGoogleBtn}
-                          width="335"
                           size="large"
                           logo_alignment="center"
                           text="signin_with"
                           theme="outline"
                           locale="yi_US"
                           ux_mode="popup"
-                          cookiePolicy="single_host_origin"
-                          className="custom-google-login-button"
+                          // type="icon"
+                          // shape="circle"
+                          width="10"
                         />
                         <div className="googleLogin__line">or</div>
                       </Grid>
