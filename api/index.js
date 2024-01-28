@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 
 import postRoutes from "./routes/posts.js";
+import authRoutes from "./routes/auth.js";
 
 const app = express();
 dotenv.config();
@@ -11,6 +12,7 @@ dotenv.config();
 app.use(cors());
 app.use(express.json());
 app.use("/api/posts", postRoutes);
+app.use("/api/user", authRoutes);
 
 const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT;

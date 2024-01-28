@@ -106,8 +106,17 @@ export default function Auth({
   config
 }) {
 
+  const initFormData = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+  }
+
   const [ isPasswordHidden, setIsPasswordHidden ] = useState(true);
   const [ isSignUp, setIsSignUp ] = useState(false);
+  const [formData, setFormData ] = useState(initFormData);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -117,11 +126,21 @@ export default function Auth({
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log("Auth form");
+
+    if (isSignUp) {
+      dispatch(actions.signUp(formData, navigate));
+    } else {
+      dispatch(actions.signIn(formData, navigate));
+    }
+
+    console.log("Sign in - Login and Password", formData);
   }
 
-  const handleChange = () => {
-
+  const handleChange = (evt) => {
+    setFormData({
+      ...formData,
+      [evt.target.name]: evt.target.value
+    });
   }
 
   const handleShowPassword = () => {
@@ -144,7 +163,7 @@ export default function Auth({
   }
 
   const handleClickGoogleBtn = () => {
-    console.log("Google button clicked");
+    console.log("Sign in with Google");
   }
 
   return (
