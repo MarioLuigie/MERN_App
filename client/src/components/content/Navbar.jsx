@@ -104,9 +104,9 @@ const styles = css`
 export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { user, setUser } = useAppContext();
   const dispatch = useDispatch();
 
+  const { user, setUser } = useAppContext();
   console.log("User auth", user);
 
   useEffect(() => {
@@ -149,7 +149,7 @@ export default function Navbar() {
                   alt={user?.name}
                   src={user?.picture}
                 >
-                  {/* {user?.name.charAt(0)} */}
+                  {user?.picture ? "" : user?.name.charAt(0)}
                 </Avatar>
                 <Typography className="userName" variant="subtitle1">
                   {user?.name}

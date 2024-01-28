@@ -45,14 +45,34 @@ const styles = css`
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
 
-    &__line {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #a7a7a7;
-      padding: 30px 0 15px;
-    }
+  .auth-method-seperator {
+    font-size: 16px;
+    font-weight: 400;
+    margin: 1.8em auto;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    color: #a7a7a7;
+}
+
+  .auth-method-seperator::before,
+  .auth-method-seperator::after {
+    border-top: 1px solid #a7a7a7;
+    content: " ";
+    display: inline-block;
+    position: absolute;
+    top: 0.7em;
+    width: 43%;
+  }
+
+  .auth-method-seperator::before {
+    left: 0;
+  }
+
+  .auth-method-seperator::after {
+    right: 0;
   }
 
   .submitBtnWrapper {
@@ -158,7 +178,9 @@ export default function Auth({
                           // shape="circle"
                           width="10"
                         />
-                        <div className="googleLogin__line">or</div>
+                        <div className="auth-method-seperator">
+                          <span>or</span>
+                        </div>
                       </Grid>
                       {isSignUp && (
                         <>
