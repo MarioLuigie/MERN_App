@@ -11,7 +11,17 @@ const auth = async (req, res, next) => {
 
     if (token && isCustomAuth) {
       decodedData = jwt.verify(token, "secret-test");//Here I know which user is login and what he can do in this app
+
+      req.userId = decodedData?.id;
+      
+    } else {
+      //Decoded google token
+      decodedData = jwt.decode(token);
+
+      req.userId = decodedData?.sub;//sub - google id for user
     }
+
+    next();
 
   } catch (err) {
     console.log(err.message);

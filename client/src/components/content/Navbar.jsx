@@ -146,13 +146,13 @@ export default function Navbar() {
             ? <div className="profile">
                 <Avatar 
                   className="purple" 
-                  alt={user?.name}
+                  alt={user?.result.name}
                   src={user?.picture}
                 >
-                  {user?.picture ? "" : user?.name.charAt(0)}
+                  {user?.picture ? "" : user?.result.name.charAt(0)}
                 </Avatar>
                 <Typography className="userName" variant="subtitle1">
-                  {user?.name}
+                  {user?.result.name}
                 </Typography>
                 <Button 
                   className="logout"

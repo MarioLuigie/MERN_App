@@ -43,7 +43,7 @@ export const signUp = async (req, res) => {
     confirmPassword } = req.body;
 
   try {
-    const existUser = User.findOne({ email });
+    const existUser = await User.findOne({ email });
     if (existUser) {
       return res.status(400).json({ message: "User already exists."});
     }
@@ -54,7 +54,7 @@ export const signUp = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const result = User.create({ 
+    const result = await User.create({ 
       name: `${firstName} ${lastName}`,
       email, 
       password: hashedPassword 
@@ -68,6 +68,8 @@ export const signUp = async (req, res) => {
     {expiresIn: "1h"});
 
     res.status(200).json({ result, token });
+
+    console.log("Result and token", result, token);
 
   } catch (err) {
     res.status(500).json({ message: "Something went wrong."});

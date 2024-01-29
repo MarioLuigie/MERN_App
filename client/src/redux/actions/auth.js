@@ -24,7 +24,10 @@ export const downloadToken = (credentialResponse) => async (dispatch) => {
 
 export const signIn = (formData, navigate) => async (dispatch) => {
   try {
-    const { data } = api.signIn(formData);
+    const { data } = await api.signIn(formData);
+
+    dispatch({ type: type.AUTH, data });
+
     navigate("/home");
   } catch (err) {
     console.log("SignIn error:", err);
@@ -32,8 +35,12 @@ export const signIn = (formData, navigate) => async (dispatch) => {
 }
 
 export const signUp = (formData, navigate) => async (dispatch) => {
+  console.log(formData);
   try {
-    const { data } = api.signUp(formData);
+    const { data } = await api.signUp(formData);//{result, token}
+
+    dispatch({ type: type.AUTH, data });
+
     navigate("/home");
   } catch (err) {
     console.log("SignUp error:", err);
