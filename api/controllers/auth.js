@@ -22,7 +22,7 @@ export const signIn = async (req, res) => {
         email: existUser.email,
         id: existUser._id
       },
-      "secret-test",
+      "secret-key",
       {expiresIn: "1h"}
     );
 

@@ -117,7 +117,7 @@ export default function Post({
             <IconButton className="button" size="small" onClick={likePost}>
               <ThumbUpIcon />
             </IconButton>
-            <p>{post.likeCount}</p>
+            <p>{post.likeCount.length}</p>
             </div>
             <IconButton className="button" size="small" onClick={deletePost}>
               <DeleteIcon />
