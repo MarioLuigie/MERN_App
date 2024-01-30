@@ -13,6 +13,7 @@ import { PropTypes } from "prop-types";
 
 import StyledDropzone from "./StyledDropzone";
 import * as actions from "../../redux/actions/posts.js";
+import { useAppContext } from '../../context/context.jsx';
 
 const styles = css`
 
@@ -61,7 +62,6 @@ export default function Form({
   setCurrentId
 }) {
   const initPostData = {
-    creator: "",
     title: "",
     message: "",
     tags: ""
@@ -71,6 +71,8 @@ export default function Form({
   const [refusedFiles, setRefusedFiles] = useState([]);
   const [postData, setPostData] = useState(initPostData);
   const dispatch = useDispatch();
+
+  const { user } = useAppContext();
 
   const editedPost = useSelector(store => 
     currentId 
@@ -106,11 +108,11 @@ export default function Form({
     console.log(postData, "from submit");
 
     if (currentId) {
-      dispatch(actions.updatePost(currentId, postData));
+      dispatch(actions.updatePost(currentId, {...postData, name: user?.result?.name}));
     } else {
       const files = uploadedFiles;
       console.log("UploadeFiles:", files);
-      dispatch(actions.createPost({...postData, files}));
+      dispatch(actions.createPost({...postData, name: user?.result?.name, files}));
     }
 
     handleClear();
@@ -126,14 +128,6 @@ export default function Form({
           <Typography variant="h6">
             {currentId ? "Edit memory" : "Create memory"}
           </Typography>
-          <TextField 
-            name="creator" 
-            variant="outlined" 
-            label="Creator" 
-            fullWidth 
-            value={postData.creator}
-            onChange={handleChange}
-          />
           <TextField 
             name="title" 
             variant="outlined" 

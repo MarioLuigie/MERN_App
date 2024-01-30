@@ -13,14 +13,14 @@ export const getPosts = () => async (dispatch) => {
 }
 
 export const createPost = (newPost) => async (dispatch) => {
-  const { creator, title, message, tags, files } = newPost;
+  const { name, title, message, tags, files } = newPost;
 
   console.log(files);
   console.log(newPost);
 
   const formData = new FormData();
 
-  formData.append("creator", creator);
+  formData.append("name", name);
   formData.append("title", title);
   formData.append("message", message);
   formData.append("tags", tags);

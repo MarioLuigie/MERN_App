@@ -15,12 +15,14 @@
 
 export const createPost = async (req, res) => {
   try {
-    const { 
-      creator, 
-      title, 
-      message, 
-      tags
-    } = req.body;
+    // const { 
+    //   creator, 
+    //   title, 
+    //   message, 
+    //   tags
+    // } = req.body;
+
+    const post = req.body;
 
     console.log("req body:", req.body);
 
@@ -30,10 +32,9 @@ export const createPost = async (req, res) => {
     console.log("req.files:", req.files);
 
     const newPost = new PostMessage({
-      creator,
-      title,
-      message,
-      tags,
+      ...post,
+      creator: req.userId,
+      createdAt: new Date().toISOString(),
       files
     });
     
@@ -87,10 +88,10 @@ export const likePost = async (req, res) => {
     const index = post.likeCount.findIndex((id) => id === String(req.userId));
 
     if (index === -1) {
-      //like this post
+      //like post
       post.likeCount.push(req.userId);
     } else {
-      //dislike this post
+      //dislike post
       post.likeCount = post.likeCount.filter((id) => id !== String(req.userId));
     }
 
