@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { jwtDecode } from "jwt-decode";
 
 import { useAppContext } from '../../context/context.jsx';
 import { auth as type } from "../../constants/actionTypes.js";
@@ -109,14 +110,23 @@ export default function Navbar() {
   const { user, setUser } = useAppContext();
   console.log("User auth", user);
 
-  useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [location]);
-
   const logout = () => {
     dispatch({type: type.LOGOUT})
     navigate("/");
+    setUser(null);
   }
+
+  useEffect(() => {
+    const token = user?.token;
+
+    if (token) {
+      const decodedToken = jwtDecode(token);
+
+      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+    }
+
+    setUser(JSON.parse(localStorage.getItem("profile")));
+  }, [location]);
 
   return (
     <div css={styles}>

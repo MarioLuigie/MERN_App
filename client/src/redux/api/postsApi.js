@@ -1,12 +1,8 @@
-import axios from "axios";
-
-const url = import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:7070";
-const API = axios.create({baseURL: `${url}/api`});
+import API from "./api.js";
 
 console.log(API);
 
 export const getPosts = () => {
-  
   const data =  API.get("/posts");
   return data;
 }
