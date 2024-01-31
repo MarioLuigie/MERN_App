@@ -39,6 +39,8 @@ export const signUp = (formData, navigate) => async (dispatch) => {
   try {
     const { data } = await api.signUp(formData);//{result, token}
 
+    console.log("gówno");
+
     dispatch({ type: type.AUTH, data });
 
     navigate("/home");

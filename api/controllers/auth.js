@@ -64,7 +64,7 @@ export const signUp = async (req, res) => {
       email: result.email, 
       id: result._id
     },
-    "secret-test",
+    "secret-key",
     {expiresIn: "1h"});
 
     res.status(200).json({ result, token });
