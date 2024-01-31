@@ -11,12 +11,15 @@ import {
   Typography 
 } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUpAlt";
+import ThumbUpOffIcon from '@mui/icons-material/ThumbUpOffAlt';
 import DeleteIcon from "@mui/icons-material/Delete";
 import MoreIcon from "@mui/icons-material/MoreHoriz";
 import moment from "moment";
 import {  useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
 
 import * as actions from "../../redux/actions/posts.js";
+import { useAppContext } from '../../context/context.jsx';
 // import image from "../../../../api/uploads/1703801554909.jpg"
 
 const styles = css`
@@ -72,6 +75,14 @@ export default function Post({
   setCurrentId
 }) {
   const dispatch = useDispatch();
+  const { user } = useAppContext();
+  const [ isLiked, setIsLiked ] = useState(false);
+
+  const isOwn = post.creator === user?.result?._id;
+
+  useEffect(() => {
+    setIsLiked((post.likeCount.findIndex((id) => id === String(user?.result?._id))) !== -1);
+  }, [post]);
 
   const editPost = () => {
     setCurrentId(post._id);
@@ -98,9 +109,14 @@ export default function Post({
           <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
         </div>
         <div className="moreOverlay">
-          <IconButton className="button" size="small" onClick={editPost}>
-            <MoreIcon />
-          </IconButton>
+          {isOwn
+            ? (
+                <IconButton className="button" size="small" onClick={editPost}>
+                  <MoreIcon />
+                </IconButton>
+              )
+            : null
+          }
         </div>
         <div className="tags">
           <Typography variant="body2" color="textSecondary">{post.tags.split(", ").map(tag => `#${tag}`)}</Typography>
@@ -114,14 +130,22 @@ export default function Post({
         <div>
           <CardActions className="actions">
             <div className="likes">
-            <IconButton className="button" size="small" onClick={likePost}>
-              <ThumbUpIcon />
-            </IconButton>
-            <p>{post.likeCount.length}</p>
+              <IconButton className="button" size="small" onClick={likePost}>
+                {isLiked
+                  ? <ThumbUpIcon />
+                  : <ThumbUpOffIcon />
+                }
+              </IconButton>
+              <p>{post.likeCount.length}</p>
             </div>
-            <IconButton className="button" size="small" onClick={deletePost}>
-              <DeleteIcon />
-            </IconButton>
+            {isOwn
+              ? (
+                  <IconButton className="button" size="small" onClick={deletePost}>
+                    <DeleteIcon />
+                  </IconButton>
+                )
+              : null
+            }
           </CardActions>
         </div>
       </Card>

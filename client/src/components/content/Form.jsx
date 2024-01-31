@@ -121,6 +121,16 @@ export default function Form({
   console.log(postData.acceptedFiles);
   console.log(postData);
 
+  if (!user?.result?.name) {
+    return (
+      <Paper>
+        <Typography variant="h6" align="center">
+          Please Sign In to create own memories!
+        </Typography>
+      </Paper>
+    )
+  }
+
   return (
     <div css={styles}>
       <Paper className="paper" elevation={6}>
@@ -143,6 +153,8 @@ export default function Form({
             fullWidth 
             value={postData.message}
             onChange={handleChange}
+            multiline
+            rows={4}
           />
           <TextField 
             name="tags" 
