@@ -20,6 +20,7 @@ import { useState, useEffect } from "react";
 
 import * as actions from "../../redux/actions/posts.js";
 import { useAppContext } from '../../context/context.jsx';
+import LikersList from "./LikersList.jsx";
 // import image from "../../../../api/uploads/1703801554909.jpg"
 
 const styles = css`
@@ -65,6 +66,11 @@ const styles = css`
   font-size: 0.86rem;
  }
 
+ .likesNumbWrapper {
+  position: relative;
+  cursor: pointer;
+ }
+
  .tags {
   padding: 10px 15px 0;
  }
@@ -77,6 +83,7 @@ export default function Post({
   const dispatch = useDispatch();
   const { user } = useAppContext();
   const [ isLiked, setIsLiked ] = useState(false);
+  const [ isLikersListHidden, setIsLikersListHidden ] = useState(true);
 
   const isOwn = post.creator === user?.result?._id;
 
@@ -95,6 +102,19 @@ export default function Post({
   const deletePost = () => {
     dispatch(actions.deletePost(post._id));
   }
+
+  const handleMouseOver = (evt) => {
+    evt.stopPropagation();
+    setIsLikersListHidden(false);
+    console.log("Like mouse over");
+  }
+
+  const handleMouseOut = (evt) => {
+    evt.stopPropagation();
+    setIsLikersListHidden(true);
+    console.log("Like mouse out");
+  }
+
 
   return (
     <div css={styles}>
@@ -136,7 +156,17 @@ export default function Post({
                   : <ThumbUpOffIcon />
                 }
               </IconButton>
-              <p>{post.likeCount.length}</p>
+              <div 
+                className="likesNumbWrapper"
+                onMouseOver={handleMouseOver} 
+                onMouseOut={handleMouseOut}
+              >
+                <p>{post.likeCount.length}</p>
+                {isLikersListHidden
+                  ? null
+                  : <LikersList likersList={post.likeCount}/>
+                }
+              </div>
             </div>
             {isOwn
               ? (
