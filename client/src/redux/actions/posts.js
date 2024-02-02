@@ -61,7 +61,7 @@ export const updatePost = (id, editedPost) => async (dispatch) => {
 
 export const likePost = (id) => async (dispatch) => {
   try {
-    const { data } = await api.likePost(id);
+    const { data } = await api.likePost(id);//updated post
     console.log("LIKE:", data);
 
     dispatch({type: type.UPDATE_LIKES, data});

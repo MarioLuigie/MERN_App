@@ -85,10 +85,17 @@ export default function Post({
   const [ isLiked, setIsLiked ] = useState(false);
   const [ isLikersListHidden, setIsLikersListHidden ] = useState(true);
 
-  const isOwn = post.creator === user?.result?._id;
+  const isOwn = String(post.creator._id) === String(user?.result?._id);
+
+  console.log(post);
+  console.log(post.creator);
+  console.log("IS OWN:", isOwn);
+  console.log("POST likers:", post.likers);
 
   useEffect(() => {
-    setIsLiked((post.likeCount.findIndex((id) => id === String(user?.result?._id))) !== -1);
+    setIsLiked((post.likers.findIndex((liker) => String(liker._id) === String(user?.result?._id))) !== -1);
+
+    console.log("ISLIKED:", isLiked, post);
   }, [post]);
 
   const editPost = () => {
@@ -161,10 +168,10 @@ export default function Post({
                 onMouseOver={handleMouseOver} 
                 onMouseOut={handleMouseOut}
               >
-                <p>{post.likeCount.length}</p>
-                {isLikersListHidden
+                <p>{post.likers.length}</p>
+                {isLikersListHidden || post.likers.length === 0
                   ? null
-                  : <LikersList likersList={post.likeCount}/>
+                  : <LikersList likers={post.likers}/>
                 }
               </div>
             </div>

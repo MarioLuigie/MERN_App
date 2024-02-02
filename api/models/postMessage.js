@@ -3,13 +3,19 @@ import mongoose from "mongoose";
 //Create mongoose Schema (Document)
 const postSchema = mongoose.Schema({
   name: String,
-  creator: String,
+  creator: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
   title: String,
   message: String,
   tags: String,
   files: [String],
-  likeCount: {
-    type: [String],
+  likers: {
+    type: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    }],
     default: []
   },
   createdAt: {

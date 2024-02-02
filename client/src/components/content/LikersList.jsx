@@ -11,35 +11,33 @@ const styles = css`
   max-height: 400px;
 
   .likersList {
-    padding: 7px 10px;
+    padding: 10px 10px;
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 6px;
     background-color: #eeeeee;
   }
 
   .liker {
     font-size: 13px;
     color: grey;
+    white-space: nowrap;
   }
 `
 
 export default function LikersList({
-  likersList
+  likers
 }) {
 
-  const List = () => {
-    const list = likersList.map(((liker, i) => (
-      <p className="liker" key={i}>{liker}</p>
-    )));
-
-    return list;
-  }
+  console.log("Lista Lubiących:", likers);
 
   return (
     <div css={styles}>
       <Paper elevation={6} className="likersList">
-        <List />
+        {likers.map(liker => (
+          <p className="liker" key={liker._id}>{liker.name}</p>
+          ))
+        }
       </Paper>
     </div>
   )
