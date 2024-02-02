@@ -90,6 +90,7 @@ export default function Post({
   console.log(post);
   console.log(post.creator);
   console.log("IS OWN:", isOwn);
+  
   console.log("POST likers:", post.likers);
 
   useEffect(() => {
