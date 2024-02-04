@@ -10,12 +10,18 @@ const styles = css`
   left: 0px;
   max-height: 400px;
 
+  .title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #4d4d4d;
+  }
+  
   .likersList {
     padding: 10px 10px;
     display: flex;
     flex-direction: column;
     gap: 6px;
-    background-color: #eeeeee;
+    background-color: #eeeeeee1;
   }
 
   .liker {
@@ -34,6 +40,7 @@ export default function LikersList({
   return (
     <div css={styles}>
       <Paper elevation={6} className="likersList">
+        <p className="title">I like it!</p>
         {likers.map(liker => (
           <p className="liker" key={liker._id}>{liker.name}</p>
           ))
