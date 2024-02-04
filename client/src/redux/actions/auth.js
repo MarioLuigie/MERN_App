@@ -13,6 +13,10 @@ export const downloadToken = (credentialResponse) => async (dispatch) => {
     if (token) {
       tokenDecoded = jwtDecode(token);
       // if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+
+      //konieczne aby w Navbar i innych miejscach info dostarczone przez Google bylo w obiekcie
+      //result tak jak to jest w moim customToken tworzonym na server side
+      tokenDecoded = { result: { ...tokenDecoded } };
     }
     
     dispatch({type: type.AUTH, data: tokenDecoded});
@@ -38,8 +42,6 @@ export const signUp = (formData, navigate) => async (dispatch) => {
   console.log(formData);
   try {
     const { data } = await api.signUp(formData);//{result, token}
-
-    console.log("gówno");
 
     dispatch({ type: type.AUTH, data });
 

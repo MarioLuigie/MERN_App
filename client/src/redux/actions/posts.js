@@ -35,12 +35,12 @@ export const createPost = (newPost) => async (dispatch) => {
     console.log(key, value);
   });//[content]
   
-  
   try {
     const { data } = await api.createPost(formData);
     console.log(data);
 
     dispatch({type: type.CREATE_POST, data})
+
   } catch (err) {
     console.error("Something went wrong...CREATE ERROR", err.message);
   }
@@ -54,6 +54,7 @@ export const updatePost = (id, editedPost) => async (dispatch) => {
     console.log(data);
 
     dispatch({type: type.UPDATE_POST, data});
+
   } catch (err) {
     console.error("Something went wrong...UPDATE ERROR", err.message);
   }
@@ -79,6 +80,7 @@ export const deletePost = (id) => async (dispatch) => {
     console.log(data);
 
     dispatch({type: type.DELETE_POST, data});
+
   } catch (err) {
     console.error("Something went wrong...UPDATE ERROR", err.message);
   }

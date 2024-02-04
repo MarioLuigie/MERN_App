@@ -51,7 +51,7 @@ const styles = css`
 
  .button {
   color: black;
-  padding: 10px;
+  padding: 5px;
  }
 
  .actions {
@@ -69,6 +69,7 @@ const styles = css`
  .likesNumbWrapper {
   position: relative;
   cursor: pointer;
+  padding: 5px 10px 5px 0;
  }
 
  .tags {
@@ -86,6 +87,8 @@ export default function Post({
   const [ isLikersListHidden, setIsLikersListHidden ] = useState(true);
 
   const isOwn = String(post.creator._id) === String(user?.result?._id);
+  let youAsLiker = "";
+  let otherUsers = "users";
 
   console.log(post);
   console.log(post.creator);
@@ -123,7 +126,23 @@ export default function Post({
     console.log("Like mouse out");
   }
 
-
+  const checkLikersList = (userId) => {
+    const isUserLiker = post.likers.some(liker => liker._id === userId);
+  
+    if (isUserLiker) {
+      youAsLiker = "You and ";
+      otherUsers = post.likers.length - 1 > 1 
+        ? "users" 
+        : (post.likers.length - 1 === 1 
+            ? "user" 
+            : ""
+          );
+    } else {
+      youAsLiker = "";
+      otherUsers = "";
+    }
+  }
+  
   return (
     <div css={styles}>
       <Card className="card" elevation={6}>
@@ -169,7 +188,13 @@ export default function Post({
                 onMouseOver={handleMouseOver} 
                 onMouseOut={handleMouseOut}
               >
-                <p>{post.likers.length}</p>
+                <p>
+                  {checkLikersList(user?.result?._id)}
+                  {youAsLiker 
+                    ? `${youAsLiker} ${post.likers.length - 1} ${otherUsers}`
+                    : `${post.likers.length}`
+                  }
+                </p>
                 {isLikersListHidden || post.likers.length === 0
                   ? null
                   : <LikersList likers={post.likers}/>
