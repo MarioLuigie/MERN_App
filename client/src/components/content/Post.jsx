@@ -93,8 +93,24 @@ export default function Post({
   console.log(post);
   console.log(post.creator);
   console.log("IS OWN:", isOwn);
-  
   console.log("POST likers:", post.likers);
+
+  const checkLikersList = (userId) => {
+    const isUserLiker = post.likers.some(liker => liker._id === userId);
+  
+    if (isUserLiker) {
+      youAsLiker = "You and ";
+      otherUsers = post.likers.length - 1 > 1 
+        ? "users" 
+        : (post.likers.length - 1 === 1 
+            ? "user" 
+            : ""
+          );
+    } else {
+      youAsLiker = "";
+      otherUsers = "";
+    }
+  }
 
   useEffect(() => {
     setIsLiked((post.likers.findIndex((liker) => String(liker._id) === String(user?.result?._id))) !== -1);
@@ -126,23 +142,6 @@ export default function Post({
     console.log("Like mouse out");
   }
 
-  const checkLikersList = (userId) => {
-    const isUserLiker = post.likers.some(liker => liker._id === userId);
-  
-    if (isUserLiker) {
-      youAsLiker = "You and ";
-      otherUsers = post.likers.length - 1 > 1 
-        ? "users" 
-        : (post.likers.length - 1 === 1 
-            ? "user" 
-            : ""
-          );
-    } else {
-      youAsLiker = "";
-      otherUsers = "";
-    }
-  }
-  
   return (
     <div css={styles}>
       <Card className="card" elevation={6}>

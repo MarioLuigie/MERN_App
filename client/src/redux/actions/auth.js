@@ -50,3 +50,16 @@ export const signUp = (formData, navigate) => async (dispatch) => {
     console.log("SignUp error:", err);
   }
 }
+
+export const signInGoogle = (googleResponse, navigate) => async (dispatch) => {
+  console.log(googleResponse);
+  try {
+    const { data } = await api.signInGoogle(googleResponse);
+    
+    dispatch({ type: type.AUTH, data });
+    navigate("/home");
+
+  } catch (err) {
+    console.log("SignInGoogle error:", err);
+  }
+}

@@ -147,11 +147,12 @@ export default function Auth({
     setIsPasswordHidden(prevState => !prevState);
   }
 
-  const googleSuccess = async (credentialResponse) => {
-    console.log(credentialResponse);
+  const googleSuccess = async (googleResponse) => {
+    console.log(googleResponse);
     try {
-      dispatch(actions.downloadToken(credentialResponse));
-      navigate("/home");
+
+      dispatch(actions.signInGoogle(googleResponse, navigate));
+
     } catch (err) {
       console.log("googleSuccess error:", err);
     }
@@ -184,7 +185,7 @@ export default function Auth({
                     <Grid container spacing={2}>
                       <Grid item className="googleLogin">
                         <GoogleLogin 
-                          onSuccess={(credentialResponse) => googleSuccess(credentialResponse)}
+                          onSuccess={(googleResponse) => googleSuccess(googleResponse)}
                           onError={googleError}
                           click_listener={handleClickGoogleBtn}
                           size="large"
