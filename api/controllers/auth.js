@@ -101,7 +101,8 @@ export const signInGoogle = async (req, res) => {
     if (!existUser) {
       newUser = await User.create({
         name: payload.name,
-        email: payload.email
+        email: payload.email,
+        picture: payload.picture
       });
 
       token = jwt.sign({

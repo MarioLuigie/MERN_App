@@ -157,12 +157,12 @@ export default function Navbar() {
                 <Avatar 
                   className="purple" 
                   alt={user?.result.name}
-                  src={user?.result?.picture}
+                  src={String(user?.result?.picture)}
                 >
-                  {user?.result?.picture ? "" : user?.result.name.charAt(0)}
+                  {user?.result?.picture ? "" : user?.result?.name.charAt(0)}
                 </Avatar>
                 <Typography className="userName" variant="subtitle1">
-                  {user?.result.name}
+                  {user?.result?.name}
                 </Typography>
                 <Button 
                   className="logout"
