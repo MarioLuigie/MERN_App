@@ -84,35 +84,47 @@ export const signInGoogle = async (req, res) => {
 
   const { access_token } = req.body;
 
-  const payload = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", 
-    {
+  // const payload = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", 
+  //   {
+  //     method: 'GET',
+  //     headers: {
+  //       'Authorization': `Bearer ${access_token}`
+  //     }
+  //   })
+  // .then(response => response.json())
+  // .then(data => {
+  //   console.log("DATAS FROM GOOGLE ACCESS_TOKEN:", data);
+  //   return data;
+  // })
+  // .catch(err => {
+  //   console.error('Błąd podczas żądania userinfo od Google:', err);
+  // });
+
+  try {
+    const response = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${access_token}`
       }
-    })
-  .then(response => response.json())
-  .then(data => {
-    console.log("DATAS FROM GOOGLE ACCESS_TOKEN:", data);
-    return data;
-  })
-  .catch(err => {
-    console.error('Błąd podczas żądania userinfo od Google:', err);
-  });
+    });
+  
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+  
+    const payload = await response.json();
+    console.log("DATAS FROM GOOGLE ACCESS_TOKEN:", payload);
 
-  try {
     const existUser = await User.findOne({ email: payload.email });
-    let newUser = null;
-    let token = null;
 
     if (!existUser) {
-      newUser = await User.create({
+      const newUser = await User.create({
         name: payload.name,
         email: payload.email,
         picture: payload.picture
       });
 
-      token = jwt.sign({
+      const token = jwt.sign({
         email: newUser.email,
         id: newUser._id
       },
@@ -124,7 +136,7 @@ export const signInGoogle = async (req, res) => {
 
     } else {
 
-      token = jwt.sign({
+      const token = jwt.sign({
         email: existUser.email,
         id: existUser._id
       },
