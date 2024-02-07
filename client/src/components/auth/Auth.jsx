@@ -14,7 +14,8 @@ import {
   Grow
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { GoogleLogin } from "@react-oauth/google";
+import GoogleIcon from '@mui/icons-material/Google';
+import { useGoogleLogin } from "@react-oauth/google";
 
 import Input from "./Input";
 import * as actions from "../../redux/actions/auth.js";
@@ -45,6 +46,21 @@ const styles = css`
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .googleLoginContent {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .googleLoginText {
+    padding-top: 1.5px;
+  }
+
+  .googleIcon {
+    font-size: 1.2rem;
   }
 
   .auth-method-seperator {
@@ -163,9 +179,10 @@ export default function Auth({
     console.log('Login Failed');
   }
 
-  const handleClickGoogleBtn = () => {
-    console.log("Sign in with Google");
-  }
+  const googleLogin = useGoogleLogin({
+    onSuccess: (googleResponse) => googleSuccess(googleResponse),
+    onError: googleError
+  })
 
   return (
     <div css={styles}>
@@ -184,20 +201,21 @@ export default function Auth({
                   <form className="form" onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                       <Grid item className="googleLogin">
-                        <GoogleLogin 
-                          onSuccess={(googleResponse) => googleSuccess(googleResponse)}
-                          onError={googleError}
-                          click_listener={handleClickGoogleBtn}
-                          size="large"
-                          logo_alignment="center"
-                          text="signin_with"
-                          theme="outline"
-                          locale="yi_US"
-                          ux_mode="popup"
-                          // type="icon"
-                          // shape="circle"
-                          width="10"
-                        />
+                        <Button 
+                          onClick={() => googleLogin()}
+                          fullWidth
+                          variant="outlined"
+                        >
+                          <div className="googleLoginContent">
+                            <p className="googleLoginText">
+                              {isSignUp
+                                ? "Sign up with Google"
+                                : "Sign in with Google"
+                              }
+                            </p>
+                            <GoogleIcon className="googleIcon"/>
+                          </div>
+                        </Button>
                         <div className="auth-method-seperator">
                           <span>or</span>
                         </div>

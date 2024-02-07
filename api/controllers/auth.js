@@ -82,18 +82,25 @@ export const signUp = async (req, res) => {
 
 export const signInGoogle = async (req, res) => {
 
-  const { credential, clientId } = req.body;
+  const { access_token } = req.body;
 
-  const client = new OAuth2Client(clientId);
+  const payload = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", 
+    {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${access_token}`
+      }
+    })
+  .then(response => response.json())
+  .then(data => {
+    console.log("DATAS FROM GOOGLE ACCESS_TOKEN:", data);
+    return data;
+  })
+  .catch(err => {
+    console.error('Błąd podczas żądania userinfo od Google:', err);
+  });
 
   try {
-    const ticket = await client.verifyIdToken({
-      idToken: credential,
-      audience: clientId
-    });
-
-    const payload = ticket.getPayload();
-
     const existUser = await User.findOne({ email: payload.email });
     let newUser = null;
     let token = null;
