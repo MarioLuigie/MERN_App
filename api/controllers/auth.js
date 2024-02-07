@@ -84,23 +84,6 @@ export const signInGoogle = async (req, res) => {
 
   const { access_token } = req.body;
 
-  // const payload = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", 
-  //   {
-  //     method: 'GET',
-  //     headers: {
-  //       'Authorization': `Bearer ${access_token}`
-  //     }
-  //   })
-  // .then(response => response.json())
-  // .then(data => {
-  //   console.log("DATAS FROM GOOGLE ACCESS_TOKEN:", data);
-  //   return data;
-  // })
-  // .catch(err => {
-  //   console.error('Błąd podczas żądania userinfo od Google:', err);
-  // });
-  
-  
   try {
     const response = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
       method: 'GET',

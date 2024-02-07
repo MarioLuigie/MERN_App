@@ -21,8 +21,8 @@ import Input from "./Input";
 import * as actions from "../../redux/actions/auth.js";
 
 const styles = css`
-  padding-bottom: 45px;
-  padding-top: 140px;
+  padding-bottom: 35px;
+  padding-top: 120px;
 
   .paper {
     display: flex;
@@ -66,7 +66,7 @@ const styles = css`
   .auth-method-seperator {
     font-size: 16px;
     font-weight: 400;
-    margin: 1.8em auto;
+    margin: 2.5em auto 1.8em auto;
     position: relative;
     text-align: center;
     width: 100%;

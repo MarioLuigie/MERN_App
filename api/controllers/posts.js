@@ -22,13 +22,6 @@
 
 export const createPost = async (req, res) => {
   try {
-    // const { 
-    //   creator, 
-    //   title, 
-    //   message, 
-    //   tags
-    // } = req.body;
-
     const post = req.body;
 
     console.log("req body:", req.body);

@@ -14,7 +14,7 @@ import Form from "../content/Form";
 import * as actions from "../../redux/actions/posts";
 
 const styles = css`
-  padding-top: 160px;
+  padding-top: 135px;
 `
 
 export default function Home() {
