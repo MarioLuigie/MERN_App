@@ -100,6 +100,7 @@ export const signInGoogle = async (req, res) => {
   //   console.error('Błąd podczas żądania userinfo od Google:', err);
   // });
   
+  
   try {
     const response = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
       method: 'GET',
