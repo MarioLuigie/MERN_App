@@ -21,7 +21,7 @@ import { auth as type } from "../../constants/actionTypes.js";
 const styles = css`
 
   .appBar {
-    background-color: #0e0e0e;
+    background-color: #121212;
     padding: 15px 0;
     display: flex;
     flex-direction: row;

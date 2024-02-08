@@ -11,10 +11,18 @@ import {
 
 import Posts from "../content/Posts";
 import Form from "../content/Form";
+import Paginate from "../content/Paginate";
 import * as actions from "../../redux/actions/posts";
 
 const styles = css`
   padding-top: 135px;
+
+  .paginateWrapper {
+    padding: 25px 15px 25px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 `
 
 export default function Home() {
@@ -31,18 +39,23 @@ export default function Home() {
   return (
     <div css={styles}>
       <Grow in timeout={700}>
-        <Container maxWidth="lg">
+        <Container maxWidth="xl">
           <Grid container justifyContent="space-between" alignItems="stretch" spacing={4}>
-            <Grid item xs={12} sm={6} xl={7}>
+            <Grid item xs={12} sm={6} lg={9} xl={9}>
               <Posts 
                 setCurrentId={setCurrentId}
               />
             </Grid>
-            <Grid item xs={12} sm={6} xl={5}>
+            <Grid item xs={12} sm={6} lg={3} xl={3}>
               <Form 
                 currentId={currentId}
                 setCurrentId={setCurrentId}
               />
+            </Grid>
+            <Grid item xs={12}>
+              <div className="paginateWrapper">
+                <Paginate />
+              </div>
             </Grid>
           </Grid>
         </Container>

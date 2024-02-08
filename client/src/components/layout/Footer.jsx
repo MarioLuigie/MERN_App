@@ -11,7 +11,7 @@ import FooterSocial from "../content/FooterSocial";
 import jsonData from "../../constants/textContent.json";
 
 const styles = css`
-  background-color: black;
+  background-color: #121212;
   position: relative;
   display: flex;
   flex-direction: column;

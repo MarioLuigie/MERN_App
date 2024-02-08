@@ -25,7 +25,7 @@ export default function Slider({
           sx={{fontWeight: config.headingWeight, textShadow: config.headingShadow}}
           gutterBottom
         >
-          <p>Let`s share!</p>
+          <p>Let`s create!</p>
         </Typography>
         <Typography 
           variant="h5" 
@@ -34,7 +34,7 @@ export default function Slider({
           sx={{textShadow: config.contentShadow}}
           paragraph
         >
-          Hello everyone! This is the place for sharing your fashion sessions! You may show photos and videos here! Let`s create something special together!
+          Hello creators! You may share your photos and videos from fashion here! Show your work or session's backstage. Let`s now create this space together!
         </Typography>
       </Container>
     </div>

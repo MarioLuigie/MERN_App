@@ -27,7 +27,7 @@ const styles = css`
 
   .slider {
     width: 100%;
-    margin-top: 180px;
+    margin-top: 480px;
     position: absolute;
   }
 `
