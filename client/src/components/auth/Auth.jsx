@@ -21,8 +21,8 @@ import Input from "./Input";
 import * as actions from "../../redux/actions/auth.js";
 
 const styles = css`
-  padding-bottom: 35px;
-  padding-top: 120px;
+  padding-bottom: 40px;
+  padding-top: 135px;
 
   .paper {
     display: flex;

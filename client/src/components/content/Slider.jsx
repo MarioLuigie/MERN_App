@@ -34,7 +34,7 @@ export default function Slider({
           sx={{textShadow: config.contentShadow}}
           paragraph
         >
-          Hello everyone! This is the place for sharing emotions from your live! You may show photos and videos here! Let`s create something special!
+          Hello everyone! This is the place for sharing your fashion sessions! You may show photos and videos here! Let`s create something special together!
         </Typography>
       </Container>
     </div>

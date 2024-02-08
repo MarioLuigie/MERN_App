@@ -29,11 +29,15 @@ const styles = css`
     justify-content: space-between;
   }
 
-  span {
+  .your {
     /* color: #58c2ff; */
     color: #FFDA2A;
     font-size: 1.5rem;
     font-family: 'Gloria Hallelujah', 'Roboto', sans-serif;
+  }
+
+  .editorials {
+    font-weight: bold;
   }
 
   .brand {
@@ -139,7 +143,7 @@ export default function Navbar() {
             variant="h4" 
             align="left"
           >
-            <span>your</span>MEMORIES!
+            <span className="your">your</span><span className="editorials">Editorials!</span>
           </Typography>
           <Typography
             className="brand__text mobile" 
@@ -148,7 +152,7 @@ export default function Navbar() {
             variant="h4" 
             align="left"
           >
-            <span>your</span>M!
+            <span className="your">your</span><span className="editorials">E!</span>
           </Typography>
         </div>
         <Toolbar className="toolbar">

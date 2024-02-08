@@ -3,7 +3,7 @@
 import { css } from '@emotion/react';
 import { 
   Container,
-  Grid,
+  Grid
 } from "@mui/material";
 
 import FooterItem from "../content/FooterItem";

@@ -8,13 +8,18 @@ import {
 } from "@mui/material";
 
 import Slider from "../content/Slider";
-import videoSource from "../../assets/videos/landingPage01_FHD.mp4";
+import videoSource from "../../assets/videos/landingPage02_FHD.mp4";
 
 const styles = css`
   /* padding-top: 160px; */
   min-height: 750px;
   background-color: #ececec;
   overflow: hidden;
+
+  .videoWrapper {
+    display: flex;
+    justify-content: center;
+  }
 
   .video {
     object-fit: initial;
@@ -49,7 +54,7 @@ export default function LandingPage() {
             </Grow>
           </Grid>
         </Grid>
-        <div style={{backgroundColor: "black"}}>
+        <div style={{backgroundColor: "black"}} className="videoWrapper">
           <video autoPlay loop muted className="video">
             <source src={videoSource} type="video/mp4"/>
           </video>
