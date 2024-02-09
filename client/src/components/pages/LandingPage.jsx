@@ -9,16 +9,18 @@ import {
 
 import Slider from "../content/Slider";
 import videoSource from "../../assets/videos/landingPage02_FHD.mp4";
+import jsonData from "../../constants/textContent.json";
 
 const styles = css`
   /* padding-top: 160px; */
-  min-height: 750px;
+  /* min-height: 750px; */
   background-color: #ececec;
   overflow: hidden;
 
   .videoWrapper {
     display: flex;
     justify-content: center;
+    min-height: 780px;
   }
 
   .video {
@@ -33,6 +35,7 @@ const styles = css`
 `
 
 export default function LandingPage() {
+  const { landingPage } = jsonData;
 
   return (
     <div css={styles}>
@@ -46,7 +49,9 @@ export default function LandingPage() {
                     {
                       headingColor: "white", 
                       headingWeight: 700, 
-                      contentColor: "white"
+                      contentColor: "white",
+                      title: landingPage.title,
+                      text: landingPage.text
                     }
                   }
                 />
