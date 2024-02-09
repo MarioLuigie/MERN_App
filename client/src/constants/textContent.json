@@ -1,4 +1,10 @@
 { 
+  "navbar": {
+    "title1": "your",
+    "title1Short": "your",
+    "title2": "Editorials!",
+    "title2Short": "E!"
+  },
   "landingPage": {
     "title": "Let`s create!",
     "text": "Hello creators! You may share your photos and videos from fashion here! Show your work or session's backstage. Let`s now create this space together!"

@@ -117,7 +117,7 @@ export default function StyledDropzone({
     }
   }, []);
 
-  console.log("Rejected files:", refusedFiles);
+  // console.log("Rejected files:", refusedFiles);
 
   const removeUploadedFile = filePath => () => {
     setUploadedFiles(prevFiles => [
@@ -130,7 +130,7 @@ export default function StyledDropzone({
       ...prevFiles.filter(({ file }) => file.path !== filePath)
     ]);
 
-    console.log("remove rejected");
+    // console.log("remove rejected");
   }
 
   const {
@@ -160,7 +160,7 @@ export default function StyledDropzone({
     isDragReject
   ]);
 
-  console.log("Uploaded files:", uploadedFiles);
+  // console.log("Uploaded files:", uploadedFiles);
 
   const successFiles = uploadedFiles.map(file => (
     <li key={file.path} className="uploadedFileWrapper">

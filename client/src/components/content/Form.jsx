@@ -18,7 +18,7 @@ import { useAppContext } from '../../context/context.jsx';
 const styles = css`
 
   .paper {
-    padding: 35px 15px;
+    padding: 20px 15px 35px;
   }
 
   .form {
@@ -80,7 +80,7 @@ export default function Form({
       : null
   );
 
-  console.log("Edited post:", editedPost);
+  // console.log("Edited post:", editedPost);
 
   useEffect(() => {
     if (editedPost) {
@@ -100,26 +100,26 @@ export default function Form({
     setUploadedFiles([]);
     setRefusedFiles([]);
     setCurrentId(null);
-    console.log("clear");
+    // console.log("clear");
   }
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log(postData, "from submit");
+    // console.log(postData, "from submit");
 
     if (currentId) {
       dispatch(actions.updatePost(currentId, {...postData, name: user?.result?.name}));
     } else {
       const files = uploadedFiles;
-      console.log("UploadeFiles:", files);
+      // console.log("UploadeFiles:", files);
       dispatch(actions.createPost({...postData, name: user?.result?.name, files}));
     }
 
     handleClear();
   }
 
-  console.log(postData.acceptedFiles);
-  console.log(postData);
+  // console.log(postData.acceptedFiles);
+  // console.log(postData);
 
   if (!user?.result?.name) {
     return (

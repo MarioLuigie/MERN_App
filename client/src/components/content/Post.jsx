@@ -90,10 +90,10 @@ export default function Post({
   let youAsLiker = "";
   let otherUsers = "users";
 
-  console.log(post);
-  console.log(post.creator);
-  console.log("IS OWN:", isOwn);
-  console.log("POST likers:", post.likers);
+  // console.log(post);
+  // console.log(post.creator);
+  // console.log("IS OWN:", isOwn);
+  // console.log("POST likers:", post.likers);
 
   const checkLikersList = (userId) => {
     const isUserLiker = post.likers.some(liker => liker._id === userId);
@@ -115,7 +115,7 @@ export default function Post({
   useEffect(() => {
     setIsLiked((post.likers.findIndex((liker) => String(liker._id) === String(user?.result?._id))) !== -1);
 
-    console.log("ISLIKED:", isLiked, post);
+    // console.log("ISLIKED:", isLiked, post);
   }, [post]);
 
   const editPost = () => {
@@ -133,13 +133,13 @@ export default function Post({
   const handleMouseOver = (evt) => {
     evt.stopPropagation();
     setIsLikersListHidden(false);
-    console.log("Like mouse over");
+    // console.log("Like mouse over");
   }
 
   const handleMouseOut = (evt) => {
     evt.stopPropagation();
     setIsLikersListHidden(true);
-    console.log("Like mouse out");
+    // console.log("Like mouse out");
   }
 
   return (

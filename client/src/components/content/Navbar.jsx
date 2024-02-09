@@ -10,13 +10,14 @@ import {
 } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link, json } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { jwtDecode } from "jwt-decode";
 
 import { useAppContext } from '../../context/context.jsx';
 import { auth as type } from "../../constants/actionTypes.js";
+import jsonData from "../../constants/textContent.json";
 
 const styles = css`
 
@@ -41,11 +42,11 @@ const styles = css`
   }
 
   .brand {
-
+    padding-left: 20px;
+    
     &__text {
       color: #f0f0f0;
       text-decoration: none;
-      padding-left: 20px;
     }
   }
 
@@ -107,12 +108,13 @@ const styles = css`
 `
 
 export default function Navbar() {
+  const { navbar } = jsonData;
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { user, setUser } = useAppContext();
-  console.log("User auth", user);
+  // console.log("User auth", user);
 
   const logout = () => {
     dispatch({type: type.LOGOUT})
@@ -143,7 +145,7 @@ export default function Navbar() {
             variant="h4" 
             align="left"
           >
-            <span className="your">your</span><span className="editorials">Editorials!</span>
+            <span className="your">{navbar.title1}</span><span className="editorials">{navbar.title2}</span>
           </Typography>
           <Typography
             className="brand__text mobile" 
@@ -152,7 +154,7 @@ export default function Navbar() {
             variant="h4" 
             align="left"
           >
-            <span className="your">your</span><span className="editorials">E!</span>
+            <span className="your">{navbar.title1Short}</span><span className="editorials">{navbar.title2Short}</span>
           </Typography>
         </div>
         <Toolbar className="toolbar">

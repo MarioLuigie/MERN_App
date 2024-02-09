@@ -4,7 +4,7 @@ import { posts as type} from "../../constants/actionTypes.js";
 export const getPosts = () => async (dispatch) => {
   try {
     const { data } = await api.getPosts();
-    console.log("Zasoby z bazy mDB", data);
+    // console.log("Zasoby z bazy mDB", data);
 
     dispatch({type: type.READ_POSTS, data});
   } catch (err) {
