@@ -17,6 +17,7 @@ export const createPost = (newPost) => async (dispatch) => {
 
   console.log(files);
   console.log(newPost);
+  console.log("TAGS FROM ACTION:", tags);
 
   const formData = new FormData();
 

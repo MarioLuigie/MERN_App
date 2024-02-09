@@ -8,10 +8,7 @@ import {
   Container,
   Grow,
   Grid,
-  Chip,
-  Autocomplete,
   TextField,
-  Stack,
   Paper, 
   Typography
 } from "@mui/material";
@@ -20,6 +17,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Posts from "../content/Posts";
 import Form from "../content/Form";
 import Paginate from "../content/Paginate";
+import InputTags from "../ui/InputTags";
 import * as actions from "../../redux/actions/posts";
 
 function useQuery() {
@@ -110,25 +108,16 @@ export default function Home() {
                       <TextField 
                         fullWidth
                         name="search"
-                        label="Add word"
+                        label="Add Word"
                         variant="outlined"
                         value={search}
                         onChange={handleChange}
                         onKeyDown={handleKeyDown}
                       />
-                      <Autocomplete
-                        clearIcon={false}
-                        options={[]}
-                        freeSolo
-                        multiple
-                        defaultValue={defaultValue}
-                        onChange={(_, value) => setChips(value)}
-                        renderTags={(value, props) => value.map((option, i) => (
-                          <Chip label={option} {...props({ i })} key={ i }/>
-                          ))
-                        }
-                        renderInput={(props) => <TextField label="Add Tags" {...props} />
-                        }
+                      <InputTags 
+                        setState={setChips}
+                        state={chips}
+                        label="Add Tags"
                       />
                     </div>
                   </Paper>

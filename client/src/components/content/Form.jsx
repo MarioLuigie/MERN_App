@@ -14,6 +14,7 @@ import { PropTypes } from "prop-types";
 import StyledDropzone from "./StyledDropzone";
 import * as actions from "../../redux/actions/posts.js";
 import { useAppContext } from '../../context/context.jsx';
+import InputTags from "../ui/InputTags";
 
 const styles = css`
 
@@ -63,10 +64,10 @@ export default function Form({
 }) {
   const initPostData = {
     title: "",
-    message: "",
-    tags: ""
+    message: ""
   }
 
+  const [tags, setTags ] = useState([]);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [refusedFiles, setRefusedFiles] = useState([]);
   const [postData, setPostData] = useState(initPostData);
@@ -100,19 +101,21 @@ export default function Form({
     setUploadedFiles([]);
     setRefusedFiles([]);
     setCurrentId(null);
+    setTags([]);
     // console.log("clear");
   }
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     // console.log(postData, "from submit");
+    console.log("TAGS FROM SUBMIT:", tags);
 
     if (currentId) {
       dispatch(actions.updatePost(currentId, {...postData, name: user?.result?.name}));
     } else {
       const files = uploadedFiles;
       // console.log("UploadeFiles:", files);
-      dispatch(actions.createPost({...postData, name: user?.result?.name, files}));
+      dispatch(actions.createPost({...postData, name: user?.result?.name, files, tags}));
     }
 
     handleClear();
@@ -120,6 +123,7 @@ export default function Form({
 
   // console.log(postData.acceptedFiles);
   // console.log(postData);
+  console.log("TAGS", tags);
 
   if (!user?.result?.name) {
     return (
@@ -156,13 +160,18 @@ export default function Form({
             multiline
             rows={4}
           />
-          <TextField 
+          {/* <TextField 
             name="tags" 
             variant="outlined" 
             label="Tags" 
             fullWidth 
             value={postData.tags}
             onChange={handleChange}
+          /> */}
+          <InputTags 
+            label="Add Tags"
+            setState={setTags}
+            state={tags}
           />
           <div className="fileInput">
             <StyledDropzone 

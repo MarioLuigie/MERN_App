@@ -25,6 +25,7 @@ export const createPost = async (req, res) => {
     const post = req.body;
 
     console.log("req body:", req.body);
+    console.log("tags splited:", post.tags.split(","));
 
     const files = req.files.map(file => file.filename);
     
@@ -39,7 +40,8 @@ export const createPost = async (req, res) => {
       ...post,
       creator: user._id,//mongoosowy objectId bez populate konwert na string id
       createdAt: new Date().toISOString(),
-      files
+      files,
+      tags: post.tags.split(",")
     });
     
     console.log(newPost, "regBody");

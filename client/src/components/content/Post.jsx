@@ -74,6 +74,7 @@ const styles = css`
 
  .tags {
   padding: 10px 15px 0;
+  display: flex;
  }
 `
 
@@ -165,7 +166,14 @@ export default function Post({
           }
         </div>
         <div className="tags">
-          <Typography variant="body2" color="textSecondary">{post.tags.split(", ").map(tag => `#${tag}`)}</Typography>
+          {post.tags.map((tag, i) => {
+            console.log(post.tags);
+            return (
+              <Typography variant="body2" color="textSecondary" key={i}>
+                {`#${tag}`}
+              </Typography>)
+            })
+          }
         </div>
         <div>
           <CardContent>
