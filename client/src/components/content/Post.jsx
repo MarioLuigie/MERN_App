@@ -23,10 +23,11 @@ import { useAppContext } from '../../context/context.jsx';
 import LikersList from "./LikersList.jsx";
 // import image from "../../../../api/uploads/1703801554909.jpg"
 
-const styles = css`
+const styles = (isOwn) => css`
 
  .card {
   position: relative;
+  border: ${isOwn ? "#838383 solid 1px" : "none"};
  }
 
  .media {
@@ -144,8 +145,8 @@ export default function Post({
   }
 
   return (
-    <div css={styles}>
-      <Card className="card" elevation={6}>
+    <div css={styles(isOwn)}>
+      <Card className="card" elevation={isOwn ? 6 : 3}>
         <CardMedia 
           className="media"
           image={'https://images.pexels.com/photos/1020017/pexels-photo-1020017.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}
@@ -167,7 +168,6 @@ export default function Post({
         </div>
         <div className="tags">
           {post.tags.map((tag, i) => {
-            console.log(post.tags);
             return (
               <Typography variant="body2" color="textSecondary" key={i}>
                 {`#${tag}`}

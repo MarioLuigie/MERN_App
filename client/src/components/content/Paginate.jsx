@@ -16,7 +16,7 @@ export default function Paginate() {
   return (
     <div css={styles}>
       <Pagination 
-        count={10}//than will be dynamic value
+        count={12}//than will be dynamic value
         page={1}//dynamic current page
         variant="text"
         color="standard"

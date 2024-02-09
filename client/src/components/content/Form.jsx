@@ -17,7 +17,6 @@ import { useAppContext } from '../../context/context.jsx';
 import InputTags from "../ui/InputTags";
 
 const styles = css`
-
   .paper {
     padding: 20px 15px 35px;
   }
@@ -160,14 +159,6 @@ export default function Form({
             multiline
             rows={4}
           />
-          {/* <TextField 
-            name="tags" 
-            variant="outlined" 
-            label="Tags" 
-            fullWidth 
-            value={postData.tags}
-            onChange={handleChange}
-          /> */}
           <InputTags 
             label="Add Tags"
             setState={setTags}

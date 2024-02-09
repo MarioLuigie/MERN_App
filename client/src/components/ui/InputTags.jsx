@@ -3,16 +3,22 @@ import { css } from '@emotion/react';
 import { 
   Chip,
   Autocomplete,
-  TextField
+  TextField,
+  Typography
 } from "@mui/material";
 
 const styles = css`
-
+  .explainText {
+    color: #c9c9c9;
+    font-size: 0.85rem;
+    padding-top: 6px;
+  }
 `
 export default function InputTags({
   setState,
   state,
-  label
+  label,
+  isExplain=true
 }) {
 
   return (
@@ -37,8 +43,12 @@ export default function InputTags({
             />)
           })
         }
-        renderInput={(props) => <TextField label={label} {...props} />
-        }
+        renderInput={(props) => (
+          <div>
+            <TextField label={label} {...props} />
+            {isExplain ? <Typography className="explainText">Press enter to add a tag.</Typography> : ""}
+          </div>
+        )}
       />
     </div>
   )
