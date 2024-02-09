@@ -50,6 +50,7 @@ export const createPost = (newPost) => async (dispatch) => {
 export const updatePost = (id, editedPost) => async (dispatch) => {
   console.log("ID from redux action:", id);
   console.log("Edited post from redux action:", editedPost);
+  console.log("Edited post from redux action:", editedPost.tags);
   try {
     const { data } = await api.updatePost(id, editedPost);
     console.log(data);

@@ -85,6 +85,7 @@ export default function Form({
   useEffect(() => {
     if (editedPost) {
       setPostData(editedPost);
+      setTags(editedPost.tags)
     }
   }, [editedPost]);
 
@@ -110,7 +111,7 @@ export default function Form({
     console.log("TAGS FROM SUBMIT:", tags);
 
     if (currentId) {
-      dispatch(actions.updatePost(currentId, {...postData, name: user?.result?.name}));
+      dispatch(actions.updatePost(currentId, {...postData, name: user?.result?.name, tags}));
     } else {
       const files = uploadedFiles;
       // console.log("UploadeFiles:", files);

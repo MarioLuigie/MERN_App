@@ -28,6 +28,7 @@ const styles = (isOwn) => css`
  .card {
   position: relative;
   border: ${isOwn ? "#838383 solid 1px" : "none"};
+  cursor: pointer;
  }
 
  .media {
