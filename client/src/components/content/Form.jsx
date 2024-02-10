@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { 
   TextField,
@@ -71,6 +71,7 @@ export default function Form({
   const [refusedFiles, setRefusedFiles] = useState([]);
   const [postData, setPostData] = useState(initPostData);
   const dispatch = useDispatch();
+  const titleInputRef = useRef(null);
 
   const { user } = useAppContext();
 
@@ -85,9 +86,15 @@ export default function Form({
   useEffect(() => {
     if (editedPost) {
       setPostData(editedPost);
-      setTags(editedPost.tags)
+      setTags(editedPost.tags);
     }
   }, [editedPost]);
+
+  useEffect(() => {
+    if (currentId && titleInputRef.current) {
+      titleInputRef.current.focus();
+    }
+  }, [currentId]);
 
   const handleChange = (evt) => {
     setPostData({
@@ -140,9 +147,10 @@ export default function Form({
       <Paper className="paper" elevation={6}>
         <form className="form" autoComplete="off" noValidate onSubmit={handleSubmit}>
           <Typography variant="h6">
-            {currentId ? "Edit memory" : "Create memory"}
+            {currentId ? "Edit Editorial" : "Create Editorial"}
           </Typography>
           <TextField 
+            inputRef={titleInputRef}
             name="title" 
             variant="outlined" 
             label="Title" 

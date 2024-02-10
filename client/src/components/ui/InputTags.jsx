@@ -46,7 +46,7 @@ export default function InputTags({
         renderInput={(props) => (
           <div>
             <TextField label={label} {...props} />
-            {isExplain ? <Typography className="explainText">Press enter to add a tag.</Typography> : ""}
+            {isExplain ? <Typography variant="caption" color="textSecondary" className="explainText">Press enter to add a tag.</Typography> : ""}
           </div>
         )}
       />

@@ -39,6 +39,10 @@ const styles = (isOwn) => css`
   border-bottom: #cacaca solid 1px;
  }
 
+ .title {
+  font-weight: bold;
+ }
+
  .timeOverlay {
   position: absolute;
   top: 20px;
@@ -154,8 +158,8 @@ export default function Post({
           title={post.title}
         />
         <div className="timeOverlay">
-          <Typography variant="h6">{post.name}</Typography>
-          <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
+          <Typography variant="h6" color="textSecondary">{post.name}</Typography>
+          <Typography variant="body2" color="textSecondary">{moment(post.createdAt).fromNow()}</Typography>
         </div>
         <div className="moreOverlay">
           {isOwn
@@ -177,8 +181,8 @@ export default function Post({
           }
         </div>
         <div>
-          <CardContent>
-            <Typography variant="h6" gutterBottom>{post.title}</Typography>
+          <CardContent sx={{mt: 2}}>
+            <Typography variant="h5" className="title" gutterBottom>{post.title}</Typography>
             <Typography component="p" variant="body2" color="textSecondary">{post.message}</Typography>
           </CardContent>
         </div>
