@@ -22,8 +22,8 @@ function useQuery() {
 
 const styles = css`
   padding-top: 110px;
-  padding-bottom: 40px;
-  
+  /* padding-bottom: 40px; */
+
   .searchWrapper {
     padding: 15px 15px 35px;
   }
@@ -96,6 +96,11 @@ export default function Home() {
                   />
                 </Grid>
               </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <div className="paginateWrapper">
+                <Paginate page={page} />
+              </div>
             </Grid>
           </Grid>
         </Container>

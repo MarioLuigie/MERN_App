@@ -29,7 +29,7 @@ export default function Posts({
   
   return (
     <div css={styles}>
-      {postsList.length 
+      {postsList?.length 
         ? (
             <Grid 
               container 
@@ -37,7 +37,7 @@ export default function Posts({
               alignItems="stretch" 
               spacing={3}
             >
-              {postsList.map((post) => (
+              {postsList?.map((post) => (
                 <Grid item xs={12} sm={12} md={6} lg={4} key={post._id}>
                   <Post post={post} setCurrentId={setCurrentId} />
                 </Grid>

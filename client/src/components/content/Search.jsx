@@ -68,11 +68,13 @@ export default function Search() {
   const dispatch = useDispatch();
 
   const handleSearchPost = () => {
-    if(searchValue.trim() || tags) {
+    if(searchValue.trim() || tags.length) {
       dispatch(actions.getPostsBySearch({ searchValue, tags: tags.join(",") }));
-      handleClear();
       navigate(`/home/search?searchQuery=${searchValue || "none"}&tags=${tags.join(",")}`);
+      handleClear();
+      // console.log("TRUE");
     } else {
+      // console.log("FALSE");
       navigate("/home");
     }
   }
@@ -83,7 +85,7 @@ export default function Search() {
 
   const handleKeyDown = (evt) => {
     if(evt.key === "Enter") {
-      console.log("Is searching...");
+      handleSearchPost();
     }
   }
 
@@ -125,6 +127,7 @@ export default function Search() {
             type="submit" 
             fullWidth
             onClick={handleSearchPost}
+            onKeyDown={handleKeyDown}
           >
             Search
           </Button>

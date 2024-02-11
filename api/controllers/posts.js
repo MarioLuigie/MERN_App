@@ -48,7 +48,9 @@ export const getPostsBySearch = async (req, res) => {
     .populate("creator")
     .populate("likers");
 
-    res.status(200).json(postMessages);
+    res.status(200).json({
+      postsList: postMessages
+    });
   
     console.log("Pobrane zasoby z mDB by Search", postMessages);
 
