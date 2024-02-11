@@ -10,6 +10,7 @@ import PostDetails from '../content/PostDetails';
 import { useAppContext } from '../../context/context';
 
 const styles = css`
+
 `
 export default function Main() {
   const { user } = useAppContext();

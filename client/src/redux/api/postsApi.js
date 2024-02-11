@@ -2,8 +2,8 @@ import API from "./api.js";
 
 console.log(API);
 
-export const getPosts = () => {
-  const data =  API.get("/posts");
+export const getPosts = (page) => {
+  const data =  API.get(`/posts?page=${page}`);
   return data;
 }
 

@@ -4,15 +4,31 @@
   import User from "../models/user.js";
 
   export const getPosts = async (req, res) => {
+    const { page } = req.query;//wartosc page zapytania ze sciezki z zapytaniem
+
     try {
+      //numb of pages per page
+      const LIMIT = 6;
+      //index pierwszego posta na danej stronie
+      const startIndex = (Number(page) - 1) * LIMIT;
+      const totalNumbOfPostMessages = await PostMessage.countDocuments({});
+
+
       //Pobiera z bazy danych liste postów jednocześnie zamieniajac wartosc pola creator kazdego z postów na obiekt js (bo jest to referencja do dokumentu z innej kolekcji w Mongo - do kolekcji Userow)
       const postMessages = await PostMessage.find()
       .populate("creator")
-      .populate("likers");
+      .populate("likers")
+      .sort({ _id: -1 })
+      .limit(LIMIT)
+      .skip(startIndex);
 
       console.log("***", postMessages);
 
-      res.status(200).json(postMessages);
+      res.status(200).json({ 
+        postsList: postMessages, 
+        currentPage: Number(page), 
+        numbOfPages: Math.ceil(totalNumbOfPostMessages / LIMIT)
+      });
 
       console.log("Pobrane zasoby z mDB", postMessages);
 

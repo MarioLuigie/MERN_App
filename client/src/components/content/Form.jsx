@@ -77,7 +77,7 @@ export default function Form({
 
   const editedPost = useSelector(store => 
     currentId 
-      ? store.postsList.find(post => post._id === currentId) 
+      ? store.posts.postsList.find(post => post._id === currentId) 
       : null
   );
 
@@ -189,7 +189,7 @@ export default function Form({
               type="submit" 
               fullWidth
             >
-              Create
+              {editedPost ? "Update" : "Create"}
             </Button>
             <Button 
               className="clearBtn" 

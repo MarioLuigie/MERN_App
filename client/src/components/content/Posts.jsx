@@ -23,9 +23,9 @@ const styles = css`
 export default function Posts({
   setCurrentId
 }) {
-  const postsList = useSelector(store => store.postsList);
+  const { postsList } = useSelector(store => store.posts);
 
-  // console.log(postsList);
+  console.log(postsList);
   
   return (
     <div css={styles}>

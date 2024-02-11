@@ -1,10 +1,15 @@
 import * as api from "../api/postsApi";
 import { posts as type} from "../../constants/actionTypes.js";
 
-export const getPosts = () => async (dispatch) => {
+export const getPosts = (page) => async (dispatch) => {
   try {
-    const { data } = await api.getPosts();
-    // console.log("Zasoby z bazy mDB", data);
+    const { data } = await api.getPosts(page);
+    // data to { 
+    //   postsList: [{}, {}], 
+    //   currentPage: number, 
+    //   numbOfPages: number
+    // }
+    console.log("Zasoby z bazy mDB", data);
 
     dispatch({type: type.READ_POSTS, data});
   } catch (err) {

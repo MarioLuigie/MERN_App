@@ -12,8 +12,7 @@ import videoSource from "../../assets/videos/landingPage02_FHD.mp4";
 import jsonData from "../../constants/textContent.json";
 
 const styles = css`
-  /* padding-top: 160px; */
-  /* min-height: 750px; */
+  min-height: 750px;
   background-color: #ececec;
   overflow: hidden;
 

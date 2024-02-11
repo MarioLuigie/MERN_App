@@ -21,8 +21,9 @@ function useQuery() {
 }
 
 const styles = css`
-  padding-top: 135px;
-
+  padding-top: 110px;
+  padding-bottom: 40px;
+  
   .searchWrapper {
     padding: 15px 15px 35px;
   }
@@ -63,16 +64,21 @@ export default function Home() {
   // console.log("Current ID:", currentId);
   // console.log("CHIPS***:", chips);
 
-  useEffect(() => {
-    // console.log("UseEffect - datas readed.");
-    dispatch(actions.getPosts());
-  }, [currentId, dispatch]);
+  // useEffect(() => {
+  //   // console.log("UseEffect - datas readed.");
+  //   dispatch(actions.getPosts());
+  // }, [currentId, dispatch]);
 
   return (
     <div css={styles}>
       <Grow in timeout={700}>
         <Container maxWidth="xl">
           <Grid container justifyContent="space-between" alignItems="stretch" spacing={4}>
+            <Grid item xs={12}>
+              <div className="paginateWrapper">
+                <Paginate page={page} />
+              </div>
+            </Grid>
             <Grid item xs={12} sm={6} md={8} lg={9} xl={9}>
               <Posts 
                 setCurrentId={setCurrentId}
@@ -90,11 +96,6 @@ export default function Home() {
                   />
                 </Grid>
               </Grid>
-            </Grid>
-            <Grid item xs={12}>
-              <div className="paginateWrapper">
-                <Paginate />
-              </div>
             </Grid>
           </Grid>
         </Container>

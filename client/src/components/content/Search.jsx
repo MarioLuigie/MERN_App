@@ -67,12 +67,11 @@ export default function Search() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
   const handleSearchPost = () => {
     if(searchValue.trim() || tags) {
-      console.log(searchValue);
       dispatch(actions.getPostsBySearch({ searchValue, tags: tags.join(",") }));
       handleClear();
+      navigate(`/home/search?searchQuery=${searchValue || "none"}&tags=${tags.join(",")}`);
     } else {
       navigate("/home");
     }
