@@ -7,17 +7,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { 
   Container,
   Grow,
-  Grid,
-  TextField,
-  Paper, 
-  Typography
+  Grid
 } from "@mui/material";
-import SearchIcon from '@mui/icons-material/Search';
 
 import Posts from "../content/Posts";
 import Form from "../content/Form";
 import Paginate from "../content/Paginate";
-import InputTags from "../ui/InputTags";
+import Search from "../content/Search";
 import * as actions from "../../redux/actions/posts";
 
 function useQuery() {
@@ -53,10 +49,8 @@ const styles = css`
 `
 
 export default function Home() {
-  const defaultValue = [];
+
   const [currentId, setCurrentId] = useState(null);
-  const [ search, setSearch ] = useState();
-  const [ chips, setChips ] = useState(defaultValue);
   
   const dispatch = useDispatch();
   const query = useQuery();
@@ -66,23 +60,13 @@ export default function Home() {
   const page = query.get("page") || 1;//odczytanie bieżącego URL z numerem strony
   const searchQuery = query.get("searchQuery"); 
 
-  console.log("Current ID:", currentId);
-  console.log("CHIPS***:", chips);
+  // console.log("Current ID:", currentId);
+  // console.log("CHIPS***:", chips);
 
   useEffect(() => {
     // console.log("UseEffect - datas readed.");
     dispatch(actions.getPosts());
   }, [currentId, dispatch]);
-
-  const handleChange = (evt) => {
-    setSearch(evt.target.value);
-  }
-
-  const handleKeyDown = (evt) => {
-    if(evt.key === "Enter") {
-      console.log("Is searching...");
-    }
-  }
 
   return (
     <div css={styles}>
@@ -97,30 +81,7 @@ export default function Home() {
             <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
               <Grid container spacing={3}>
                 <Grid item xs={12} >
-                  <Paper position="flex" color="inherit" className="searchWrapper" elevation={4}>
-                    <div className="searchTitle">
-                      <Typography variant="h6">
-                        Search{chips}
-                      </Typography>
-                      <SearchIcon />
-                    </div>
-                    <div className="searchInputs">
-                      <TextField 
-                        fullWidth
-                        name="search"
-                        label="Add Word"
-                        variant="outlined"
-                        value={search}
-                        onChange={handleChange}
-                        onKeyDown={handleKeyDown}
-                      />
-                      <InputTags 
-                        setState={setChips}
-                        state={chips}
-                        label="Add Tags"
-                      />
-                    </div>
-                  </Paper>
+                  <Search />
                 </Grid>
                 <Grid item xs={12} >
                   <Form 

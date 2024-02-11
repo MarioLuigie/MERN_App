@@ -6,7 +6,9 @@
   export const getPosts = async (req, res) => {
     try {
       //Pobiera z bazy danych liste postów jednocześnie zamieniajac wartosc pola creator kazdego z postów na obiekt js (bo jest to referencja do dokumentu z innej kolekcji w Mongo - do kolekcji Userow)
-      const postMessages = await PostMessage.find().populate("creator").populate("likers");
+      const postMessages = await PostMessage.find()
+      .populate("creator")
+      .populate("likers");
 
       console.log("***", postMessages);
 
@@ -19,6 +21,26 @@
       console.log(err.message);
     }
   }
+
+export const getPostsBySearch = async (req, res) => {
+  const { searchQuery, tags } = req.query;
+
+  try {
+    const title = new RegExp(searchQuery, "i");
+
+    const postMessages = await PostMessage.find({ $or: [ { title }, { tags: { $in: tags.split(",") } } ] })
+    .populate("creator")
+    .populate("likers");
+
+    res.status(200).json(postMessages);
+  
+    console.log("Pobrane zasoby z mDB by Search", postMessages);
+
+  } catch (err) {
+    res.status(404).json({ message: err.message});
+    console.log(err.message);
+  }
+}
 
 export const createPost = async (req, res) => {
   try {

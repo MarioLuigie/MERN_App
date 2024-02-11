@@ -12,6 +12,19 @@ export const getPosts = () => async (dispatch) => {
   }
 }
 
+export const getPostsBySearch = (searchQuery) => async (dispatch) => {
+  try {
+    const { data } = await api.getPostsBySearch(searchQuery);
+
+    console.log(data);
+
+    dispatch({type: type.READ_POSTS_BY_SEARCH, data});
+
+  } catch (err) {
+    console.error("Something went wrong...READ BY SEARCH ERROR", err.message);
+  }
+}
+
 export const createPost = (newPost) => async (dispatch) => {
   const { name, title, message, tags, files } = newPost;
 

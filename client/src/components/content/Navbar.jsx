@@ -162,7 +162,7 @@ export default function Navbar() {
             ? <div className="profile">
                 <Avatar 
                   className="purple" 
-                  alt={user?.result.name}
+                  alt={user?.result?.name}
                   src={String(user?.result?.picture)}
                 >
                   {user?.result?.picture ? "" : user?.result?.name.charAt(0)}

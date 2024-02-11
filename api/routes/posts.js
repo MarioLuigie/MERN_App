@@ -8,6 +8,7 @@ const router = express.Router();//create express Router instance/object for crea
 
 //GET request serving/handle
 router.get("/", auth, controllers.getPosts);
+router.get("/search", auth, controllers.getPostsBySearch);
 //POST request serving/handle
 router.post("/", auth, postUpload(), controllers.createPost);
 router.patch("/:id", auth, controllers.updatePost);

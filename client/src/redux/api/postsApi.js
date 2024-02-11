@@ -7,6 +7,11 @@ export const getPosts = () => {
   return data;
 }
 
+export const getPostsBySearch = (searchQuery) => {
+  const data = API.get(`/posts/search?searchQuery=${searchQuery.searchValue || "none"}&tags=${searchQuery.tags}`);
+  return data;
+}
+
 export const createPost = (formData) => {
   const data = API.post("/posts", formData, {
     headers: {
