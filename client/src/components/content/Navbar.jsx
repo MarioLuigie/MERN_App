@@ -16,7 +16,7 @@ import { useDispatch } from "react-redux";
 import { jwtDecode } from "jwt-decode";
 
 import { useAppContext } from '../../context/context.jsx';
-import { auth as type } from "../../constants/actionTypes.js";
+import * as type from "../../constants/actions.js";
 import jsonData from "../../constants/textContent.json";
 
 const styles = css`

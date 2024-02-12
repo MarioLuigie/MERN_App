@@ -59,10 +59,12 @@ const styles = css`
   }
 `
 
-export default function Search() {
+export default function Search({
+  tags,
+  setTags
+}) {
 
   const [ searchValue, setSearchValue ] = useState("");
-  const [ tags, setTags ] = useState([]);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

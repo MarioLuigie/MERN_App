@@ -1,9 +1,21 @@
-import { posts as type } from "../../constants/actionTypes.js";
+import * as type from "../../constants/actions.js";
 
-const postsReducer = (state = {postsList: []}, action) => {
+const postsReducer = (state = {isLoading: true, postsList: []}, action) => {
   switch(action.type) {
+
+    case type.START_LOADING:
+      return {
+        ...state,
+        isLoading: true
+      };
+
+    case type.END_LOADING:
+      return {
+        ...state,
+        isLoading: false
+      };
+
     case type.READ_POSTS:
-      console.log("STATE:", state);
       return {
         ...state,
         postsList: action.data.postsList,

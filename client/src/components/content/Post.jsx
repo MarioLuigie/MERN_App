@@ -8,7 +8,8 @@ import {
   CardContent, 
   CardMedia, 
   IconButton,
-  Typography 
+  Typography,
+  ButtonBase 
 } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbUpOffIcon from '@mui/icons-material/ThumbUpOffAlt';
@@ -17,6 +18,7 @@ import MoreIcon from "@mui/icons-material/MoreHoriz";
 import moment from "moment";
 import {  useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import * as actions from "../../redux/actions/posts.js";
 import { useAppContext } from '../../context/context.jsx';
@@ -29,6 +31,12 @@ const styles = (isOwn) => css`
   position: relative;
   border: ${isOwn ? "#838383 solid 1px" : "none"};
   cursor: pointer;
+ }
+
+ .buttonBase {
+  display: block;
+  width: 100%;
+  text-align: left;
  }
 
  .media {
@@ -49,10 +57,11 @@ const styles = (isOwn) => css`
   left: 20px;
  }
 
- .moreOverlay {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+ .buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
  }
 
  .button {
@@ -89,6 +98,7 @@ export default function Post({
   setCurrentId
 }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user } = useAppContext();
   const [ isLiked, setIsLiked ] = useState(false);
   const [ isLikersListHidden, setIsLikersListHidden ] = useState(true);
@@ -125,7 +135,8 @@ export default function Post({
     // console.log("ISLIKED:", isLiked, post);
   }, [post]);
 
-  const editPost = () => {
+  const editPost = (evt) => {
+    evt.stopPropagation();
     setCurrentId(post._id);
   }
 
@@ -149,43 +160,41 @@ export default function Post({
     // console.log("Like mouse out");
   }
 
+  const handleOpenPostDetails = (evt) => {
+    console.log("DETAILS");
+    evt.stopPropagation();
+    navigate(`/home/${post._id}`)
+  }
+
   return (
     <div css={styles(isOwn)}>
       <Card className="card" elevation={isOwn ? 6 : 3}>
-        <CardMedia 
-          className="media"
-          image={'https://images.pexels.com/photos/1020017/pexels-photo-1020017.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}
-          title={post.title}
-        />
-        <div className="timeOverlay">
-          <Typography variant="h6" color="textSecondary">{post.name}</Typography>
-          <Typography variant="body2" color="textSecondary">{moment(post.createdAt).fromNow()}</Typography>
-        </div>
-        <div className="moreOverlay">
-          {isOwn
-            ? (
-                <IconButton className="button" size="small" onClick={editPost}>
-                  <MoreIcon />
-                </IconButton>
-              )
-            : null
-          }
-        </div>
-        <div className="tags">
-          {post.tags.map((tag, i) => {
-            return (
-              <Typography variant="body2" color="textSecondary" key={i}>
-                {`#${tag}`}
-              </Typography>)
-            })
-          }
-        </div>
-        <div>
-          <CardContent sx={{mt: 2}}>
-            <Typography variant="h5" className="title" gutterBottom>{post.title}</Typography>
-            <Typography component="p" variant="body2" color="textSecondary">{post.message}</Typography>
-          </CardContent>
-        </div>
+        <ButtonBase className="buttonBase" onClick={handleOpenPostDetails}>
+          <CardMedia 
+            className="media"
+            image={'https://images.pexels.com/photos/1020017/pexels-photo-1020017.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}
+            title={post.title}
+          />
+          <div className="timeOverlay">
+            <Typography variant="h6" color="textSecondary">{post.name}</Typography>
+            <Typography variant="body2" color="textSecondary">{moment(post.createdAt).fromNow()}</Typography>
+          </div>
+          <div className="tags">
+            {post.tags.map((tag, i) => {
+              return (
+                <Typography variant="body2" color="textSecondary" key={i}>
+                  {`#${tag}`}
+                </Typography>)
+              })
+            }
+          </div>
+          <div>
+            <CardContent sx={{mt: 2}}>
+              <Typography variant="h5" className="title" gutterBottom>{post.title}</Typography>
+              <Typography component="p" variant="body2" color="textSecondary">{post.message}</Typography>
+            </CardContent>
+          </div>
+        </ButtonBase>
         <div>
           <CardActions className="actions">
             <div className="likes">
@@ -213,12 +222,15 @@ export default function Post({
                 }
               </div>
             </div>
-            {isOwn
-              ? (
-                  <IconButton className="button" size="small" onClick={deletePost}>
-                    <DeleteIcon />
-                  </IconButton>
-                )
+            {isOwn ?
+              <div className="buttons">
+                <IconButton className="button" size="small" onClick={editPost}>
+                  <MoreIcon />
+                </IconButton>
+                <IconButton className="button" size="small" onClick={deletePost}>
+                  <DeleteIcon />
+                </IconButton>
+              </div> 
               : null
             }
           </CardActions>

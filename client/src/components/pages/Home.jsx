@@ -14,7 +14,6 @@ import Posts from "../content/Posts";
 import Form from "../content/Form";
 import Paginate from "../content/Paginate";
 import Search from "../content/Search";
-import * as actions from "../../redux/actions/posts";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -52,6 +51,7 @@ const styles = css`
 export default function Home() {
 
   const [currentId, setCurrentId] = useState(null);
+  const [ tags, setTags ] = useState([]);
   
   const dispatch = useDispatch();
   const query = useQuery();
@@ -74,6 +74,15 @@ export default function Home() {
       <Grow in timeout={700}>
         <Container maxWidth="xl">
           <Grid container justifyContent="space-between" alignItems="stretch" spacing={4}>
+            {/* {(!searchQuery && !tags.length) 
+              && (
+                <Grid item xs={12}>
+                  <div className="paginateWrapper">
+                    <Paginate page={page} />
+                  </div>
+                </Grid>
+              )
+            } */}
             <Grid item xs={12}>
               <div className="paginateWrapper">
                 <Paginate page={page} />
@@ -87,7 +96,7 @@ export default function Home() {
             <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
               <Grid container spacing={3}>
                 <Grid item xs={12} >
-                  <Search />
+                  <Search tags={tags} setTags={setTags} />
                 </Grid>
                 <Grid item xs={12} >
                   <Form 
@@ -97,6 +106,15 @@ export default function Home() {
                 </Grid>
               </Grid>
             </Grid>
+            {/* {(!searchQuery && !tags.length) 
+              && (
+                <Grid item xs={12}>
+                  <div className="paginateWrapper">
+                    <Paginate page={page} />
+                  </div>
+                </Grid>
+              )
+            } */}
             <Grid item xs={12}>
               <div className="paginateWrapper">
                 <Paginate page={page} />

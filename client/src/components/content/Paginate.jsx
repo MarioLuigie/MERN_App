@@ -23,7 +23,7 @@ export default function Paginate({
 
   useEffect(() => {
     if(page) dispatch(actions.getPosts(page));
-  }, [page])
+  }, [dispatch, page]);
 
   return (
     <div css={styles}>

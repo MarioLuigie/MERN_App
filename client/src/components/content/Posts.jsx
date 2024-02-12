@@ -23,13 +23,21 @@ const styles = css`
 export default function Posts({
   setCurrentId
 }) {
-  const { postsList } = useSelector(store => store.posts);
+  const { postsList, isLoading } = useSelector(store => store.posts);
 
   console.log(postsList);
+
+  if (!postsList?.length && !isLoading) {
+    return (
+      <div css={styles}>
+        <p>No posts...</p>
+      </div>
+    )
+  }
   
   return (
     <div css={styles}>
-      {postsList?.length 
+      {!isLoading
         ? (
             <Grid 
               container 

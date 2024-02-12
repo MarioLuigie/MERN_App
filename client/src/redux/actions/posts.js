@@ -1,8 +1,10 @@
 import * as api from "../api/postsApi";
-import { posts as type} from "../../constants/actionTypes.js";
+import * as type from "../../constants/actions.js";
 
 export const getPosts = (page) => async (dispatch) => {
   try {
+    dispatch({type: type.START_LOADING});
+
     const { data } = await api.getPosts(page);
     // data to { 
     //   postsList: [{}, {}], 
@@ -12,6 +14,9 @@ export const getPosts = (page) => async (dispatch) => {
     console.log("Zasoby z bazy mDB", data);
 
     dispatch({type: type.READ_POSTS, data});
+
+    dispatch({type: type.END_LOADING});
+
   } catch (err) {
     console.error("Something went wrong...READ ERROR", err.message);
   }
@@ -19,11 +24,15 @@ export const getPosts = (page) => async (dispatch) => {
 
 export const getPostsBySearch = (searchQuery) => async (dispatch) => {
   try {
+    dispatch({type: type.START_LOADING});
+
     const { data } = await api.getPostsBySearch(searchQuery);
 
     console.log(data);
 
     dispatch({type: type.READ_POSTS_BY_SEARCH, data});
+
+    dispatch({type: type.END_LOADING});
 
   } catch (err) {
     console.error("Something went wrong...READ BY SEARCH ERROR", err.message);
@@ -55,10 +64,14 @@ export const createPost = (newPost) => async (dispatch) => {
   });//[content]
   
   try {
+    dispatch({type: type.START_LOADING});
+
     const { data } = await api.createPost(formData);
     console.log(data);
 
-    dispatch({type: type.CREATE_POST, data})
+    dispatch({type: type.CREATE_POST, data});
+
+    dispatch({type: type.END_LOADING});
 
   } catch (err) {
     console.error("Something went wrong...CREATE ERROR", err.message);
