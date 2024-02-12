@@ -6,6 +6,10 @@ import User from "../models/user.js";
 export const getPost = async (req, res) => {
   const { id } = req.params;
 
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).send("No post with that id");
+  }
+
   try {
     const post = await PostMessage.findById(id);
 
@@ -54,6 +58,10 @@ export const getPosts = async (req, res) => {
 
 export const getPostsBySearch = async (req, res) => {
   const { searchQuery, tags } = req.query;
+
+  console.log("&&&", searchQuery);
+  console.log("***", tags);
+  console.log("***", req.query);
 
   try {
     const title = new RegExp(searchQuery, "i");
