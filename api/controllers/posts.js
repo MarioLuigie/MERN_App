@@ -59,10 +59,6 @@ export const getPosts = async (req, res) => {
 export const getPostsBySearch = async (req, res) => {
   const { searchQuery, tags } = req.query;
 
-  console.log("&&&", searchQuery);
-  console.log("***", tags);
-  console.log("***", req.query);
-
   try {
     const title = new RegExp(searchQuery, "i");
 
@@ -74,7 +70,7 @@ export const getPostsBySearch = async (req, res) => {
       postsList: postMessages
     });
   
-    console.log("Pobrane zasoby z mDB by Search", postMessages);
+    // console.log("Pobrane zasoby z mDB by Search", postMessages);
 
   } catch (err) {
     res.status(404).json({ message: err.message});
@@ -87,13 +83,13 @@ export const createPost = async (req, res) => {
   try {
     const post = req.body;
 
-    console.log("req body:", req.body);
-    console.log("tags splited:", post.tags.split(","));
+    // console.log("req body:", req.body);
+    // console.log("tags splited:", post.tags.split(","));
 
     const files = req.files.map(file => file.filename);
     
-    console.log("files uploaded:", files);
-    console.log("req.files:", req.files);
+    // console.log("files uploaded:", files);
+    // console.log("req.files:", req.files);
 
     const user = await User.findOne({ _id: req.userId });//mongoosowy document, znajduje usera w kolekcji Mongo, ktory _id ma takie jak zalogowany user, req.userId to id z tokena zalogowanego usera wszczepione w postaci token do req.headers.authorization przez interceptors w api.js a nastepnie przechwycone przez middleweara auth.js, zdekodowane i wszczepione do w postaci id do req.userId
 

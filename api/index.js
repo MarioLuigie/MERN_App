@@ -5,13 +5,11 @@ import cors from "cors";
 
 import postRoutes from "./routes/posts.js";
 import authRoutes from "./routes/auth.js";
+import useLoggers from "./middlewares/loggers.js";
 
 const app = express();
 dotenv.config();
-app.use((req, res, next) => {
-  console.log(req.method, req.url);
-  next();
-});
+useLoggers(app);
 
 app.use(cors());
 app.use(express.json());

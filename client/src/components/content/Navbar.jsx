@@ -141,7 +141,7 @@ export default function Navbar() {
           <Typography
             className="brand__text desk" 
             component={Link} 
-            to={user ? "/home" : "/"}
+            to={user ? "/home?page=1" : "/"}
             variant="h4" 
             align="left"
           >
@@ -150,7 +150,7 @@ export default function Navbar() {
           <Typography
             className="brand__text mobile" 
             component={Link} 
-            to={user ? "/home" : "/"}
+            to={user ? "/home?page=1" : "/"}
             variant="h4" 
             align="left"
           >

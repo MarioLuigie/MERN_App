@@ -21,8 +21,8 @@ export default function Main() {
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/home/search" element={<Home />} />
-        <Route exact path="/home/:id" element={<PostDetails />} />
         <Route exact path="/auth" element={!user ? <Auth /> : <Navigate to="/home" />} />
+        <Route exact path="/home/:id" element={<PostDetails />} />
       </Routes>
     </main>
   )

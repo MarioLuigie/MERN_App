@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { 
@@ -20,7 +20,7 @@ function useQuery() {
 }
 
 const styles = css`
-  padding-top: 110px;
+  padding-top: 155px;
   /* padding-bottom: 40px; */
 
   .searchWrapper {
@@ -53,41 +53,17 @@ export default function Home() {
   const [currentId, setCurrentId] = useState(null);
   const [ tags, setTags ] = useState([]);
   
-  const dispatch = useDispatch();
   const query = useQuery();
-  const navigate = useNavigate();
   const location = useLocation();
 
   const page = query.get("page") || 1;//odczytanie bieżącego URL z numerem strony
   const searchQuery = query.get("searchQuery"); 
-
-  // console.log("Current ID:", currentId);
-  // console.log("CHIPS***:", chips);
-
-  // useEffect(() => {
-  //   // console.log("UseEffect - datas readed.");
-  //   dispatch(actions.getPosts());
-  // }, [currentId, dispatch]);
 
   return (
     <div css={styles}>
       <Grow in timeout={700}>
         <Container maxWidth="xl">
           <Grid container justifyContent="space-between" alignItems="stretch" spacing={4}>
-            {/* {(!searchQuery && !tags.length) 
-              && (
-                <Grid item xs={12}>
-                  <div className="paginateWrapper">
-                    <Paginate page={page} />
-                  </div>
-                </Grid>
-              )
-            } */}
-            <Grid item xs={12}>
-              <div className="paginateWrapper">
-                <Paginate page={page} />
-              </div>
-            </Grid>
             <Grid item xs={12} sm={6} md={8} lg={9} xl={9}>
               <Posts 
                 setCurrentId={setCurrentId}

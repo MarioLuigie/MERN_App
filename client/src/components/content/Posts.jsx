@@ -25,7 +25,7 @@ export default function Posts({
 }) {
   const { postsList, isLoading } = useSelector(store => store.posts);
 
-  console.log(postsList);
+  // console.log(postsList);
 
   if (!postsList?.length && !isLoading) {
     return (
