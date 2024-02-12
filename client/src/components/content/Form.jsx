@@ -3,6 +3,7 @@
 import { css } from '@emotion/react';
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { 
   TextField,
   Button,
@@ -72,6 +73,7 @@ export default function Form({
   const [postData, setPostData] = useState(initPostData);
   const dispatch = useDispatch();
   const titleInputRef = useRef(null);
+  const navigate = useNavigate();
 
   const { user } = useAppContext();
 
@@ -122,7 +124,7 @@ export default function Form({
     } else {
       const files = uploadedFiles;
       // console.log("UploadeFiles:", files);
-      dispatch(actions.createPost({...postData, name: user?.result?.name, files, tags}));
+      dispatch(actions.createPost({...postData, name: user?.result?.name, files, tags}, navigate));
     }
 
     handleClear();

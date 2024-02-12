@@ -22,6 +22,21 @@ export const getPosts = (page) => async (dispatch) => {
   }
 }
 
+export const getPost = (id) => async (dispatch) => {
+  try {
+    dispatch({type: type.START_LOADING});
+
+    const { data } = await api.getPost(id);
+
+    dispatch({type: type.READ_POST, data});
+
+    dispatch({type: type.END_LOADING});
+    
+  } catch (err) {
+    console.error("Something went wrong...READ ERROR", err.message);
+  }
+}
+
 export const getPostsBySearch = (searchQuery) => async (dispatch) => {
   try {
     dispatch({type: type.START_LOADING});
@@ -35,11 +50,11 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
     dispatch({type: type.END_LOADING});
 
   } catch (err) {
-    console.error("Something went wrong...READ BY SEARCH ERROR", err.message);
+    console.error("Something went wrong...READ BY SEARCH ERROR", err);
   }
 }
 
-export const createPost = (newPost) => async (dispatch) => {
+export const createPost = (newPost, navigate) => async (dispatch) => {
   const { name, title, message, tags, files } = newPost;
 
   console.log(files);
@@ -68,6 +83,8 @@ export const createPost = (newPost) => async (dispatch) => {
 
     const { data } = await api.createPost(formData);
     console.log(data);
+
+    navigate(`/home/${data._id}`)
 
     dispatch({type: type.CREATE_POST, data});
 

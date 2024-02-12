@@ -7,6 +7,11 @@ export const getPosts = (page) => {
   return data;
 }
 
+export const getPost = (id) => {
+  const data = API.get(`/posts/${id}`);
+  return data;
+}
+
 export const getPostsBySearch = (searchQuery) => {
   const data = API.get(`/posts/search?searchQuery=${searchQuery.searchValue || "none"}&tags=${searchQuery.tags}`);
   return data;

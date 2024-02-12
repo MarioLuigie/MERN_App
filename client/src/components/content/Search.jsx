@@ -71,8 +71,11 @@ export default function Search({
 
   const handleSearchPost = () => {
     if(searchValue.trim() || tags.length) {
+
       dispatch(actions.getPostsBySearch({ searchValue, tags: tags.join(",") }));
+
       navigate(`/home/search?searchQuery=${searchValue || "none"}&tags=${tags.join(",")}`);
+      
       handleClear();
       // console.log("TRUE");
     } else {
@@ -83,6 +86,7 @@ export default function Search({
 
   const handleChange = (evt) => {
     setSearchValue(evt.target.value);
+    console.log("SEARCH VALUE:", searchValue);
   }
 
   const handleKeyDown = (evt) => {

@@ -15,6 +15,12 @@ const postsReducer = (state = {isLoading: true, postsList: []}, action) => {
         isLoading: false
       };
 
+    case type.READ_POST:
+      return {
+        ...state,
+        post: action.data
+      };
+
     case type.READ_POSTS:
       return {
         ...state,
