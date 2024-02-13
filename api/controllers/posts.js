@@ -69,29 +69,6 @@ export const getPosts = async (req, res) => {
   }
 }
 
-// export const getPostsBySearch = async (req, res) => {
-//   const { searchQuery, tags } = req.query;
-
-//   try {
-//     const title = new RegExp(searchQuery, "i");
-
-//     const postMessages = await PostMessage.find({ $or: [ { title }, { tags: { $in: tags.split(",") } } ] })
-//     .populate("creator")
-//     .populate("likers");
-
-//     res.status(200).json({
-//       postsList: postMessages
-//     });
-  
-//     // console.log("Pobrane zasoby z mDB by Search", postMessages);
-
-//   } catch (err) {
-//     res.status(404).json({ message: err.message});
-//     console.log(err.message);
-//     console.log(err);
-//   }
-// }
-
 export const createPost = async (req, res) => {
   try {
     const post = req.body;
