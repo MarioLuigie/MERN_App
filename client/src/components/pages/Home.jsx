@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { 
@@ -14,6 +14,7 @@ import Posts from "../content/Posts";
 import Form from "../content/Form";
 import Paginate from "../content/Paginate";
 import Search from "../content/Search";
+import * as actions from "../../redux/actions/posts.js";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -51,13 +52,22 @@ const styles = css`
 export default function Home() {
 
   const [currentId, setCurrentId] = useState(null);
-  const [ tags, setTags ] = useState([]);
-  
+
   const query = useQuery();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const page = query.get("page") || 1;//odczytanie bieżącego URL z numerem strony
   const searchQuery = query.get("searchQuery"); 
+  const tags = query.get("tags"); 
+
+  useEffect(() => {
+    dispatch(actions.getPosts({ 
+      query: searchQuery, 
+      tags: tags,
+      page: page || 1
+    }));
+  }, [query, page, tags]);
 
   return (
     <div css={styles}>
@@ -72,7 +82,7 @@ export default function Home() {
             <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
               <Grid container spacing={3}>
                 <Grid item xs={12} >
-                  <Search tags={tags} setTags={setTags} />
+                  <Search />
                 </Grid>
                 <Grid item xs={12} >
                   <Form 

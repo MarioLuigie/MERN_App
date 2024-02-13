@@ -1,14 +1,12 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { 
   Pagination,
   PaginationItem
 } from "@mui/material";
 import { Link } from "react-router-dom";
-
-import * as actions from "../../redux/actions/posts";
+import qs from "qs";
 
 const styles = css`
 
@@ -18,12 +16,19 @@ export default function Paginate({
   page
 }) {
 
+  const getURL = (item) => {
+    const currentQueryParams = qs.parse(window.location.search, { ignoreQueryPrefix: true });
+
+    const newQueryParams = qs.stringify({
+      ...currentQueryParams,
+      page: item.page
+    });
+    
+    return `/home?${newQueryParams}`;
+  }
+
   const dispatch = useDispatch();
   const { numbOfPages } = useSelector(store => store.posts);
-
-  useEffect(() => {
-    if(page) dispatch(actions.getPosts(page));
-  }, [dispatch, page]);
 
   return (
     <div css={styles}>
@@ -37,7 +42,7 @@ export default function Paginate({
           <PaginationItem 
             {...item}
             component={Link}
-            to={`/home?page=${item.page}`}
+            to={getURL(item)}
             shape="rounded"
           />
           

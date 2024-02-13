@@ -10,9 +10,9 @@ import {
   Button
 } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
+import qs from "qs";
 
 import InputTags from "../ui/InputTags";
-import * as actions from "../../redux/actions/posts.js";
 
 const styles = css`
   .searchWrapper {
@@ -59,22 +59,22 @@ const styles = css`
   }
 `
 
-export default function Search({
-  tags,
-  setTags
-}) {
+export default function Search() {
 
   const [ searchValue, setSearchValue ] = useState("");
+  const [ tags, setTags ] = useState([]);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
+  const queryParams = qs.stringify({
+    searchQuery: searchValue || undefined, // Dodaj tylko, jeśli searchValue istnieje
+    tags: tags.join(",") || undefined,
+  });
 
   const handleSearchPost = () => {
     if(searchValue.trim() || tags.length) {
 
-      dispatch(actions.getPostsBySearch({ searchValue, tags: tags.join(",") }));
-
-      navigate(`/home/search?searchQuery=${searchValue || "none"}&tags=${tags.join(",")}`);
+      navigate(`/home?${queryParams}`);
       
       handleClear();
       // console.log("TRUE");

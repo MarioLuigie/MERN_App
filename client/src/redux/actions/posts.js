@@ -1,11 +1,11 @@
 import * as api from "../api/postsApi";
 import * as type from "../../constants/actions.js";
 
-export const getPosts = (page) => async (dispatch) => {
+export const getPosts = (searchParams) => async (dispatch) => {
   try {
     dispatch({type: type.START_LOADING});
 
-    const { data } = await api.getPosts(page);
+    const { data } = await api.getPosts(searchParams);
     // data to { 
     //   postsList: [{}, {}], 
     //   currentPage: number, 
@@ -37,22 +37,22 @@ export const getPost = (id) => async (dispatch) => {
   }
 }
 
-export const getPostsBySearch = (searchQuery) => async (dispatch) => {
-  try {
-    dispatch({type: type.START_LOADING});
+// export const getPostsBySearch = (searchQuery) => async (dispatch) => {
+//   try {
+//     dispatch({type: type.START_LOADING});
 
-    const { data } = await api.getPostsBySearch(searchQuery);
+//     const { data } = await api.getPostsBySearch(searchQuery);
 
-    console.log(data);
+//     console.log(data);
 
-    dispatch({type: type.READ_POSTS_BY_SEARCH, data});
+//     dispatch({type: type.READ_POSTS_BY_SEARCH, data});
 
-    dispatch({type: type.END_LOADING});
+//     dispatch({type: type.END_LOADING});
 
-  } catch (err) {
-    console.error("Something went wrong...READ BY SEARCH ERROR", err);
-  }
-}
+//   } catch (err) {
+//     console.error("Something went wrong...READ BY SEARCH ERROR", err);
+//   }
+// }
 
 export const createPost = (newPost, navigate) => async (dispatch) => {
   const { name, title, message, tags, files } = newPost;

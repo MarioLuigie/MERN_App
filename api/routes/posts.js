@@ -7,8 +7,8 @@ import auth from "../middlewares/auth.js";
 const router = express.Router();//create express Router instance/object for create routes
 
 //GET request serving/handle
-router.get("/", auth, controllers.getPosts);
-router.get("/search", auth, controllers.getPostsBySearch);
+router.post("/search", auth, controllers.getPosts);
+// router.get("/search", auth, controllers.getPostsBySearch);
 router.get("/:id", auth, controllers.getPost);
 //POST request serving/handle
 router.post("/", auth, postUpload(), controllers.createPost);

@@ -22,30 +22,43 @@ export const getPost = async (req, res) => {
 }
 
 export const getPosts = async (req, res) => {
-  const { page } = req.query;//wartosc page zapytania ze sciezki z zapytaniem
+  const { query = "", tags = "", page = 1, limit = 6 } = req.body;//get searchParams from client
+
+  console.log("***", req.body);
 
   try {
-    //numb of pages per page
-    const LIMIT = 6;
     //index pierwszego posta na danej stronie
-    const startIndex = (Number(page) - 1) * LIMIT;
-    const totalNumbOfPostMessages = await PostMessage.countDocuments({});
+    const startIndex = (Number(page) - 1) * limit;
+    // const totalNumbOfPostMessages = await PostMessage.countDocuments({});
+    let queryObject = {}; // Pusty obiekt do przechowywania warunków zapytania
 
+    // Dodaj warunki do zapytania tylko, jeśli są dostarczone
+    if (query) {
+      queryObject.$or = [
+        { title: { $regex: query, $options: 'i' } },
+        { name: { $regex: query, $options: 'i' } },
+        { message: { $regex: query, $options: 'i' } }
+      ];
+    }
 
-    //Pobiera z bazy danych liste postów jednocześnie zamieniajac wartosc pola creator kazdego z postów na obiekt js (bo jest to referencja do dokumentu z innej kolekcji w Mongo - do kolekcji Userow)
-    const postMessages = await PostMessage.find()
-    .populate("creator")
-    .populate("likers")
+    if (tags) {
+      queryObject.tags = { $in: tags.split(",") };
+    }
+
+    const totalNumbOfPostMessages = await PostMessage.countDocuments(queryObject);
+
+    // Użyj zapytania do bazy danych tylko, jeśli istnieją warunki
+    const postMessages = await PostMessage.find(queryObject)
+    .populate('creator')
+    .populate('likers')
     .sort({ _id: -1 })
-    .limit(LIMIT)
-    .skip(startIndex);
-
-    // console.log("***", postMessages);
+    .limit(limit)
+    .skip(startIndex)
 
     res.status(200).json({ 
       postsList: postMessages, 
       currentPage: Number(page), 
-      numbOfPages: Math.ceil(totalNumbOfPostMessages / LIMIT)
+      numbOfPages: Math.ceil(totalNumbOfPostMessages / limit)
     });
 
     // console.log("Pobrane zasoby z mDB", postMessages);
@@ -56,28 +69,28 @@ export const getPosts = async (req, res) => {
   }
 }
 
-export const getPostsBySearch = async (req, res) => {
-  const { searchQuery, tags } = req.query;
+// export const getPostsBySearch = async (req, res) => {
+//   const { searchQuery, tags } = req.query;
 
-  try {
-    const title = new RegExp(searchQuery, "i");
+//   try {
+//     const title = new RegExp(searchQuery, "i");
 
-    const postMessages = await PostMessage.find({ $or: [ { title }, { tags: { $in: tags.split(",") } } ] })
-    .populate("creator")
-    .populate("likers");
+//     const postMessages = await PostMessage.find({ $or: [ { title }, { tags: { $in: tags.split(",") } } ] })
+//     .populate("creator")
+//     .populate("likers");
 
-    res.status(200).json({
-      postsList: postMessages
-    });
+//     res.status(200).json({
+//       postsList: postMessages
+//     });
   
-    // console.log("Pobrane zasoby z mDB by Search", postMessages);
+//     // console.log("Pobrane zasoby z mDB by Search", postMessages);
 
-  } catch (err) {
-    res.status(404).json({ message: err.message});
-    console.log(err.message);
-    console.log(err);
-  }
-}
+//   } catch (err) {
+//     res.status(404).json({ message: err.message});
+//     console.log(err.message);
+//     console.log(err);
+//   }
+// }
 
 export const createPost = async (req, res) => {
   try {

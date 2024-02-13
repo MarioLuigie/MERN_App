@@ -9,10 +9,10 @@ import useLoggers from "./middlewares/loggers.js";
 
 const app = express();
 dotenv.config();
-useLoggers(app);
 
 app.use(cors());
 app.use(express.json());
+useLoggers(app);
 app.use("/api/posts", postRoutes);
 app.use("/api/user", authRoutes);
 
