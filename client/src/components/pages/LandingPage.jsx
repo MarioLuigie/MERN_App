@@ -10,6 +10,7 @@ import {
 import Slider from "../content/Slider";
 import videoSource from "../../assets/videos/landingPage02_FHD.mp4";
 import jsonData from "../../constants/textContent.json";
+import { useAppContext } from '../../context/context';
 
 const styles = css`
   min-height: 750px;
@@ -48,6 +49,7 @@ const styles = css`
 
 export default function LandingPage() {
   const { landingPage } = jsonData;
+  const { user } = useAppContext();
 
   return (
     <div css={styles}>
@@ -66,6 +68,7 @@ export default function LandingPage() {
                       text: landingPage.text
                     }
                   }
+                  isLogged={user ? true : false}
                 />
               </div>
             </Grow>

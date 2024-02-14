@@ -26,7 +26,8 @@ const styles = css`
 `
 
 export default function Slider({
-  config
+  config,
+  isLogged
 }) {
 
   return (
@@ -58,7 +59,7 @@ export default function Slider({
             component={Link}
             to="/auth"
           >
-            Sign in
+            {!isLogged ? "Sign in" : "Home"}
           </Button>
         </Grid>
       </Container>

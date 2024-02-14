@@ -164,7 +164,7 @@ export default function Post({
   const handleOpenPostDetails = (evt) => {
     console.log("DETAILS");
     evt.stopPropagation();
-    navigate(`/home/${post._id}`)
+    navigate(`/home/${post._id}`);
   }
 
   return (
