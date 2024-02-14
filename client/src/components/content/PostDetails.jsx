@@ -1,11 +1,13 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { CircularProgress, Button } from "@mui/material";
+import moment from "moment";
 
 import * as actions from "../../redux/actions/posts";
+import { useAppContext } from '../../context/context';
 
 const styles = css`
   height: 600px;
@@ -20,6 +22,8 @@ export default function PostDetails() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const { currentLocation } = useAppContext();
+
   const { post, postsList, isLoading } = useSelector(store => store.posts);
 
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -33,8 +37,16 @@ export default function PostDetails() {
   }, [params.id]);
 
   const handleBack = () => {
-    navigate("/home");
+    navigate(currentLocation);
   }
+
+  const formatDate = (dateString) => {
+    if (!dateString) return ''; 
+  
+    const formattedDate = moment(dateString).format('DD MMMM YYYY');
+  
+    return formattedDate;
+  };
 
   if (isLoading || !dataLoaded) {
     return (
@@ -54,10 +66,10 @@ export default function PostDetails() {
 
   return (
     <div css={styles}>
-      <p>ppp</p>
       <p>{post?.name}</p>
       <p>{post?.title}</p>
       <p>{post?.message}</p>
+      <p>{formatDate(post?.createdAt)}</p>
       <p>{post?.tags.map(tag => `${tag},`)}</p>
       <Button variant="outlined" onClick={handleBack}>Back</Button>
     </div>

@@ -1,6 +1,6 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { 
   Pagination,
   PaginationItem
@@ -27,10 +27,9 @@ export default function Paginate({
     return `/home?${newQueryParams}`;
   }
 
-  const dispatch = useDispatch();
   const { numbOfPages } = useSelector(store => store.posts);
 
-  return (
+  return numbOfPages > 1 && 
     <div css={styles}>
       <Pagination 
         count={numbOfPages}//than will be dynamic value
@@ -45,9 +44,7 @@ export default function Paginate({
             to={getURL(item)}
             shape="rounded"
           />
-          
         )}
       />
     </div>
-  )
 }

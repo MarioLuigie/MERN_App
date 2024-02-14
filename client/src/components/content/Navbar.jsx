@@ -22,7 +22,7 @@ import jsonData from "../../constants/textContent.json";
 const styles = css`
 
   .appBar {
-    background-color: #121212;
+    background-color: black;
     padding: 15px 0;
     display: flex;
     flex-direction: row;

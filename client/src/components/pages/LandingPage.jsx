@@ -28,8 +28,17 @@ const styles = css`
 
   .slider {
     width: 100%;
-    margin-top: 480px;
+    margin-top: 120px;
     position: absolute;
+    z-index: 1;
+
+    @media screen and (min-width: 330px) {
+      margin-top: 250px;
+    }
+
+    @media screen and (min-width: 500px) {
+      margin-top: 440px;
+    }
   }
 `
 
@@ -46,9 +55,9 @@ export default function LandingPage() {
                 <Slider 
                   config={
                     {
-                      headingColor: "white", 
-                      headingWeight: 700, 
-                      contentColor: "white",
+                      titleColor: "white", 
+                      titleWeight: 700, 
+                      contentColor: "#e7e7e7",
                       title: landingPage.title,
                       text: landingPage.text
                     }

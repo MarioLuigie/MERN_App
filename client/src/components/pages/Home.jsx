@@ -15,6 +15,7 @@ import Form from "../content/Form";
 import Paginate from "../content/Paginate";
 import Search from "../content/Search";
 import * as actions from "../../redux/actions/posts.js";
+import { useAppContext } from '../../context/context';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -54,8 +55,8 @@ export default function Home() {
   const [currentId, setCurrentId] = useState(null);
 
   const query = useQuery();
-  const location = useLocation();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const page = query.get("page") || 1;//odczytanie bieżącego URL z numerem strony
   const searchQuery = query.get("searchQuery"); 
@@ -68,6 +69,17 @@ export default function Home() {
       page: page || 1
     }));
   }, [query, page, tags]);
+
+  const { setCurrentLocation } = useAppContext();
+
+  useEffect(() => {
+    setCurrentLocation(`${location.pathname}${location.search}`);
+  }, [query, page, tags]);
+
+  // setTimeout(() => {
+  //   console.log("LOCATION:", currentLocation);
+  //   console.log("LOCATION:", location);
+  // }, 3000);
 
   return (
     <div css={styles}>
@@ -92,15 +104,6 @@ export default function Home() {
                 </Grid>
               </Grid>
             </Grid>
-            {/* {(!searchQuery && !tags.length) 
-              && (
-                <Grid item xs={12}>
-                  <div className="paginateWrapper">
-                    <Paginate page={page} />
-                  </div>
-                </Grid>
-              )
-            } */}
             <Grid item xs={12}>
               <div className="paginateWrapper">
                 <Paginate page={page} />
