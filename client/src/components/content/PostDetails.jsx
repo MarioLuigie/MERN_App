@@ -1,20 +1,23 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useEffect, useState } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { CircularProgress, Button } from "@mui/material";
+import { CircularProgress, Button, Container, Grid, Paper, Typography } from "@mui/material";
 import moment from "moment";
 
 import * as actions from "../../redux/actions/posts";
 import { useAppContext } from '../../context/context';
 
 const styles = css`
-  height: 600px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  min-height: 800px;
+  padding-top: 100px;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+  }
 `
 
 export default function PostDetails() {
@@ -66,12 +69,16 @@ export default function PostDetails() {
 
   return (
     <div css={styles}>
-      <p>{post?.name}</p>
-      <p>{post?.title}</p>
-      <p>{post?.message}</p>
-      <p>{formatDate(post?.createdAt)}</p>
-      <p>{post?.tags.map(tag => `${tag},`)}</p>
-      <Button variant="outlined" onClick={handleBack}>Back</Button>
+      <Container >
+        <Grid container className="container">
+          <Typography variant="h2">{post?.title}</Typography>
+          <Typography variant="overline" color="textSecondary">{formatDate(post?.createdAt)}</Typography>
+          <Typography gutterBottom>{post?.name}</Typography>
+          <Typography variant="h6" pt="50px">{post?.message}</Typography>
+          <Typography variant="body2" pb="50px" color="textSecondary">{post?.tags.map(tag => `#${tag},`)}</Typography>
+          <Button variant="outlined" onClick={handleBack}>Back</Button>
+        </Grid>
+      </Container>
     </div>
   );
 }

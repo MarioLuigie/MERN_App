@@ -68,13 +68,10 @@ export default function Home() {
       tags: tags,
       page: page || 1
     }));
+    setCurrentLocation(`${location.pathname}${location.search}`);
   }, [query, page, tags]);
 
   const { setCurrentLocation } = useAppContext();
-
-  useEffect(() => {
-    setCurrentLocation(`${location.pathname}${location.search}`);
-  }, [query, page, tags]);
 
   // setTimeout(() => {
   //   console.log("LOCATION:", currentLocation);
