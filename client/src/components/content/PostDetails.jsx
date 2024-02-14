@@ -76,6 +76,7 @@ export default function PostDetails() {
           <Typography gutterBottom>{post?.name}</Typography>
           <Typography variant="h6" pt="50px">{post?.message}</Typography>
           <Typography variant="body2" pb="50px" color="textSecondary">{post?.tags.map(tag => `#${tag},`)}</Typography>
+          <Typography variant="body2" pb="50px" color="textSecondary">{`${post?.likers.length} likers`}</Typography>
           <Button variant="outlined" onClick={handleBack}>Back</Button>
         </Grid>
       </Container>
