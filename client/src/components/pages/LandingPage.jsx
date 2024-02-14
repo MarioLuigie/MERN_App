@@ -32,12 +32,16 @@ const styles = css`
     position: absolute;
     z-index: 1;
 
-    @media screen and (min-width: 330px) {
+    @media screen and (min-width: 360px) {
       margin-top: 250px;
     }
 
     @media screen and (min-width: 500px) {
-      margin-top: 440px;
+      margin-top: 400px;
+    }
+
+    @media screen and (min-width: 960px) {
+      margin-top: 480px;
     }
   }
 `

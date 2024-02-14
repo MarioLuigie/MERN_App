@@ -49,6 +49,7 @@ const styles = (isOwn) => css`
 
  .title {
   font-weight: bold;
+  font-size: 26px;
  }
 
  .timeOverlay {
@@ -190,7 +191,7 @@ export default function Post({
           </div>
           <div>
             <CardContent sx={{mt: 2}}>
-              <Typography variant="h5" className="title" gutterBottom>{post.title}</Typography>
+              <Typography variant="h5" className="title" gutterBottom>{post.title.length > 18 ? `${post.title.slice(0, 14)}...` : post.title}</Typography>
               <Typography component="p" variant="body2" color="textSecondary">{post.message}</Typography>
             </CardContent>
           </div>
