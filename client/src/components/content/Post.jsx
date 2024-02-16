@@ -167,6 +167,11 @@ export default function Post({
     navigate(`/home/${post._id}`);
   }
 
+  const shortText = (text, numb) => {
+    const shortText = text.slice(0, numb);
+    return shortText;
+  }
+
   return (
     <div css={styles(isOwn)}>
       <Card className="card" elevation={isOwn ? 6 : 3}>
@@ -191,8 +196,8 @@ export default function Post({
           </div>
           <div>
             <CardContent sx={{mt: 2}}>
-              <Typography variant="h5" className="title" gutterBottom>{post.title.length > 18 ? `${post.title.slice(0, 14)}...` : post.title}</Typography>
-              <Typography component="p" variant="body2" color="textSecondary">{post.message}</Typography>
+              <Typography variant="h5" className="title" gutterBottom>{post.title.length > 18 ? `${shortText(post.title, 18)}...` : post.title}</Typography>
+              <Typography component="p" variant="body2" color="textSecondary">{post.message.length > 34 ? `${shortText(post.message, 45)}...` : post.message}</Typography>
             </CardContent>
           </div>
         </ButtonBase>

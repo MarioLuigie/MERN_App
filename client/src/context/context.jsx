@@ -5,11 +5,21 @@ const Context = createContext();
 export const useAppContext = () => useContext(Context);
 
 export const ContextProvider = ({ children }) => {
-  const [currentLocation, setCurrentLocation ] = useState("");
+
   const [ user, setUser ] = useState(JSON.parse(localStorage.getItem('profile')));
+  const [currentLocation, setCurrentLocation ] = useState("");
+  const [navbarHeight, setNavbarHeight ] = useState(0);
 
   return (
-    <Context.Provider value={{ user, setUser, currentLocation, setCurrentLocation }}>
+    <Context.Provider value={{ 
+      user, 
+      setUser, 
+      currentLocation, 
+      setCurrentLocation,
+      navbarHeight,
+      setNavbarHeight
+      }}
+    >
       {children}
     </Context.Provider>
   )

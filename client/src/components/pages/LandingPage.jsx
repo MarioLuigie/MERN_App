@@ -11,6 +11,7 @@ import Slider from "../content/Slider";
 import videoSource from "../../assets/videos/landingPage02_FHD.mp4";
 import jsonData from "../../constants/textContent.json";
 import { useAppContext } from '../../context/context';
+import Footer from "../layout/Footer";
 
 const styles = css`
   min-height: 750px;
@@ -33,7 +34,7 @@ const styles = css`
     position: absolute;
     z-index: 1;
 
-    @media screen and (min-width: 360px) {
+    @media screen and (min-width: 450px) {
       margin-top: 250px;
     }
 
@@ -68,7 +69,6 @@ export default function LandingPage() {
                       text: landingPage.text
                     }
                   }
-                  isLogged={user ? true : false}
                 />
               </div>
             </Grow>
@@ -80,6 +80,7 @@ export default function LandingPage() {
           </video>
         </div>
       {/* </Container> */}
+      <Footer />
     </div>
   )
 }

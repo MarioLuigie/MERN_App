@@ -9,7 +9,7 @@ import {
   Button
 } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link, json } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -112,8 +112,9 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const navbarRef = useRef(null);
 
-  const { user, setUser } = useAppContext();
+  const { user, setUser, navbarHeight, setNavbarHeight } = useAppContext();
   // console.log("User auth", user);
 
   const logout = () => {
@@ -121,6 +122,32 @@ export default function Navbar() {
     navigate("/");
     setUser(null);
   }
+
+  useEffect(() => {
+
+    console.log("NAVBAR HEIGHT STATE:", navbarHeight);
+    console.log("NAVBAR HEIGHT:", navbarRef.current.clientHeight);
+    console.log("NAVBAR HEIGHT:", navbarRef.current);
+
+    const updateNavbarHeight = () => {
+      if (navbarRef.current) {
+        const height = navbarRef.current.clientHeight;
+        setNavbarHeight(height);
+      }
+    };
+    
+    updateNavbarHeight();
+
+    const resizeObserver = new ResizeObserver(updateNavbarHeight);
+    if (navbarRef.current) {
+      resizeObserver.observe(navbarRef.current);
+    }
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+
+  }, [navbarHeight]);
 
   useEffect(() => {
     const token = user?.token;
@@ -136,7 +163,7 @@ export default function Navbar() {
 
   return (
     <div css={styles}>
-      <AppBar position="fixed" className="appBar">
+      <AppBar position="fixed" className="appBar" ref={navbarRef}>
         <div className="brand">
           <Typography
             className="brand__text desk" 
