@@ -10,19 +10,22 @@ import {
   Grid, 
   Paper, 
   Typography,
-  Avatar
+  Avatar,
+  Divider
 } from "@mui/material";
 import moment from "moment";
 
 import * as actions from "../../redux/actions/posts";
 import { useAppContext } from '../../context/context';
+import Comments from "./Comments";
 
 const styles = (navbarHeight) => css`
   padding: 30px 0;
   height: calc(100vh - ${navbarHeight}px);
+  min-height: calc(100vh - ${navbarHeight}px);
+  max-height: calc(100vh - ${navbarHeight}px);
   margin-top: calc(${navbarHeight}px);
   /* background-color: red; */
-
   .container {
     /* background-color: green; */
     height: 100%;
@@ -47,7 +50,7 @@ const styles = (navbarHeight) => css`
 
   .infos {
     height: 100%;
-    padding: 30px 15px 30px;
+    padding: 30px 20px 30px;
     align-content: stretch;
   }
 
@@ -176,8 +179,7 @@ export default function PostDetails() {
 
               <Typography 
                 variant="body2" 
-                pb="25px" 
-                pt="25px" 
+                pb="25px"  
                 color="textSecondary"
               >
                 {post?.tags.map(tag => `#${tag},`)}
@@ -185,11 +187,15 @@ export default function PostDetails() {
 
               <Typography 
                 variant="body2" 
-                pb="25px" 
+                pb="10px" 
                 color="textSecondary"
               >
                 {`${post?.likers.length} likers`}
               </Typography>
+
+              <Divider />
+
+              <Comments />
 
               <Button 
                 className="btn"
