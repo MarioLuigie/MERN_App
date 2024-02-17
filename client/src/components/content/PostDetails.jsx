@@ -1,7 +1,7 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { 
   CircularProgress, 
@@ -18,11 +18,14 @@ import * as actions from "../../redux/actions/posts";
 import { useAppContext } from '../../context/context';
 
 const styles = (navbarHeight) => css`
-  
+  padding: 30px 0;
+  height: calc(100vh - ${navbarHeight}px);
+  margin-top: calc(${navbarHeight}px);
+  /* background-color: red; */
 
   .container {
-    margin-top: calc(${navbarHeight}px);
-    padding: 0px 20px;
+    /* background-color: green; */
+    height: 100%;
   }
 
   .title {
@@ -45,7 +48,7 @@ const styles = (navbarHeight) => css`
   .infos {
     height: 100%;
     padding: 30px 15px 30px;
-    height: calc(100vh - ${navbarHeight}px)
+    align-content: stretch;
   }
 
   .nameWrapper {
@@ -60,10 +63,21 @@ const styles = (navbarHeight) => css`
   }
 
   .purple {
-    font-size: 16px;
+    font-size: 11px;
     color: black;
     width: 20px;
     height: 20px;
+  }
+
+  .btn{
+    background-color: black;
+    color: white;
+    border-color: #1b1b1b;
+
+    &:hover {
+      background-color: #1b1b1b;
+      border-color: #1b1b1b;
+    }
   }
 `
 
@@ -72,7 +86,7 @@ export default function PostDetails() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { currentLocation, navbarHeight, user} = useAppContext();
+  const { navbarHeight, user } = useAppContext();
 
   const { post, postsList, isLoading } = useSelector(store => store.posts);
 
@@ -87,7 +101,7 @@ export default function PostDetails() {
   }, [params.id]);
 
   const handleBack = () => {
-    navigate(currentLocation);
+    navigate(-1);
   }
 
   const formatDate = (dateString) => {
@@ -117,7 +131,7 @@ export default function PostDetails() {
   return (
     <div css={styles(navbarHeight)}>
       <Container maxWidth="lg" className="container">
-        <Grid container justifyContent="center" spacing={2}>
+        <Grid container justifyContent="center" spacing={2} sx={{height: "100%"}}>
           <Grid item xs={12} sm={8}>
             <Paper className="images" elevation={4}>
 
@@ -129,10 +143,10 @@ export default function PostDetails() {
               <div className="nameWrapper">
                 <Avatar 
                   className="purple" 
-                  alt={user?.result?.name}
-                  src={String(user?.result?.picture)}
+                  alt={post?.creator?.name}
+                  src={""}
                 >
-                  {user?.result?.picture ? "" : user?.result?.name.charAt(0)}
+                  {post?.creator?.name ? post?.creator?.name.charAt(0) : ""}
                 </Avatar>
                 <Typography 
                   variant="body2"
@@ -158,7 +172,7 @@ export default function PostDetails() {
                 {formatDate(post?.createdAt)}
               </Typography>
 
-              <Typography variant="body1" pt="50px" gutterBottom>{post?.message}</Typography>
+              <Typography variant="body1" pt="25px" gutterBottom>{post?.message}</Typography>
 
               <Typography 
                 variant="body2" 
@@ -178,6 +192,7 @@ export default function PostDetails() {
               </Typography>
 
               <Button 
+                className="btn"
                 variant="outlined" 
                 onClick={handleBack}
                 fullWidth

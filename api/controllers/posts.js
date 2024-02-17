@@ -11,7 +11,7 @@ export const getPost = async (req, res) => {
   }
 
   try {
-    const post = await PostMessage.findById(id);
+    const post = await PostMessage.findById(id).populate("creator").populate("likers");
 
     res.status(200).json(post);
 
