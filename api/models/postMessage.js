@@ -1,5 +1,18 @@
 import mongoose from "mongoose";
 
+const commentSchema = mongoose.Schema({
+  authorId: String,
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
+  content: String,
+  createdAt: {
+    type: Date,
+    default: new Date()
+  }
+});
+
 //Create mongoose Schema (Document)
 const postSchema = mongoose.Schema({
   name: String,
@@ -16,6 +29,10 @@ const postSchema = mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "User"
     }],
+    default: []
+  },
+  comments: {
+    type: [commentSchema],
     default: []
   },
   createdAt: {

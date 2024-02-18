@@ -3,7 +3,7 @@ import API from "./api.js";
 console.log(API);
 
 export const getPosts = (searchParams) => {
-  console.log("%%%", searchParams);
+  // console.log("%%%", searchParams);
   const data =  API.post("/posts/search", searchParams);
   return data;
 }
@@ -39,6 +39,11 @@ export const updatePost = (id, editedPost) => {
 
 export const likePost = (id) => {
   const data = API.patch(`/posts/${id}/likePost`);
+  return data;
+}
+
+export const commentPost = (postId, comment) => {
+  const data = API.patch(`/posts/${postId}/commentPost`, comment);
   return data;
 }
 

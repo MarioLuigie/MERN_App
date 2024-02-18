@@ -11,7 +11,7 @@ export const getPosts = (searchParams) => async (dispatch) => {
     //   currentPage: number, 
     //   numbOfPages: number
     // }
-    console.log("Zasoby z bazy mDB", data);
+    // console.log("Zasoby z bazy mDB", data);
 
     dispatch({type: type.READ_POSTS, data});
 
@@ -117,6 +117,19 @@ export const likePost = (id) => async (dispatch) => {
 
     dispatch({type: type.UPDATE_LIKES, data});
 
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export const commentPost = (postId, comment) => async (dispatch) => {
+  try {
+    const { data } = await api.commentPost(postId, comment);
+
+    dispatch({type: type.COMMENT_POST, data});
+
+    return data;
+    
   } catch (err) {
     console.log(err);
   }

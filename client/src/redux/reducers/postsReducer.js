@@ -29,11 +29,11 @@ const postsReducer = (state = {isLoading: true, postsList: []}, action) => {
         numbOfPages: action.data.numbOfPages
       };
 
-    case type.READ_POSTS_BY_SEARCH:
-      return {
-        ...state,
-        postsList: action.data.postsList
-      };
+    // case type.READ_POSTS_BY_SEARCH:
+    //   return {
+    //     ...state,
+    //     postsList: action.data.postsList
+    //   };
 
     case type.CREATE_POST:
       return {
@@ -48,6 +48,16 @@ const postsReducer = (state = {isLoading: true, postsList: []}, action) => {
         ...state,
         postsList: state.postsList.map(post => (
           post._id === action.data._id
+            ? {...post, ...action.data}
+            : post
+        ))
+      }
+
+    case type.COMMENT_POST:
+      return {
+        ...state,
+        postLists: state.postsList.map(post => (
+          post._id === action.data._id 
             ? {...post, ...action.data}
             : post
         ))

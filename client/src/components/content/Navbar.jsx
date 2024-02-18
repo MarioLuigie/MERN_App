@@ -125,9 +125,9 @@ export default function Navbar() {
 
   useEffect(() => {
 
-    console.log("NAVBAR HEIGHT STATE:", navbarHeight);
-    console.log("NAVBAR HEIGHT:", navbarRef.current.clientHeight);
-    console.log("NAVBAR HEIGHT:", navbarRef.current);
+    // console.log("NAVBAR HEIGHT STATE:", navbarHeight);
+    // console.log("NAVBAR HEIGHT:", navbarRef.current.clientHeight);
+    // console.log("NAVBAR HEIGHT:", navbarRef.current);
 
     const updateNavbarHeight = () => {
       if (navbarRef.current) {

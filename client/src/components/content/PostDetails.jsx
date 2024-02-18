@@ -20,7 +20,7 @@ import { useAppContext } from '../../context/context';
 import Comments from "./Comments";
 
 const styles = (navbarHeight) => css`
-  padding: 30px 0;
+  /* padding: 30px 0; */
   height: calc(100vh - ${navbarHeight}px);
   min-height: calc(100vh - ${navbarHeight}px);
   max-height: calc(100vh - ${navbarHeight}px);
@@ -72,13 +72,13 @@ const styles = (navbarHeight) => css`
     height: 20px;
   }
 
-  .btn{
-    background-color: black;
-    color: white;
+  .btn {
+    /* background-color: black; */
+    color: black;
     border-color: #1b1b1b;
 
     &:hover {
-      background-color: #1b1b1b;
+      /* background-color: #1b1b1b; */
       border-color: #1b1b1b;
     }
   }
@@ -147,9 +147,9 @@ export default function PostDetails() {
                 <Avatar 
                   className="purple" 
                   alt={post?.creator?.name}
-                  src={""}
+                  src={post?.creator?.picture}
                 >
-                  {post?.creator?.name ? post?.creator?.name.charAt(0) : ""}
+                  {!post?.creator?.picture ? post?.creator?.name.charAt(0) : ""}
                 </Avatar>
                 <Typography 
                   variant="body2"
@@ -195,7 +195,7 @@ export default function PostDetails() {
 
               <Divider />
 
-              <Comments />
+              <Comments post={post} />
 
               <Button 
                 className="btn"

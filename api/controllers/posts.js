@@ -11,7 +11,7 @@ export const getPost = async (req, res) => {
   }
 
   try {
-    const post = await PostMessage.findById(id).populate("creator").populate("likers");
+    const post = await PostMessage.findById(id).populate("creator").populate("likers").populate("comments.author");
 
     res.status(200).json(post);
 
@@ -51,6 +51,7 @@ export const getPosts = async (req, res) => {
     const postMessages = await PostMessage.find(queryObject)
     .populate('creator')
     .populate('likers')
+    .populate("comments.author")
     .sort({ _id: -1 })
     .limit(limit)
     .skip(startIndex)
@@ -120,7 +121,7 @@ export const updatePost = async (req, res) => {
   }
 
   try {
-    const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, {new: true}).populate("creator").populate("likers");
+    const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, {new: true}).populate("creator").populate("likers").populate("comments.author");
 
     res.json(updatedPost);
 
@@ -144,7 +145,7 @@ export const likePost = async (req, res) => {
   }
 
   try {
-    const post = await PostMessage.findById(_id).populate("likers").populate("creator");
+    const post = await PostMessage.findById(_id).populate("likers").populate("creator").populate("comments.author");
     console.log("LIKE1:", post);
 
     const index = post.likers.findIndex((user) => String(user._id) === String(req.userId));
@@ -160,12 +161,47 @@ export const likePost = async (req, res) => {
       post.likers = post.likers.filter((user) => String(user._id) !== String(req.userId));
     }
 
-    const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, {new: true}).populate("likers").populate("creator");
+    const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, {new: true}).populate("likers").populate("creator").populate("comments.author");
 
     console.log("LIKE2:", updatedPost);
 
     res.json(updatedPost);
 
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export const commentPost = async (req, res) => {
+
+  const { id } = req.params;
+  const comment = req.body;
+
+  console.log("REQ.BODY - COMMENT:", comment);
+  console.log("REQ.PARAMS - POST ID:", id);
+
+  try {
+    const post = await PostMessage.findById(id);
+
+    const author = await User.findById(comment.authorId);
+
+    console.log("FINDED POST:", post);
+    console.log("AUTHOR POST:", author);
+
+    comment.author = author;
+    post.comments.push(comment);
+
+    console.log("***", comment);
+
+    const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true })
+    .populate("likers")
+    .populate("creator")
+    .populate("comments.author");
+
+    console.log("UPDATED POST:", updatedPost);
+
+    res.status(200).json(updatedPost);
+    
   } catch (err) {
     console.log(err);
   }
