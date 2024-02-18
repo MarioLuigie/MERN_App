@@ -190,6 +190,7 @@ export const commentPost = async (req, res) => {
 
     comment.author = author;
     post.comments.push(comment);
+    post.comments.reverse();
 
     console.log("***", comment);
 
