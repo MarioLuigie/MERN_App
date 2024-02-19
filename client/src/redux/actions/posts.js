@@ -128,7 +128,7 @@ export const commentPost = (postId, comment) => async (dispatch) => {
 
     dispatch({type: type.COMMENT_POST, data});
 
-    return data;
+    // return data;
     
   } catch (err) {
     console.log(err);

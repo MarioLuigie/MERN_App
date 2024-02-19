@@ -96,11 +96,11 @@ export default function PostDetails() {
   const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
-    const fetch = async () => {
+    const fetchPost = async () => {
       await dispatch(actions.getPost(params.id));
       setDataLoaded(true);
     }
-    fetch();
+    fetchPost();
   }, [params.id]);
 
   const handleBack = () => {

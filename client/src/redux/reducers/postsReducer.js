@@ -1,6 +1,14 @@
 import * as type from "../../constants/actions.js";
 
-const postsReducer = (state = {isLoading: true, postsList: []}, action) => {
+const initState = {
+  isLoading: true, 
+  postsList: [], 
+  post: {},
+  currentPage: 1,
+  numbOfPages: 1
+}
+
+const postsReducer = (state = initState, action) => {
   switch(action.type) {
 
     case type.START_LOADING:
@@ -60,7 +68,8 @@ const postsReducer = (state = {isLoading: true, postsList: []}, action) => {
           post._id === action.data._id 
             ? {...post, ...action.data}
             : post
-        ))
+        )),
+        post: {...state.post, ...action.data}
       }
 
     case type.DELETE_POST:

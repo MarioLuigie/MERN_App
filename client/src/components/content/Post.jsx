@@ -101,6 +101,7 @@ export default function Post({
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useAppContext();
+  const [ likes, setLikes ] = useState([]);
   const [ isLiked, setIsLiked ] = useState(false);
   const [ isLikersListHidden, setIsLikersListHidden ] = useState(true);
 

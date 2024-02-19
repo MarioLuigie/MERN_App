@@ -1,6 +1,6 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useAppContext } from '../../context/context';
 import { 
@@ -28,7 +28,7 @@ const styles = css`
   height: 100%;
   overflow: auto;
   border-radius: 5px;
-  position: relative;
+  padding-bottom: 10px;
 }
 
 .inputWrapper {
@@ -69,17 +69,23 @@ export default function Comments({
 }) {
   const { user } = useAppContext();
   const dispatch = useDispatch();
-  const [ comments, setComments ] = useState(post?.comments);
+  // const [ comments, setComments ] = useState(post?.comments);
   const [commentValue, setCommentValue ] = useState("");
 
   const handleChange = (evt) => {
     setCommentValue(evt.target.value);
   }
 
-  const handleComment = async () => {
-    const updatedPost = await dispatch(actions.commentPost(post._id, {authorId: user?.result?._id, content: commentValue}));
+  // const handleComment = async () => {
+  //   const updatedPost = await dispatch(actions.commentPost(post._id, {authorId: user?.result?._id, content: commentValue}));
 
-    setComments(updatedPost?.comments);
+  //   setComments(updatedPost?.comments);
+  //   setCommentValue("");
+  // }
+
+  const handleComment = () => {
+    dispatch(actions.commentPost(post._id, {authorId: user?.result?._id, content: commentValue}));
+
     setCommentValue("");
   }
 
@@ -87,7 +93,7 @@ export default function Comments({
     <div css={styles}>
       <Typography variant="body1">Comments</Typography>
       <div className="commentsWrapper">
-        {comments?.map((comment, i) => (
+        {post.comments?.map((comment, i) => (
           <Comment 
             comment={comment} 
             key={i} 
