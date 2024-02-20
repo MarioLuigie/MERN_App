@@ -137,7 +137,7 @@ export default function PostDetails() {
         <Grid container justifyContent="center" spacing={2} sx={{height: "100%"}}>
           <Grid item xs={12} sm={8}>
             <Paper className="images" elevation={4}>
-
+              <img src={post.files[0]} alt="" style={{width: "100%"}} />
             </Paper>
           </Grid>
 

@@ -71,7 +71,7 @@ export const createPost = (newPost, navigate) => async (dispatch) => {
     formData.append("files", file);
   });
 
-  console.log("utworzona form data", formData);//[]
+  console.log("utworzona form data", formData);//{}
 
   //Iterate on formData, because it is a special object, and common console log may be badly resolve to show what is inside of formdata
   formData.forEach(function(value, key) {

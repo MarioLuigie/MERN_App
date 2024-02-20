@@ -77,9 +77,9 @@ export const createPost = async (req, res) => {
     // console.log("req body:", req.body);
     // console.log("tags splited:", post.tags.split(","));
 
-    const files = req.files.map(file => file.filename);
+    const files = req.files.map(file => `https://editorial-images.s3.eu-north-1.amazonaws.com/${file.key}`);
     
-    // console.log("files uploaded:", files);
+    console.log("files uploaded:", files);
     // console.log("req.files:", req.files);
 
     const user = await User.findOne({ _id: req.userId });//mongoosowy document, znajduje usera w kolekcji Mongo, ktory _id ma takie jak zalogowany user, req.userId to id z tokena zalogowanego usera wszczepione w postaci token do req.headers.authorization przez interceptors w api.js a nastepnie przechwycone przez middleweara auth.js, zdekodowane i wszczepione do w postaci id do req.userId

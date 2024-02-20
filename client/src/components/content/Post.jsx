@@ -9,7 +9,8 @@ import {
   CardMedia, 
   IconButton,
   Typography,
-  ButtonBase 
+  ButtonBase,
+  Avatar
 } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbUpOffIcon from '@mui/icons-material/ThumbUpOffAlt';
@@ -57,6 +58,23 @@ const styles = (isOwn) => css`
   top: 20px;
   left: 20px;
  }
+
+ .nameWrapper {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+ }
+
+ .name {
+  color: white;
+ }
+
+ .purple {
+  font-size: 11px;
+  color: black;
+  width: 30px;
+  height: 30px;
+  }
 
  .buttons {
   display: flex;
@@ -178,12 +196,22 @@ export default function Post({
         <ButtonBase className="buttonBase" onClick={handleOpenPostDetails}>
           <CardMedia 
             className="media"
-            image={'https://images.pexels.com/photos/1020017/pexels-photo-1020017.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}
+            // image={'https://images.pexels.com/photos/1020017/pexels-photo-1020017.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}
+            image={post.files[0]}
             title={post.title}
           />
           <div className="timeOverlay">
-            <Typography variant="h6" color="textSecondary">{post.name}</Typography>
-            <Typography variant="body2" color="textSecondary">{moment(post.createdAt).fromNow()}</Typography>
+            <div className="nameWrapper">
+              <Avatar
+                className="purple" 
+                alt={post?.creator?.name}
+                src={post?.creator?.picture}
+              >
+                {!post?.creator?.picture ? post?.creator?.name.charAt(0) : ""}
+              </Avatar>
+              <Typography variant="h6" color="textSecondary" className="name">{post.name}</Typography>
+            </div>
+            <Typography variant="body2" color="textSecondary" className="name">{moment(post.createdAt).fromNow()}</Typography>
           </div>
           <div className="tags">
             {post.tags.map((tag, i) => {
