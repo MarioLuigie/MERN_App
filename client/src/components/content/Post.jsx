@@ -81,6 +81,7 @@ const styles = (isOwn) => css`
   justify-content: flex-end;
   align-items: center;
   gap: 5px;
+  margin-right: 6px;
  }
 
  .button {
