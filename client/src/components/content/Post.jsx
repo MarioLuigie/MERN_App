@@ -198,7 +198,7 @@ export default function Post({
           <CardMedia 
             className="media"
             // image={'https://images.pexels.com/photos/1020017/pexels-photo-1020017.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}
-            image={post.files[0]}
+            image={post.files.length > 0 ? post.files[0] : "/"}
             title={post.title}
           />
           <div className="timeOverlay">
