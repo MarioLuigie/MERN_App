@@ -249,7 +249,6 @@ export const deletePost = async (req, res) => {
 
   const extractFileNames = (urls) => urls.map(url => url.split('/').pop());
 
-
   try {
     const deletedPost = await PostMessage.findByIdAndDelete(_id);
 
