@@ -21,8 +21,8 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-const styles = css`
-  padding-top: 155px;
+const styles = (navbarHeight) => css`
+  padding-top: calc(${navbarHeight}px + 20px);
   /* padding-bottom: 40px; */
 
   .searchWrapper {
@@ -53,6 +53,7 @@ const styles = css`
 export default function Home() {
 
   const [currentId, setCurrentId] = useState(null);
+  const { navbarHeight } = useAppContext();
 
   const query = useQuery();
   const dispatch = useDispatch();
@@ -79,7 +80,7 @@ export default function Home() {
   // }, 3000);
 
   return (
-    <div css={styles}>
+    <div css={styles(navbarHeight)}>
       <Grow in timeout={700}>
         <Container maxWidth="xl">
           <Grid container justifyContent="space-between" alignItems="stretch" spacing={4}>
