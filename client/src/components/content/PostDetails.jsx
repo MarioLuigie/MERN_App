@@ -27,6 +27,11 @@ const styles = (navbarHeight) => css`
   margin-top: calc(${navbarHeight}px);
   width: 100%;
   /* background-color: red; */
+
+  .a {
+    max-height: calc(100vh - ${navbarHeight}px);
+  }
+
   .container {
     /* background-color: green; */
     height: 100%;
@@ -143,14 +148,14 @@ export default function PostDetails() {
   return (
     <div css={styles(navbarHeight)}>
       <Container className="container">
-        <Grid container justifyContent="center" spacing={2} sx={{height: "100%"}}>
-          <Grid item xs={12} sm={9} style={{height: "100%"}}>
+        <Grid container justifyContent="center" spacing={2} className="a">
+          <Grid item xs={12} sm={12} md={7} lg={8} xl={9} className="a">
             <Paper className="images" elevation={4} style={{height: "100%"}}>
-              <img src={post.files[0]} alt="" style={{maxHeight: "100%", maxWidth: "100%"}} />
+              <img src={post.files[0]} alt="" style={{maxHeight: "100%", maxWidth: "100%"}}/>
             </Paper>
           </Grid>
 
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={12} md={5} lg={4} xl={3} >
             <Paper elevation={4} className="infos">
               <div className="nameWrapper">
                 <Avatar 
