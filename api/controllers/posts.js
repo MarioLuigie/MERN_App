@@ -2,6 +2,18 @@
 import PostMessage from "../models/postMessage.js";
 import mongoose from "mongoose";
 import User from "../models/user.js";
+import { S3Client, DeleteObjectCommand } from "@aws-sdk/client-s3";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const s3Client = new S3Client({
+  region: 'eu-north-1',
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+  }
+});
 
 export const getPost = async (req, res) => {
   const { id } = req.params;
@@ -77,9 +89,9 @@ export const createPost = async (req, res) => {
     // console.log("req body:", req.body);
     // console.log("tags splited:", post.tags.split(","));
 
-    const files = req.files.map(file => file.filename);
+    const files = req.files.map(file => `https://editorial-images.s3.eu-north-1.amazonaws.com/${file.key}`);
     
-    // console.log("files uploaded:", files);
+    console.log("files uploaded:", files);
     // console.log("req.files:", req.files);
 
     const user = await User.findOne({ _id: req.userId });//mongoosowy document, znajduje usera w kolekcji Mongo, ktory _id ma takie jak zalogowany user, req.userId to id z tokena zalogowanego usera wszczepione w postaci token do req.headers.authorization przez interceptors w api.js a nastepnie przechwycone przez middleweara auth.js, zdekodowane i wszczepione do w postaci id do req.userId
@@ -215,8 +227,36 @@ export const deletePost = async (req, res) => {
     return res.status(404).send("No post with that id");
   }
 
+  const deleteFileFromS3 = async (key) => {
+    const params = {
+      Bucket: 'editorial-images', // Twój bucket
+      Key: key, // Klucz pliku, np. 'folder/nazwa_pliku.jpg'
+    };
+  
+    try {
+      await s3Client.send(new DeleteObjectCommand(params));
+      console.log(`Plik ${key} został usunięty z AWS S3.`);
+    } catch (err) {
+      console.error(`Błąd podczas usuwania pliku z AWS S3: ${err}`);
+    }
+  };
+
+  const deleteFilesFromS3 = async (keys) => {
+    for (const key of keys) {
+      await deleteFileFromS3(key);
+    }
+  };
+
+  const extractFileNames = (urls) => urls.map(url => url.split('/').pop());
+
+
   try {
     const deletedPost = await PostMessage.findByIdAndDelete(_id);
+
+    const fileNames = extractFileNames(deletedPost.files);
+
+    deleteFilesFromS3(fileNames);
+
 		res.json(_id);
 
 		console.log("Post deleted successfully!");

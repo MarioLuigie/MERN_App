@@ -23,8 +23,8 @@ const styles = css`
   flex-direction: column;
   gap: 15px;
   margin-top: 10px;
-  min-height: 220px;
-  max-height: 220px;
+  min-height: 250px;
+  max-height: 250px;
   height: 100%;
   overflow: auto;
   border-radius: 5px;

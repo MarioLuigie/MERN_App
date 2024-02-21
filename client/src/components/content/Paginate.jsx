@@ -43,6 +43,12 @@ export default function Paginate({
             component={Link}
             to={getURL(item)}
             shape="rounded"
+            sx={{
+              '&.Mui-selected': {
+                backgroundColor: '#3f3f3f'
+              }, 
+              color: 'white',
+            }}
           />
         )}
       />
