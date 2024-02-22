@@ -18,7 +18,7 @@ const auth = async (req, res, next) => {
       req.userId = decodedData?.id;
       // req.userId = decodedData;
 
-      console.log("DECODED DATA", decodedData);
+      // console.log("DECODED DATA", decodedData);
       
     } else {
       //Decoded google token

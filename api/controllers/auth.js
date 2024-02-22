@@ -27,7 +27,7 @@ export const signIn = async (req, res) => {
       {expiresIn: "1h"}
     );
 
-    console.log("EXISTUSER: ", existUser);
+    // console.log("EXISTUSER: ", existUser);
 
     res.status(200).json({ result: existUser, token });
 
@@ -72,7 +72,7 @@ export const signUp = async (req, res) => {
 
     res.status(200).json({ result: newUser, token });
 
-    console.log("New User and token", newUser, token);
+    // console.log("New User and token", newUser, token);
 
   } catch (err) {
     res.status(500).json({ message: "Something went wrong."});
@@ -97,7 +97,7 @@ export const signInGoogle = async (req, res) => {
     }
   
     const payload = await response.json();
-    console.log("DATAS FROM GOOGLE ACCESS_TOKEN:", payload);
+    // console.log("DATAS FROM GOOGLE ACCESS_TOKEN:", payload);
 
     const existUser = await User.findOne({ email: payload.email });
 
@@ -130,7 +130,7 @@ export const signInGoogle = async (req, res) => {
       res.status(200).json({result: existUser, token});
     }
 
-    console.log("PAYLOAD:", payload);
+    // console.log("PAYLOAD:", payload);
     
   } catch (err) {
     res.status(500).json({ message: "Something went wrong."});

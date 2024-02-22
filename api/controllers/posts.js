@@ -36,7 +36,7 @@ export const getPost = async (req, res) => {
 export const getPosts = async (req, res) => {
   const { query = "", tags = "", page = 1, limit = 6 } = req.body;//get searchParams from client
 
-  console.log("***", req.body);
+  // console.log("***", req.body);
 
   try {
     //index pierwszego posta na danej stronie
@@ -106,17 +106,17 @@ export const createPost = async (req, res) => {
       tags: post.tags.split(",")
     });
     
-    console.log(newPost, "regBody");
+    // console.log(newPost, "regBody");
 
     await newPost.save();
 
     const populatedPost = await PostMessage.findById(newPost._id).populate("creator");
 
-    console.log("POPULATED POST:", populatedPost);
+    // console.log("POPULATED POST:", populatedPost);
 
     res.status(201).json(populatedPost);
 
-    console.log("Post with files uploaded successfully!", newPost);
+    // console.log("Post with files uploaded successfully!", newPost);
 
   } catch (err) {
     res.status(409).json({ message: err.message });
@@ -137,7 +137,7 @@ export const updatePost = async (req, res) => {
 
     res.json(updatedPost);
 
-    console.log("Post updated successfully!", updatedPost);
+    // console.log("Post updated successfully!", updatedPost);
     
   } catch (err) {
     res.status(409).json({ message: err.message });
@@ -162,7 +162,7 @@ export const likePost = async (req, res) => {
 
     const index = post.likers.findIndex((user) => String(user._id) === String(req.userId));
 
-    console.log("INDEX:", index);
+    // console.log("INDEX:", index);
 
     if (index === -1) {
       const user = await User.findById(String(req.userId));
@@ -175,7 +175,7 @@ export const likePost = async (req, res) => {
 
     const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, {new: true}).populate("likers").populate("creator").populate("comments.author");
 
-    console.log("LIKE2:", updatedPost);
+    // console.log("LIKE2:", updatedPost);
 
     res.json(updatedPost);
 
@@ -189,16 +189,16 @@ export const commentPost = async (req, res) => {
   const { id } = req.params;
   const comment = req.body;
 
-  console.log("REQ.BODY - COMMENT:", comment);
-  console.log("REQ.PARAMS - POST ID:", id);
+  // console.log("REQ.BODY - COMMENT:", comment);
+  // console.log("REQ.PARAMS - POST ID:", id);
 
   try {
     const post = await PostMessage.findById(id);
 
     const author = await User.findById(comment.authorId);
 
-    console.log("FINDED POST:", post);
-    console.log("AUTHOR POST:", author);
+    // console.log("FINDED POST:", post);
+    // console.log("AUTHOR POST:", author);
 
     comment.author = author;
     post.comments.push(comment);
@@ -211,7 +211,7 @@ export const commentPost = async (req, res) => {
     .populate("creator")
     .populate("comments.author");
 
-    console.log("UPDATED POST:", updatedPost);
+    // console.log("UPDATED POST:", updatedPost);
 
     res.status(200).json(updatedPost);
     
@@ -258,8 +258,8 @@ export const deletePost = async (req, res) => {
 
 		res.json(_id);
 
-		console.log("Post deleted successfully!");
-		console.log(deletedPost);
+		// console.log("Post deleted successfully!");
+		// console.log(deletedPost);
 
   } catch (err) {
     res.status(409).json({ message: err.message });
