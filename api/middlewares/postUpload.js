@@ -2,6 +2,7 @@ import multer from "multer";
 import multerS3 from "multer-s3";
 import { S3Client } from "@aws-sdk/client-s3";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
+import sharp from "sharp";
 import path from "path";
 import dotenv from "dotenv";
 
@@ -18,7 +19,6 @@ const s3Client = new S3Client({
 const storage = multerS3({
   s3: s3Client,
   bucket: 'editorial-images',
-  // acl: 'public-read',
   key: (req, file, cb) => {
     const ext = path.extname(file.originalname);
     const fileName = `${Date.now().toString()}${ext}`;
