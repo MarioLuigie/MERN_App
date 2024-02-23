@@ -35,7 +35,7 @@ export default function LikersList({
   likers
 }) {
 
-  console.log("Lista Lubiących:", likers);
+  // console.log("Lista Lubiących:", likers);
 
   return (
     <div css={styles}>

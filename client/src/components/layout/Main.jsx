@@ -6,7 +6,7 @@ import { Routes, Route, Navigate} from "react-router-dom";
 import Home from "../pages/Home";
 import Auth from "../auth/Auth";
 import LandingPage from "../pages/LandingPage";
-import PostDetails from '../content/PostDetails';
+import PostDetails from '../content/PostDetails/PostDetails';
 import { useAppContext } from '../../context/context';
 
 const styles = css`

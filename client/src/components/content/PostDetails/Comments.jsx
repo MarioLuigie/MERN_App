@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useAppContext } from '../../context/context';
+import { useAppContext } from '../../../context/context';
 import { 
   Typography,
   TextField,
@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 
-import * as actions from "../../redux/actions/posts.js";
+import * as actions from "../../../redux/actions/posts.js";
 import Comment from "./Comment";
 
 const styles = css`

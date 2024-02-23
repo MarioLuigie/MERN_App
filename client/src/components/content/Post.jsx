@@ -182,7 +182,7 @@ export default function Post({
   }
 
   const handleOpenPostDetails = (evt) => {
-    console.log("DETAILS");
+    // console.log("DETAILS");
     evt.stopPropagation();
     navigate(`/home/${post._id}`);
   }

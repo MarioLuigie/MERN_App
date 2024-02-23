@@ -1,6 +1,6 @@
 import API from "./api.js";
 
-console.log(API);
+// console.log(API);
 
 export const getPosts = (searchParams) => {
   // console.log("%%%", searchParams);

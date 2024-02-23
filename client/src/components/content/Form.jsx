@@ -117,7 +117,7 @@ export default function Form({
   const handleSubmit = (evt) => {
     evt.preventDefault();
     // console.log(postData, "from submit");
-    console.log("TAGS FROM SUBMIT:", tags);
+    // console.log("TAGS FROM SUBMIT:", tags);
 
     if (currentId) {
       dispatch(actions.updatePost(currentId, {...postData, name: user?.result?.name, tags}));
@@ -132,7 +132,7 @@ export default function Form({
 
   // console.log(postData.acceptedFiles);
   // console.log(postData);
-  console.log("TAGS", tags);
+  // console.log("TAGS", tags);
 
   if (!user?.result?.name) {
     return (
