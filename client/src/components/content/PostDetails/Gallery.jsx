@@ -33,3 +33,16 @@ export default function Gallery({
     </div>
   )
 }
+
+
+// return (
+//   <div css={styles}>
+//     <Paper className="images" elevation={4} style={{height: "100%"}}>
+//       <img 
+//         src={post.files.length > 0 ? post.files[0] : ""} 
+//         alt="" 
+//         style={{maxHeight: "100%", maxWidth: "100%"}}
+//       />
+//     </Paper>
+//   </div>
+// )

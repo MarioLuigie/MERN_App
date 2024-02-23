@@ -4,7 +4,10 @@ import {
   Typography,
   Avatar
 } from "@mui/material";
+import CommentControl from "../../ui/ListMenu";
 import moment from "moment";
+import { useAppContext } from '../../../context/context';
+
 
 const styles = css`
 
@@ -51,6 +54,9 @@ const styles = css`
 export default function Comment({
   comment
 }) {
+  const { user } = useAppContext();
+
+  console.log(comment);
 
   return (
     <div css={styles}>
@@ -80,6 +86,24 @@ export default function Comment({
           <div>
             <div className='time'>{moment(comment?.createdAt).fromNow()}</div>
           </div>
+        </div>
+        <div>
+          {
+            comment?.authorId === user?.result?._id 
+            ? <CommentControl 
+                options={[
+                  {text: "Edit comment", onHandle: () => {console.log("Edit")}},
+                  {text: "Delete comment", onHandle: () => {console.log("Delete")}}
+                ]}
+              />
+            :
+              <CommentControl 
+                options={[
+                  {text: "Hide comment", onHandle: () => {console.log("Hide")}},
+                  {text: "Report comment", onHandle: () => {console.log("Report")}},
+                ]}
+              />
+          }
         </div>
       </div>
     </div>

@@ -34,6 +34,7 @@ const styles = css`
 .inputWrapper {
   display: flex;
   gap: 5px;
+  padding-right: 30px;
 }
 
 .input {
@@ -69,19 +70,11 @@ export default function Comments({
 }) {
   const { user } = useAppContext();
   const dispatch = useDispatch();
-  // const [ comments, setComments ] = useState(post?.comments);
   const [commentValue, setCommentValue ] = useState("");
 
   const handleChange = (evt) => {
     setCommentValue(evt.target.value);
   }
-
-  // const handleComment = async () => {
-  //   const updatedPost = await dispatch(actions.commentPost(post._id, {authorId: user?.result?._id, content: commentValue}));
-
-  //   setComments(updatedPost?.comments);
-  //   setCommentValue("");
-  // }
 
   const handleComment = () => {
     dispatch(actions.commentPost(post._id, {authorId: user?.result?._id, content: commentValue}));

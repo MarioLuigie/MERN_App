@@ -27,11 +27,16 @@ import LikersList from "./LikersList.jsx";
 // import image from "../../../../api/uploads/1703801554909.jpg"
 
 const styles = (isOwn) => css`
+  height: 100%;
 
  .card {
   position: relative;
   border: ${isOwn ? "#bdbdbd solid 1px" : "none"};
   cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
  }
 
  .buttonBase {

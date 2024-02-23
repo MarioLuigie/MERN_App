@@ -46,9 +46,9 @@ export default function PostDetails() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { navbarHeight, user } = useAppContext();
+  const { navbarHeight } = useAppContext();
 
-  const { post, postsList, isLoading } = useSelector(store => store.posts);
+  const { post, isLoading } = useSelector(store => store.posts);
 
   const [dataLoaded, setDataLoaded] = useState(false);
 
