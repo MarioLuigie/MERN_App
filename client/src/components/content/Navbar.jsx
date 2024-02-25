@@ -4,8 +4,7 @@ import { css } from '@emotion/react';
 import { 
   AppBar,
   Typography,
-  Toolbar, 
-  Avatar,
+  Toolbar,
   Button
 } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -18,6 +17,8 @@ import { jwtDecode } from "jwt-decode";
 import { useAppContext } from '../../context/context.jsx';
 import * as type from "../../constants/actions.js";
 import jsonData from "../../constants/textContent.json";
+import LoggedUser from "../ui/Creator.jsx";
+import AccountMenu from "./AccountMenu.jsx";
 
 const styles = css`
 
@@ -187,23 +188,19 @@ export default function Navbar() {
         <Toolbar className="toolbar">
           {user
             ? <div className="profile">
-                <Avatar 
-                  className="purple" 
-                  alt={user?.result?.name}
-                  src={String(user?.result?.picture)}
-                >
-                  {user?.result?.picture ? "" : user?.result?.name.charAt(0)}
-                </Avatar>
-                <Typography className="userName" variant="subtitle1">
-                  {user?.result?.name}
-                </Typography>
-                <Button 
-                  className="logout"
-                  variant="contained" 
-                  onClick={logout}
-                >
-                  Logout
-                </Button>
+                <AccountMenu 
+                  options={{
+                    logout: logout
+                  }}
+                  anchor={
+                    <LoggedUser 
+                      user={user?.result}
+                      textColor="white"
+                      textSize="16px"
+                      purpleSize="25px"
+                    />
+                  }
+                />
               </div>
             : <div>
                 <Button 

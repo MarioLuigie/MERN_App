@@ -5,16 +5,32 @@ import { useState } from "react";
 import { 
   Menu,
   IconButton,
-  MenuItem
+  MenuItem,
+  ButtonBase
 } from "@mui/material";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 const styles = css`
 
+  .listItem {
+    display: flex;
+    gap: 8px;
+  }
+
+  .icon {
+    color: #383838;
+  }
+
+  .text {
+    color: #202020;
+    font-size: 14px;
+  }
+
 `
 
 export default function ListMenu({
-  options
+  options,
+  anchor
 }) {
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -35,15 +51,18 @@ export default function ListMenu({
 
   return (
     <div css={styles}>
-      <IconButton
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-      >
-        <MoreHorizIcon />
-      </IconButton>
+      {!anchor 
+        ? <IconButton
+            id="basic-button"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClick}
+          >
+            <MoreHorizIcon />
+          </IconButton>
+        : <ButtonBase onClick={handleClick}>{anchor}</ButtonBase>
+      }
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
@@ -55,8 +74,13 @@ export default function ListMenu({
       >
         {
           options.map((option, i) => (
-            <MenuItem onClick={handleAction(option)} sx={{fontSize: "14px"}} key={i}>
-              {option.text}
+            <MenuItem onClick={handleAction(option)} key={i}>
+              <div css={styles}>
+                <div className="listItem">
+                  <div className="icon">{option.icon}</div>
+                  <div className="text">{option.text}</div>
+                </div>
+              </div>
             </MenuItem>
           ))
         }

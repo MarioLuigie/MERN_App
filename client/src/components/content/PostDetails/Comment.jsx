@@ -4,12 +4,16 @@ import {
   Typography,
   Avatar
 } from "@mui/material";
-import CommentControl from "../../ui/ListMenu";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 
 import { useAppContext } from '../../../context/context';
 import * as actions from "../../../redux/actions/posts";
+import CommentControl from "../../ui/ListMenu";
+import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
+import EditNoteIcon from '@mui/icons-material/EditNote';
+import FlagIcon from '@mui/icons-material/Flag';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 
 const styles = css`
@@ -103,15 +107,31 @@ export default function Comment({
             comment?.authorId === user?.result?._id 
             ? <CommentControl 
                 options={[
-                  {text: "Edit comment", onHandle: () => {console.log("Edit")}},
-                  {text: "Delete comment", onHandle: handleDeleteComment}
+                  {
+                    icon: <EditNoteIcon fontSize="small" />, 
+                    text: "Edit comment", 
+                    onHandle: () => {console.log("Edit")}
+                  },
+                  {
+                    icon: <DeleteSweepIcon fontSize="small" />, 
+                    text: "Delete comment", 
+                    onHandle: handleDeleteComment
+                  }
                 ]}
               />
             :
               <CommentControl 
                 options={[
-                  {text: "Hide comment", onHandle: () => {console.log("Hide")}},
-                  {text: "Report comment", onHandle: () => {console.log("Report")}},
+                  {
+                    icon: <VisibilityOffIcon fontSize="small"/>, 
+                    text: "Hide comment", 
+                    onHandle: () => {console.log("Hide")}
+                  },
+                  {
+                    icon: <FlagIcon fontSize="small"/>, 
+                    text: "Report comment", 
+                    onHandle: () => {console.log("Report")}
+                  },
                 ]}
               />
           }

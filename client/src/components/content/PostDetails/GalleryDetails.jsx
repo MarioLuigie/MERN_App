@@ -61,7 +61,11 @@ export default function GalleryDetails({
       <Paper elevation={4} className="paper">
         <div className="card">
           <div className="info">
-            <Creator post={post} />
+            <Creator 
+              user={post?.creator} 
+              textColor="black"
+              purpleSize="21px"
+            />
             <Typography 
             variant="h3" 
             className="postTitle"

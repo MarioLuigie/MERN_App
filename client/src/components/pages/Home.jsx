@@ -84,6 +84,11 @@ export default function Home() {
       <Grow in timeout={700}>
         <Container maxWidth="xl">
           <Grid container justifyContent="space-between" alignItems="stretch" spacing={4}>
+            {/* <Grid item xs={12}>
+              <div style={{height: "50px", backgroundColor: "red"}}>
+                TO WORK...
+              </div>
+            </Grid> */}
             <Grid item xs={12} sm={6} md={8} lg={9} xl={9}>
               <Posts 
                 setCurrentId={setCurrentId}

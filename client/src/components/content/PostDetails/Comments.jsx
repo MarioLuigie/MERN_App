@@ -27,7 +27,7 @@ const styles = css`
     flex-direction: column;
     gap: 15px;
     margin-top: 10px;
-    min-height: 250px;
+    min-height: 180px;
     max-height: 250px;
     height: 100%;
     overflow: auto;
