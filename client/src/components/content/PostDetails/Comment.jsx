@@ -2,8 +2,11 @@
 import { css } from '@emotion/react';
 import { 
   Typography,
-  Avatar
+  Avatar,
+  TextField,
+  IconButton
 } from "@mui/material";
+import SendIcon from '@mui/icons-material/Send';
 import moment from "moment";
 import { useDispatch } from "react-redux";
 
@@ -14,6 +17,7 @@ import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import FlagIcon from '@mui/icons-material/Flag';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { useState } from 'react';
 
 
 const styles = css`
@@ -57,6 +61,12 @@ const styles = css`
     width: 30px;
     height: 30px;
   }
+
+  .editStateControlls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `
 
 export default function Comment({
@@ -66,11 +76,37 @@ export default function Comment({
   const { user } = useAppContext();
   const dispatch = useDispatch();
 
+  const [ isEditing, setIsEditing ] = useState(false);
+  const [ editedContent, setEditedContent ] = useState(comment?.content);
+
   console.log(comment);
   // console.log("Comment i Post id:", comment._id, post?._id);
 
   const handleDeleteComment = () => {
     dispatch(actions.deleteComment(post?._id, comment?._id));
+  }
+
+  const handleEditComment = () => {
+    setIsEditing(true);
+  }
+
+  const handleUpdateComment = () => {
+    setIsEditing(false);
+  }
+
+  const handleChange = (evt) => {
+    setEditedContent(evt.target.value);
+  }
+
+  const handleCancel = () => {
+    setIsEditing(false);
+    setEditedContent(comment?.content);
+  }
+
+  const handleKeyDown = (evt) => {
+    if (evt.key === 'Escape') {
+      handleCancel();
+    }
   }
 
   return (
@@ -83,42 +119,66 @@ export default function Comment({
         >
           {!comment.author.picture ? comment?.author?.name.charAt(0) : ""}
         </Avatar>
-        <div>
-          <div className="comment">
-            <Typography 
-              variant="subtitle2" 
-              className="comment__author"
-            >
-              {comment?.author?.name}
-            </Typography>
-            <Typography 
-              variant="body2" 
-              className="comment__content"
-            >
-              {comment?.content}
-            </Typography>
-          </div>
-          <div>
-            <div className='time'>{moment(comment?.createdAt).fromNow()}</div>
-          </div>
-        </div>
+        {!isEditing
+          ? <div>
+              <div className="comment">
+                <Typography 
+                  variant="subtitle2" 
+                  className="comment__author"
+                >
+                  {comment?.author?.name}
+                </Typography>
+                <Typography 
+                  variant="body2" 
+                  className="comment__content"
+                >
+                  {editedContent}
+                </Typography>
+              </div>
+              <div>
+                <div className='time'>{moment(comment?.createdAt).fromNow()}</div>
+              </div>
+            </div>
+          : <div className="input">
+              <TextField 
+                autoFocus
+                fullWidth
+                value={editedContent}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+              />
+              <div className="editStateControlls">
+                <div>
+                  <Typography variant="caption">Press Esc to </Typography>
+                  <Typography sx={{cursor: "pointer", color: "#1279da", fontWeight: "bold"}} onClick={handleCancel} variant="caption">Cancel.</Typography>
+                </div>
+                <div className="sendBtnWrapper">
+                  <IconButton onClick={handleUpdateComment} title="Comment">
+                    <SendIcon sx={{color: "black"}} />
+                  </IconButton>
+                </div>
+              </div>
+            </div>
+        }
         <div>
           {
-            comment?.authorId === user?.result?._id 
-            ? <CommentControl 
-                options={[
-                  {
-                    icon: <EditNoteIcon fontSize="small" />, 
-                    text: "Edit comment", 
-                    onHandle: () => {console.log("Edit")}
-                  },
-                  {
-                    icon: <DeleteSweepIcon fontSize="small" />, 
-                    text: "Delete comment", 
-                    onHandle: handleDeleteComment
-                  }
-                ]}
-              />
+            comment?.authorId === user?.result?._id
+            ? !isEditing 
+              ? <CommentControl 
+                  options={[
+                    {
+                      icon: <EditNoteIcon fontSize="small" />, 
+                      text: "Edit comment", 
+                      onHandle: handleEditComment
+                    },
+                    {
+                      icon: <DeleteSweepIcon fontSize="small" />, 
+                      text: "Delete comment", 
+                      onHandle: handleDeleteComment
+                    }
+                  ]}
+                /> 
+              : null
             :
               <CommentControl 
                 options={[
