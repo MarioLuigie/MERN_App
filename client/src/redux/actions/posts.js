@@ -135,6 +135,18 @@ export const commentPost = (postId, comment) => async (dispatch) => {
   }
 }
 
+export const deleteComment = (postId, commentId) => async (dispatch) => {
+  try {
+    const { data } = await api.deleteComment(postId, commentId);
+    console.log("deleteComment data:", data);
+
+    dispatch({type: type.DELETE_COMMENT, data});
+
+  } catch (err) {
+    console.error("Something went wrong...DELETE COMMENT ERROR", err.message);
+  }
+}
+
 export const deletePost = (id) => async (dispatch) => {
   console.log(id);
 
@@ -145,7 +157,9 @@ export const deletePost = (id) => async (dispatch) => {
     dispatch({type: type.DELETE_POST, data});
 
   } catch (err) {
-    console.error("Something went wrong...UPDATE ERROR", err.message);
+    console.error("Something went wrong...DELETE POST ERROR", err.message);
   }
 }
+
+
 

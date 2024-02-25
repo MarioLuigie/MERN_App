@@ -6,7 +6,10 @@ import {
 } from "@mui/material";
 import CommentControl from "../../ui/ListMenu";
 import moment from "moment";
+import { useDispatch } from "react-redux";
+
 import { useAppContext } from '../../../context/context';
+import * as actions from "../../../redux/actions/posts";
 
 
 const styles = css`
@@ -14,6 +17,7 @@ const styles = css`
   .commentWrapper {
     display: flex;
     gap: 5px;
+    padding: 0 20px 0;
   }
 
   .comment {
@@ -52,11 +56,18 @@ const styles = css`
 `
 
 export default function Comment({
+  post,
   comment
 }) {
   const { user } = useAppContext();
+  const dispatch = useDispatch();
 
   console.log(comment);
+  // console.log("Comment i Post id:", comment._id, post?._id);
+
+  const handleDeleteComment = () => {
+    dispatch(actions.deleteComment(post?._id, comment?._id));
+  }
 
   return (
     <div css={styles}>
@@ -93,7 +104,7 @@ export default function Comment({
             ? <CommentControl 
                 options={[
                   {text: "Edit comment", onHandle: () => {console.log("Edit")}},
-                  {text: "Delete comment", onHandle: () => {console.log("Delete")}}
+                  {text: "Delete comment", onHandle: handleDeleteComment}
                 ]}
               />
             :

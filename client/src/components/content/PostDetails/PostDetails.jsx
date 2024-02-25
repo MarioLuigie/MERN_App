@@ -95,7 +95,7 @@ export default function PostDetails() {
           <Grid item xs={12} sm={12} md={7} lg={8} xl={9} className="gridItem">
             <Gallery post={post} />
           </Grid>
-          <Grid item xs={12} sm={12} md={5} lg={4} xl={3} >
+          <Grid item xs={12} sm={12} md={5} lg={4} xl={3}>
             <GalleryDetails 
               post={post} 
               handleBack={handleBack} 

@@ -47,6 +47,11 @@ export const commentPost = (postId, comment) => {
   return data;
 }
 
+export const deleteComment = (postId, commentId) => {
+  const data = API.delete(`/posts/${postId}/comments/${commentId}`);
+  return data;
+}
+
 export const deletePost = (id) => {
   const data = API.delete(`/posts/${id}`);
   console.log(data);

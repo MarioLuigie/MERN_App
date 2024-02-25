@@ -149,7 +149,7 @@ export default function Auth({
       dispatch(actions.signIn(formData, navigate));
     }
 
-    console.log("Sign in - Login and Password", formData);
+    // console.log("Sign in - Login and Password", formData);
   }
 
   const handleChange = (evt) => {

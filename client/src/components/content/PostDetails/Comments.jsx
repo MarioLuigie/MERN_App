@@ -16,53 +16,46 @@ import Comment from "./Comment";
 
 const styles = css`
   padding-top: 15px;
-  margin-bottom: 45px;
 
-.commentsWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-top: 10px;
-  min-height: 250px;
-  max-height: 250px;
-  height: 100%;
-  overflow: auto;
-  border-radius: 5px;
-  padding-bottom: 10px;
-}
-
-.inputWrapper {
-  display: flex;
-  gap: 5px;
-  padding-right: 30px;
-}
-
-.input {
-  width: 100%;
-}
-
-.purple {
-  font-size: 14px;
-  color: black;
-  width: 30px;
-  height: 30px;
-}
-
-.btnWrapper {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.btn {
-  background-color: black;
-  color: white;
-  border-color: #1b1b1b;
-
-  &:hover {
-    background-color: #1b1b1b;
-    border-color: #1b1b1b;
+  .commentsTitle {
+    padding-left: 20px;
+    font-size: 18px;
   }
-}
+
+  .commentsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+    min-height: 250px;
+    max-height: 250px;
+    height: 100%;
+    overflow: auto;
+    border-radius: 5px;
+    padding-bottom: 10px;
+  }
+
+  .inputWrapper {
+    display: flex;
+    gap: 5px;
+    padding: 20px 30px 0 20px;
+  }
+
+  .input {
+    width: 100%;
+  }
+
+  .purple {
+    font-size: 14px;
+    color: black;
+    width: 30px;
+    height: 30px;
+  }
+
+  .sendBtnWrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
 `
 
 export default function Comments({
@@ -84,10 +77,11 @@ export default function Comments({
 
   return (
     <div css={styles}>
-      <Typography variant="body1">Comments</Typography>
+      <Typography variant="body1" className="commentsTitle">Comments</Typography>
       <div className="commentsWrapper">
         {post.comments?.map((comment, i) => (
           <Comment 
+            post={post}
             comment={comment} 
             key={i} 
           />
@@ -108,9 +102,9 @@ export default function Comments({
             onChange={handleChange}
             placeholder='Write a comment'
           />
-          <div className="btnWrapper">
-            <IconButton onClick={handleComment}>
-              <SendIcon />
+          <div className="sendBtnWrapper">
+            <IconButton onClick={handleComment} title="Comment">
+              <SendIcon sx={{color: "black"}} />
             </IconButton>
           </div>
         </div>

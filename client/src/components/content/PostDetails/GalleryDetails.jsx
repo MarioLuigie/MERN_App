@@ -4,7 +4,6 @@ import {
   Button, 
   Paper, 
   Typography,
-  Avatar,
   Divider
 } from "@mui/material";
 
@@ -12,33 +11,31 @@ import Comments from "./Comments";
 import Creator from "../../ui/Creator";
 
 const styles = css`
+  height: 100%;
 
-  .title {
+  .paper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .postTitle {
     padding-top: 30px;
     font-weight: bold;
     line-height: 0.9;
   }
 
   .info {
-    display: flex;
-    gap: 15px;
-    align-items: center;
+    padding: 30px 20px 0px;
   }
 
-  .images {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(20, 20, 20);
+  .comments {
+    padding: 15px 0px 0px 0px;
   }
 
-  .infos {
-    height: 100%;
-    padding: 30px 20px 30px;
-    display: flex;
-    flex-direction: column;
+  .btnWrapper {
+    padding: 20px;
   }
 
   .btn {
@@ -61,12 +58,13 @@ export default function GalleryDetails({
 
   return (
     <div css={styles}>
-      <Paper elevation={4} className="infos">
-        <Creator post={post} />
-          <div>
+      <Paper elevation={4} className="paper">
+        <div className="card">
+          <div className="info">
+            <Creator post={post} />
             <Typography 
             variant="h3" 
-            className="title"
+            className="postTitle"
             >
               {post?.title}
             </Typography>
@@ -99,16 +97,21 @@ export default function GalleryDetails({
               {`${post?.likers.length} likers`}
             </Typography>
           </div>
-        <Divider />
-        <Comments post={post} />
-        <Button 
-          className="btn"
-          variant="outlined" 
-          onClick={handleBack}
-          fullWidth
-        >
-          Back
-        </Button>
+          <Divider />
+          <div className="comments">
+            <Comments post={post} />
+          </div>
+        </div>
+        <div className="btnWrapper">
+          <Button 
+            className="btn"
+            variant="outlined" 
+            onClick={handleBack}
+            fullWidth
+          >
+            Back
+          </Button>
+        </div>
       </Paper>
     </div>
   )

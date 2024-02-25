@@ -201,10 +201,8 @@ export const commentPost = async (req, res) => {
     // console.log("AUTHOR POST:", author);
 
     comment.author = author;
-    post.comments.push(comment);
-    post.comments.reverse();
-
-    console.log("***", comment);
+    post.comments = [comment, ...post.comments]; 
+    post.comments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true })
     .populate("likers")
@@ -212,6 +210,44 @@ export const commentPost = async (req, res) => {
     .populate("comments.author");
 
     // console.log("UPDATED POST:", updatedPost);
+
+    res.status(200).json(updatedPost);
+    
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export const deleteComment = async (req, res) => {
+  try {
+    const postId = req.params.postId;
+    const commentId = req.params.commentId;
+
+    console.log("***postId", postId);
+    console.log("***commentId", commentId);
+
+    const post = await PostMessage.findById(postId);
+
+    if (!post) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
+
+    console.log("***post COMMENTS:", post.comments);
+
+    const newComments = post.comments.filter(comment => String(comment._id) !== commentId);
+
+    console.log("***NEW COMMENTS:", newComments);
+
+    post.comments = newComments;
+
+    const newPost = new PostMessage(post);
+
+    await newPost.save();
+
+    const updatedPost = await PostMessage.findById(newPost._id)
+    .populate("likers")
+    .populate("creator")
+    .populate("comments.author");
 
     res.status(200).json(updatedPost);
     

@@ -72,6 +72,18 @@ const postsReducer = (state = initState, action) => {
         post: {...state.post, ...action.data}
       }
 
+    case type.DELETE_COMMENT:
+      console.log(action.data);
+      return {
+        ...state,
+        postLists: state.postsList.map(post => (
+          post._id === action.data._id 
+            ? {...post, ...action.data}
+            : post
+        )),
+        post: {...state.post, ...action.data}
+      }
+
     case type.DELETE_POST:
       return {
         ...state,

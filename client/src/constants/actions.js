@@ -8,6 +8,7 @@ export const UPDATE_LIKES = "UPDATE_LIKES";
 export const COMMENT_POST = "COMMENT_POST";
 export const DELETE_POST = "DELETE_POST";
 export const DELETE_POSTS = "DELETE_POSTS";
+export const DELETE_COMMENT = "DELETE_COMMENT";
 
 //LOADING
 export const START_LOADING = "START_LOADING";
