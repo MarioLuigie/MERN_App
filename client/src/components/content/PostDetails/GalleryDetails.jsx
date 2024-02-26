@@ -6,9 +6,14 @@ import {
   Typography,
   Divider
 } from "@mui/material";
+import EditNoteIcon from '@mui/icons-material/EditNote';
+import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import Comments from "./Comments";
 import Creator from "../../ui/Creator";
+import Settings from "../../ui/ListMenu";
+import Like from "../Like";
 
 const styles = css`
   height: 100%;
@@ -20,6 +25,12 @@ const styles = css`
     justify-content: space-between;
   }
 
+  .creator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   .postTitle {
     padding-top: 30px;
     font-weight: bold;
@@ -28,6 +39,12 @@ const styles = css`
 
   .info {
     padding: 30px 20px 0px;
+  }
+
+  .likes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .comments {
@@ -61,11 +78,33 @@ export default function GalleryDetails({
       <Paper elevation={4} className="paper">
         <div className="card">
           <div className="info">
-            <Creator 
-              user={post?.creator} 
-              textColor="black"
-              purpleSize="21px"
-            />
+            <div className="creator">
+              <Creator 
+                user={post?.creator} 
+                textColor="black"
+                purpleSize="21px"
+              />
+              <Settings 
+                options={[
+                  {
+                    icon: <EditNoteIcon fontSize="small"/>, 
+                    text: "Edit post", 
+                    onHandle: () => {console.log("Edit post")}
+                  },
+                  {
+                    icon: <VisibilityOffIcon fontSize="small"/>, 
+                    text: "Hide post", 
+                    onHandle: () => {console.log("Hide post")}
+                  },
+                  {
+                    icon: <DeleteSweepIcon fontSize="small"/>, 
+                    text: "Delete post", 
+                    onHandle: () => {console.log("Delete post")}
+                  },
+                ]}
+                anchor={null}
+              />
+            </div>
             <Typography 
             variant="h3" 
             className="postTitle"
@@ -93,13 +132,16 @@ export default function GalleryDetails({
             >
               {post?.tags.map(tag => `#${tag},`)}
             </Typography>
-            <Typography 
-              variant="body2" 
-              pb="10px" 
-              color="textSecondary"
-            >
-              {`${post?.likers.length} likers`}
-            </Typography>
+            <div className="likes">
+              <Like post={post} />
+              <Typography 
+                variant="body2" 
+                pb="10px" 
+                color="textSecondary"
+              >
+                {`${post?.likers.length} likers`}
+              </Typography>
+            </div>
           </div>
           <Divider />
           <div className="comments">

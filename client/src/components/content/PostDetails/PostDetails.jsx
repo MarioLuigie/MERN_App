@@ -22,7 +22,7 @@ const styles = (navbarHeight) => css`
   max-height: calc(100vh - ${navbarHeight}px);
   margin-top: calc(${navbarHeight}px);
   width: 100%;
-  /* background-color: red; */
+  background-color: rgb(22, 22, 22);
 
   .gridContainer {
     max-height: calc(100vh - ${navbarHeight}px);

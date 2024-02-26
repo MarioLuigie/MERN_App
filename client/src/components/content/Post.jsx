@@ -12,8 +12,6 @@ import {
   ButtonBase,
   Avatar
 } from "@mui/material";
-import ThumbUpIcon from "@mui/icons-material/ThumbUpAlt";
-import ThumbUpOffIcon from '@mui/icons-material/ThumbUpOffAlt';
 import DeleteIcon from "@mui/icons-material/Delete";
 import MoreIcon from "@mui/icons-material/MoreHoriz";
 import moment from "moment";
@@ -23,7 +21,7 @@ import { useNavigate } from "react-router-dom";
 
 import * as actions from "../../redux/actions/posts.js";
 import { useAppContext } from '../../context/context.jsx';
-import LikersList from "./LikersList.jsx";
+import Like from "./Like.jsx";
 // import image from "../../../../api/uploads/1703801554909.jpg"
 
 const styles = (isOwn) => css`
@@ -126,64 +124,21 @@ export default function Post({
   const navigate = useNavigate();
   const { user } = useAppContext();
   const [ likes, setLikes ] = useState([]);
-  const [ isLiked, setIsLiked ] = useState(false);
-  const [ isLikersListHidden, setIsLikersListHidden ] = useState(true);
 
   const isOwn = String(post.creator._id) === String(user?.result?._id);
-  let youAsLiker = "";
-  let otherUsers = "users";
 
   // console.log(post);
   // console.log(post.creator);
   // console.log("IS OWN:", isOwn);
   // console.log("POST likers:", post.likers);
 
-  const checkLikersList = (userId) => {
-    const isUserLiker = post.likers.some(liker => liker._id === userId);
-  
-    if (isUserLiker) {
-      youAsLiker = "You and ";
-      otherUsers = post.likers.length - 1 > 1 
-        ? "users" 
-        : (post.likers.length - 1 === 1 
-            ? "user" 
-            : ""
-          );
-    } else {
-      youAsLiker = "";
-      otherUsers = "";
-    }
-  }
-
-  useEffect(() => {
-    setIsLiked((post.likers.findIndex((liker) => String(liker._id) === String(user?.result?._id))) !== -1);
-
-    // console.log("ISLIKED:", isLiked, post);
-  }, [post]);
-
   const editPost = (evt) => {
     evt.stopPropagation();
     setCurrentId(post._id);
   }
 
-  const likePost = () => {
-    dispatch(actions.likePost(post._id));
-  }
-
   const deletePost = () => {
     dispatch(actions.deletePost(post._id));
-  }
-
-  const handleMouseOver = (evt) => {
-    evt.stopPropagation();
-    setIsLikersListHidden(false);
-    // console.log("Like mouse over");
-  }
-
-  const handleMouseOut = (evt) => {
-    evt.stopPropagation();
-    setIsLikersListHidden(true);
-    // console.log("Like mouse out");
   }
 
   const handleOpenPostDetails = (evt) => {
@@ -238,31 +193,7 @@ export default function Post({
         </ButtonBase>
         <div>
           <CardActions className="actions">
-            <div className="likes">
-              <IconButton className="button" size="small" onClick={likePost}>
-                {isLiked
-                  ? <ThumbUpIcon />
-                  : <ThumbUpOffIcon />
-                }
-              </IconButton>
-              <div 
-                className="likesNumbWrapper"
-                onMouseOver={handleMouseOver} 
-                onMouseOut={handleMouseOut}
-              >
-                <p>
-                  {checkLikersList(user?.result?._id)}
-                  {youAsLiker 
-                    ? `${youAsLiker} ${post.likers.length - 1} ${otherUsers}`
-                    : `${post.likers.length}`
-                  }
-                </p>
-                {isLikersListHidden || post.likers.length === 0
-                  ? null
-                  : <LikersList likers={post.likers}/>
-                }
-              </div>
-            </div>
+            <Like post={post} />
             {isOwn ?
               <div className="buttons">
                 <IconButton className="button" size="small" onClick={editPost}>
