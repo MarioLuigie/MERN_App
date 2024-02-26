@@ -79,7 +79,7 @@ export default function Comment({
   const [ isEditing, setIsEditing ] = useState(false);
   const [ editedContent, setEditedContent ] = useState(comment?.content);
 
-  console.log(comment);
+  // console.log(comment);
   // console.log("Comment i Post id:", comment._id, post?._id);
 
   const handleDeleteComment = () => {
@@ -88,9 +88,11 @@ export default function Comment({
 
   const handleEditComment = () => {
     setIsEditing(true);
+    setEditedContent(comment?.content);
   }
 
   const handleUpdateComment = () => {
+    dispatch(actions.updateComment(post?._id, comment?._id, {...comment, content: editedContent}));
     setIsEditing(false);
   }
 
@@ -132,7 +134,7 @@ export default function Comment({
                   variant="body2" 
                   className="comment__content"
                 >
-                  {editedContent}
+                  {comment?.content}
                 </Typography>
               </div>
               <div>

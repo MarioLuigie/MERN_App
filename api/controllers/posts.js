@@ -189,7 +189,7 @@ export const commentPost = async (req, res) => {
   const { id } = req.params;
   const comment = req.body;
 
-  // console.log("REQ.BODY - COMMENT:", comment);
+  console.log("REQ.BODY - COMMENT:", comment);
   // console.log("REQ.PARAMS - POST ID:", id);
 
   try {
@@ -213,6 +213,46 @@ export const commentPost = async (req, res) => {
 
     res.status(200).json(updatedPost);
     
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export const updateComment = async (req, res) => {
+
+  const postId = req.params.postId;
+  const commentId = req.params.commentId;
+  const editedComment = req.body;
+
+
+  console.log("***postId", postId);
+  console.log("***commentId", commentId);
+  console.log("***Content", editedComment);//ok
+
+  try {
+    const post = await PostMessage.findById(postId);
+
+    const comments = post.comments.filter(comment => String(comment._id) !== commentId);
+
+    console.log("^^^", comments);
+
+    const newComments = [editedComment, ...comments];
+
+    console.log("***new comments", newComments);
+
+    post.comments = newComments;
+
+    console.log("*** new Post", post);
+
+    const updatedPost = await PostMessage.findByIdAndUpdate(postId, post, { new: true })
+    .populate("likers")
+    .populate("creator")
+    .populate("comments.author");
+
+    console.log("*** updatedPost", updatedPost);
+
+    res.status(200).json(updatedPost);
+
   } catch (err) {
     console.log(err);
   }

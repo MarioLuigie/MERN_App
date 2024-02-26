@@ -64,7 +64,18 @@ const postsReducer = (state = initState, action) => {
     case type.COMMENT_POST:
       return {
         ...state,
-        postLists: state.postsList.map(post => (
+        postsList: state.postsList.map(post => (
+          post._id === action.data._id 
+            ? {...post, ...action.data}
+            : post
+        )),
+        post: {...state.post, ...action.data}
+      }
+
+    case type.UPDATE_COMMENT:
+      return {
+        ...state,
+        postsList: state.postsList.map(post => (
           post._id === action.data._id 
             ? {...post, ...action.data}
             : post
@@ -76,7 +87,7 @@ const postsReducer = (state = initState, action) => {
       console.log(action.data);
       return {
         ...state,
-        postLists: state.postsList.map(post => (
+        postsList: state.postsList.map(post => (
           post._id === action.data._id 
             ? {...post, ...action.data}
             : post

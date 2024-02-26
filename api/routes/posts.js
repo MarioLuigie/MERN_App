@@ -16,6 +16,7 @@ router.post("/", auth, postUpload, sharpFile, controllers.createPost);
 router.patch("/:id", auth, controllers.updatePost);
 router.patch("/:id/likePost", auth, controllers.likePost);
 router.patch("/:id/commentPost", auth, controllers.commentPost);
+router.patch("/:postId/comments/:commentId", auth, controllers.updateComment);
 router.delete("/:postId/comments/:commentId", auth, controllers.deleteComment);
 router.delete("/:id", auth, controllers.deletePost);
 

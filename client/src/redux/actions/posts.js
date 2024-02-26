@@ -124,11 +124,25 @@ export const likePost = (id) => async (dispatch) => {
 
 export const commentPost = (postId, comment) => async (dispatch) => {
   try {
+    console.log("$$$", comment);
     const { data } = await api.commentPost(postId, comment);
+
+    console.log("***", data);
 
     dispatch({type: type.COMMENT_POST, data});
 
     // return data;
+    
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export const updateComment = (postId, commentId, editedComment) => async (dispatch) => {
+  try {
+    const { data } = await api.updateComment(postId, commentId, editedComment);
+
+    dispatch({type: type.UPDATE_COMMENT, data});
     
   } catch (err) {
     console.log(err);

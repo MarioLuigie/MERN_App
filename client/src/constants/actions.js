@@ -6,6 +6,7 @@ export const READ_POSTS_BY_SEARCH = "READ_POSTS_BY_SEARCH";
 export const UPDATE_POST = "UPDATE_POST";
 export const UPDATE_LIKES = "UPDATE_LIKES";
 export const COMMENT_POST = "COMMENT_POST";
+export const UPDATE_COMMENT = "UPDATE_COMMENT";
 export const DELETE_POST = "DELETE_POST";
 export const DELETE_POSTS = "DELETE_POSTS";
 export const DELETE_COMMENT = "DELETE_COMMENT";
