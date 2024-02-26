@@ -71,7 +71,7 @@ export const createPost = (newPost, navigate) => async (dispatch) => {
     formData.append("files", file);
   });
 
-  console.log("utworzona form data", formData);//{}
+  // console.log("utworzona form data", formData);//{}
 
   //Iterate on formData, because it is a special object, and common console log may be badly resolve to show what is inside of formdata
   formData.forEach(function(value, key) {
@@ -96,9 +96,9 @@ export const createPost = (newPost, navigate) => async (dispatch) => {
 }
 
 export const updatePost = (id, editedPost) => async (dispatch) => {
-  console.log("ID from redux action:", id);
-  console.log("Edited post from redux action:", editedPost);
-  console.log("Edited post from redux action:", editedPost.tags);
+  // console.log("ID from redux action:", id);
+  // console.log("Edited post from redux action:", editedPost);
+  // console.log("Edited post from redux action:", editedPost.tags);
   try {
     const { data } = await api.updatePost(id, editedPost);
     console.log(data);
@@ -124,10 +124,10 @@ export const likePost = (id) => async (dispatch) => {
 
 export const commentPost = (postId, comment) => async (dispatch) => {
   try {
-    console.log("$$$", comment);
+    // console.log("$$$", comment);
     const { data } = await api.commentPost(postId, comment);
 
-    console.log("***", data);
+    // console.log("***", data);
 
     dispatch({type: type.COMMENT_POST, data});
 
@@ -152,7 +152,7 @@ export const updateComment = (postId, commentId, editedComment) => async (dispat
 export const deleteComment = (postId, commentId) => async (dispatch) => {
   try {
     const { data } = await api.deleteComment(postId, commentId);
-    console.log("deleteComment data:", data);
+    // console.log("deleteComment data:", data);
 
     dispatch({type: type.DELETE_COMMENT, data});
 

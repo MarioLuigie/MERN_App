@@ -48,8 +48,8 @@ export const commentPost = (postId, comment) => {
 }
 
 export const updateComment = (postId, commentId, editedComment) => {
-  console.log("Edited Comment:", editedComment);
-  console.log("Edited Comment:", typeof editedComment);
+  // console.log("Edited Comment:", editedComment);
+  // console.log("Edited Comment:", typeof editedComment);
   const data = API.patch(`/posts/${postId}/comments/${commentId}`, editedComment);
   return data;
 }
