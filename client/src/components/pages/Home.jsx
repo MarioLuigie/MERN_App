@@ -14,7 +14,7 @@ import Posts from "../content/Posts";
 import Form from "../content/Form";
 import Paginate from "../content/Paginate";
 import Search from "../content/Search";
-import MainMenu from "../ui/MainMenu";
+import MainMenu from "../content/MainMenu";
 import * as actions from "../../redux/actions/posts.js";
 import { useAppContext } from '../../context/context';
 
@@ -23,7 +23,7 @@ function useQuery() {
 }
 
 const styles = (navbarHeight) => css`
-  padding-top: calc(${navbarHeight}px + 20px);
+  padding-top: calc(${navbarHeight}px + 10px);
   /* padding-bottom: 40px; */
 
   .searchWrapper {
@@ -54,7 +54,7 @@ const styles = (navbarHeight) => css`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 13px;
     /* background-color: green; */
   }
 `

@@ -15,7 +15,7 @@ import * as actions from "../../../redux/actions/posts.js";
 import Comment from "./Comment";
 
 const styles = css`
-  padding-top: 15px;
+  padding-top: 5px;
 
   .commentsTitle {
     padding-left: 20px;

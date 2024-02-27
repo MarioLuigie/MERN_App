@@ -41,7 +41,10 @@ const styles = (navbarHeight) => css`
   }
 `
 
-export default function PostDetails() {
+export default function PostDetails({
+  postSupport
+}) {
+
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -100,6 +103,7 @@ export default function PostDetails() {
               post={post} 
               handleBack={handleBack} 
               formatDate={formatDate}
+              postSupport={postSupport}
             />
           </Grid>
         </Grid>

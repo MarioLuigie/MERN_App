@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Routes, Route, Navigate} from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import  { useDispatch } from "react-redux";
 
@@ -21,14 +21,15 @@ export default function Main() {
 
   const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleEditPost = (postId) => (evt) => {
-    evt.stopPropagation();
+  const handleEditPost = (postId) => () => {
     setCurrentId(postId);
   }
 
   const handleDeletePost = (postId) => () => {
     dispatch(actions.deletePost(postId));
+    navigate("/home?page=1");
   }
 
   const postSupport = {

@@ -9,6 +9,7 @@ import {
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 
 import Comments from "./Comments";
 import Creator from "../../ui/Creator";
@@ -70,8 +71,11 @@ const styles = css`
 export default function GalleryDetails({
   formatDate,
   handleBack, 
-  post
+  post,
+  postSupport
 }) {
+
+  const { handleEditPost, handleDeletePost } = postSupport;
 
   return (
     <div css={styles}>
@@ -89,7 +93,12 @@ export default function GalleryDetails({
                   {
                     icon: <EditNoteIcon fontSize="small"/>, 
                     text: "Edit post", 
-                    onHandle: () => {console.log("Edit post")}
+                    onHandle: handleEditPost(post?._id)
+                  },
+                  {
+                    icon: <VerifiedUserIcon fontSize="small"/>, 
+                    text: "Private post", 
+                    onHandle: () => {console.log("Private post");}
                   },
                   {
                     icon: <VisibilityOffIcon fontSize="small"/>, 
@@ -99,10 +108,11 @@ export default function GalleryDetails({
                   {
                     icon: <DeleteSweepIcon fontSize="small"/>, 
                     text: "Delete post", 
-                    onHandle: () => {console.log("Delete post")}
+                    onHandle: handleDeletePost(post?._id)
                   },
                 ]}
                 anchor={null}
+                postSupport={postSupport}
               />
             </div>
             <Typography 
