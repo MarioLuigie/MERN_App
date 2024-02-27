@@ -50,7 +50,7 @@ export default function PostDetails() {
 
   const { post, isLoading } = useSelector(store => store.posts);
 
-  const [dataLoaded, setDataLoaded] = useState(false);
+  const [ dataLoaded, setDataLoaded ] = useState(false);
 
   useEffect(() => {
     const fetchPost = async () => {

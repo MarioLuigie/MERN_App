@@ -33,7 +33,7 @@ export default function MainMenu() {
           <Diversity1Icon fontSize="medium" sx={{color: "#000000"}} />
         </IconButton>
       </Paper>
-      <Paper  elevation={6} sx={{borderRadius: 100, backgroundColor: "#FFDA2A"}}>
+      <Paper  elevation={6} sx={{borderRadius: 100, backgroundColor: "#ffcd2a"}}>
         <IconButton size="large">
           <AddIcon fontSize="medium" sx={{color: "#000000"}}/>
         </IconButton>
