@@ -21,7 +21,7 @@ const styles = css`
 `
 
 export default function Posts({
-  setCurrentId
+  postSupport
 }) {
   const { postsList, isLoading } = useSelector(store => store.posts);
 
@@ -47,7 +47,7 @@ export default function Posts({
             >
               {postsList?.map((post) => (
                 <Grid item xs={12} sm={12} md={6} lg={4} key={post._id}>
-                  <Post post={post} setCurrentId={setCurrentId} />
+                  <Post post={post} postSupport={postSupport} />
                 </Grid>
               ))}
             </Grid>

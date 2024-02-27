@@ -15,11 +15,9 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import MoreIcon from "@mui/icons-material/MoreHoriz";
 import moment from "moment";
-import {  useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import * as actions from "../../redux/actions/posts.js";
 import { useAppContext } from '../../context/context.jsx';
 import Like from "./Like.jsx";
 // import image from "../../../../api/uploads/1703801554909.jpg"
@@ -118,12 +116,14 @@ const styles = (isOwn) => css`
 
 export default function Post({ 
   post,
-  setCurrentId
+  postSupport
 }) {
-  const dispatch = useDispatch();
+
+  const { handleEditPost, handleDeletePost } = postSupport;
+
   const navigate = useNavigate();
   const { user } = useAppContext();
-  const [ likes, setLikes ] = useState([]);
+  // const [ likes, setLikes ] = useState([]);
 
   const isOwn = String(post.creator._id) === String(user?.result?._id);
 
@@ -131,15 +131,6 @@ export default function Post({
   // console.log(post.creator);
   // console.log("IS OWN:", isOwn);
   // console.log("POST likers:", post.likers);
-
-  const editPost = (evt) => {
-    evt.stopPropagation();
-    setCurrentId(post._id);
-  }
-
-  const deletePost = () => {
-    dispatch(actions.deletePost(post._id));
-  }
 
   const handleOpenPostDetails = (evt) => {
     // console.log("DETAILS");
@@ -196,10 +187,10 @@ export default function Post({
             <Like post={post} />
             {isOwn ?
               <div className="buttons">
-                <IconButton className="button" size="small" onClick={editPost}>
+                <IconButton className="button" size="small" onClick={handleEditPost(post._id)}>
                   <MoreIcon />
                 </IconButton>
-                <IconButton className="button" size="small" onClick={deletePost}>
+                <IconButton className="button" size="small" onClick={handleDeletePost(post._id)}>
                   <DeleteIcon />
                 </IconButton>
               </div> 

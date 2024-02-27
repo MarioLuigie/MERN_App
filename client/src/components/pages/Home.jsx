@@ -59,9 +59,13 @@ const styles = (navbarHeight) => css`
   }
 `
 
-export default function Home() {
+export default function Home({
+  postSupport
+}) {
 
-  const [currentId, setCurrentId] = useState(null);
+  const { currentId, setCurrentId } = postSupport;
+
+  // const [currentId, setCurrentId] = useState(null);
   const { navbarHeight } = useAppContext();
 
   const query = useQuery();
@@ -100,7 +104,7 @@ export default function Home() {
             </Grid>
             <Grid item xs={12} sm={6} md={8} lg={9} xl={9}>
               <Posts 
-                setCurrentId={setCurrentId}
+                postSupport={postSupport}
               />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
