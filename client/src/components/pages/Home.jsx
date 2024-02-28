@@ -63,9 +63,6 @@ export default function Home({
   postSupport
 }) {
 
-  const { currentId, setCurrentId } = postSupport;
-
-  // const [currentId, setCurrentId] = useState(null);
   const { navbarHeight } = useAppContext();
 
   const query = useQuery();
@@ -112,12 +109,12 @@ export default function Home({
                 <Grid item xs={12} >
                   <Search />
                 </Grid>
-                <Grid item xs={12} >
+                {/* <Grid item xs={12} >
                   <Form 
                   currentId={currentId}
                   setCurrentId={setCurrentId}
                   />
-                </Grid>
+                </Grid> */}
               </Grid>
             </Grid>
             <Grid item xs={12}>

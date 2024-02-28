@@ -18,9 +18,7 @@ import { useAppContext } from '../../context/context.jsx';
 import InputTags from "../ui/InputTags";
 
 const styles = css`
-  .paper {
-    padding: 20px 15px 35px;
-  }
+  padding: 20px 15px 35px;
 
   .form {
     display: flex;
@@ -60,7 +58,8 @@ const styles = css`
 
 export default function Form({
   currentId,
-  setCurrentId
+  setCurrentId,
+  closeDialog
 }) {
   const initPostData = {
     title: "",
@@ -111,6 +110,7 @@ export default function Form({
     setRefusedFiles([]);
     setCurrentId(null);
     setTags([]);
+    closeDialog();
     // console.log("clear");
   }
 
@@ -128,6 +128,7 @@ export default function Form({
     }
 
     handleClear();
+    closeDialog();
   }
 
   // console.log(postData.acceptedFiles);
@@ -146,66 +147,64 @@ export default function Form({
 
   return (
     <div css={styles}>
-      <Paper className="paper" elevation={6}>
-        <form className="form" autoComplete="off" noValidate onSubmit={handleSubmit}>
-          <Typography variant="h6">
-            {currentId ? "Edit Editorial" : "Create Editorial"}
-          </Typography>
-          <TextField 
-            inputRef={titleInputRef}
-            name="title" 
+      <form className="form" autoComplete="off" noValidate onSubmit={handleSubmit}>
+        {/* <Typography variant="h6">
+          {currentId ? "Edit Editorial" : "Create Editorial"}
+        </Typography> */}
+        <TextField 
+          inputRef={titleInputRef}
+          name="title" 
+          variant="outlined" 
+          label="Title" 
+          fullWidth 
+          value={postData.title}
+          onChange={handleChange}
+        />
+        <TextField 
+          name="message" 
+          variant="outlined" 
+          label="Message" 
+          fullWidth 
+          value={postData.message}
+          onChange={handleChange}
+          multiline
+          rows={4}
+        />
+        <InputTags 
+          label="Add Tags"
+          setState={setTags}
+          state={tags}
+        />
+        <div className="fileInput">
+          <StyledDropzone 
+            setUploadedFiles={setUploadedFiles} 
+            uploadedFiles={uploadedFiles} 
+            setRefusedFiles={setRefusedFiles}
+            refusedFiles={refusedFiles}
+          />
+        </div>
+        <div className="buttons">
+          <Button 
+            className="submitBtn" 
+            variant="contained" 
+            size="large" 
+            type="submit" 
+            fullWidth
+          >
+            {editedPost ? "Update" : "Create"}
+          </Button>
+          <Button 
+            className="clearBtn" 
             variant="outlined" 
-            label="Title" 
+            size="large" 
+            type="reset" 
             fullWidth 
-            value={postData.title}
-            onChange={handleChange}
-          />
-          <TextField 
-            name="message" 
-            variant="outlined" 
-            label="Message" 
-            fullWidth 
-            value={postData.message}
-            onChange={handleChange}
-            multiline
-            rows={4}
-          />
-          <InputTags 
-            label="Add Tags"
-            setState={setTags}
-            state={tags}
-          />
-          <div className="fileInput">
-            <StyledDropzone 
-              setUploadedFiles={setUploadedFiles} 
-              uploadedFiles={uploadedFiles} 
-              setRefusedFiles={setRefusedFiles}
-              refusedFiles={refusedFiles}
-            />
-          </div>
-          <div className="buttons">
-            <Button 
-              className="submitBtn" 
-              variant="contained" 
-              size="large" 
-              type="submit" 
-              fullWidth
-            >
-              {editedPost ? "Update" : "Create"}
-            </Button>
-            <Button 
-              className="clearBtn" 
-              variant="outlined" 
-              size="large" 
-              type="reset" 
-              fullWidth 
-              onClick={handleClear}
-            >
-              Clear
-            </Button>
-          </div>
-        </form>
-      </Paper>
+            onClick={handleClear}
+          >
+            Clear
+          </Button>
+        </div>
+      </form>
     </div>
   )
 }

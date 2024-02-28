@@ -17,9 +17,8 @@ const styles = css`
 `
 export default function Main() {
 
-  const { user } = useAppContext();
+  const { user, setCurrentId } = useAppContext();
 
-  const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -33,8 +32,6 @@ export default function Main() {
   }
 
   const postSupport = {
-    currentId,
-    setCurrentId,
     handleEditPost,
     handleDeletePost
   }

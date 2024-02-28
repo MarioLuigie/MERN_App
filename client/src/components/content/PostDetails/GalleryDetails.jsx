@@ -112,7 +112,6 @@ export default function GalleryDetails({
                   },
                 ]}
                 anchor={null}
-                postSupport={postSupport}
               />
             </div>
             <Typography 

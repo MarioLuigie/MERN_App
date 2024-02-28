@@ -9,6 +9,8 @@ import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
 import CreatePostForm from '../dialogs/CreatePostForm';
+import Form from "./Form";
+import { useAppContext } from '../../context/context';
 
 const styles = css`
   display: flex;
@@ -35,7 +37,8 @@ const styles = css`
 
 export default function MainMenu() {
 
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [ dialogOpen, setDialogOpen ] = useState(false);
+  const { currentId, setCurrentId } = useAppContext();
 
   const handleOpenDialog = () => {
     setDialogOpen(true);
@@ -64,7 +67,9 @@ export default function MainMenu() {
           </IconButton>
         </Paper>
       </div>
-      <CreatePostForm open={dialogOpen} handleClose={handleCloseDialog}></CreatePostForm>
+      <CreatePostForm open={dialogOpen} handleClose={handleCloseDialog}>
+        <Form currentId={currentId} setCurrentId={setCurrentId} closeDialog={handleCloseDialog} />
+      </CreatePostForm>
     </div>
   )
 }
