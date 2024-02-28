@@ -99,23 +99,10 @@ export default function Home({
                 <MainMenu />
               </div>
             </Grid>
-            <Grid item xs={12} sm={6} md={8} lg={9} xl={9}>
+            <Grid item xs={12}>
               <Posts 
                 postSupport={postSupport}
               />
-            </Grid>
-            <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
-              <Grid container spacing={3}>
-                <Grid item xs={12} >
-                  <Search />
-                </Grid>
-                {/* <Grid item xs={12} >
-                  <Form 
-                  currentId={currentId}
-                  setCurrentId={setCurrentId}
-                  />
-                </Grid> */}
-              </Grid>
             </Grid>
             <Grid item xs={12}>
               <div className="paginateWrapper">

@@ -10,10 +10,10 @@ import {
 } from "@mui/material";
 import moment from "moment";
 
-import * as actions from "../../../redux/actions/posts";
-import { useAppContext } from '../../../context/context';
-import GalleryDetails from "./GalleryDetails";
-import Gallery from "./Gallery";
+import * as actions from "../../redux/actions/posts";
+import { useAppContext } from '../../context/context';
+import GalleryDetails from "../content/PostDetails/GalleryDetails";
+import Gallery from "../content/PostDetails/Gallery";
 
 const styles = (navbarHeight) => css`
   /* padding: 30px 0; */

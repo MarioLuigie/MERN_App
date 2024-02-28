@@ -2,6 +2,7 @@
 import { css } from '@emotion/react';
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { 
   IconButton
 } from "@mui/material";
@@ -39,6 +40,7 @@ export default function Like({
   const [ isLiked, setIsLiked ] = useState(false);
   const [ isLikersListHidden, setIsLikersListHidden ] = useState(true);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   let youAsLiker = "";
   let otherUsers = "users";

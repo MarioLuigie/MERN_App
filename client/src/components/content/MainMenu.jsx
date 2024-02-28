@@ -9,8 +9,8 @@ import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
 import CreatePostForm from '../dialogs/CreatePostForm';
-import Form from "./Form";
-import { useAppContext } from '../../context/context';
+
+import SearchForm from "../dialogs/SearchForm";
 
 const styles = css`
   display: flex;
@@ -37,15 +37,15 @@ const styles = css`
 
 export default function MainMenu() {
 
-  const [ dialogOpen, setDialogOpen ] = useState(false);
-  const { currentId, setCurrentId } = useAppContext();
+  const [ isCreateFormOpen, setIsCreateFormOpen ] = useState(false);
+  const [ isSearchFormOpen, setIsSearchFormOpen ] = useState(false);
 
-  const handleOpenDialog = () => {
-    setDialogOpen(true);
+  const handleOpenForm = (setState) => () => {
+    setState(true);
   };
 
-  const handleCloseDialog = () => {
-    setDialogOpen(false);
+  const handleCloseForm = (setState) => () => {
+    setState(false);
   };
 
   return (
@@ -56,20 +56,19 @@ export default function MainMenu() {
             <Diversity1Icon fontSize="medium" sx={{color: "#000000"}} />
           </IconButton>
         </Paper>
-        <Paper  elevation={6} sx={{borderRadius: 1, backgroundColor: "#ffcd2a"}} onClick={handleOpenDialog}>
+        <Paper elevation={6} sx={{borderRadius: 1, backgroundColor: "#ffcd2a"}} onClick={handleOpenForm(setIsCreateFormOpen)}>
           <IconButton size="large">
             <AddIcon fontSize="medium" sx={{color: "#000000"}}/>
           </IconButton>
         </Paper>
-        <Paper elevation={6} sx={{borderRadius: 1}}>
+        <Paper elevation={6} sx={{borderRadius: 1}} onClick={handleOpenForm(setIsSearchFormOpen)}>
           <IconButton size="medium">
             <SearchIcon fontSize="medium" sx={{color: "#000000"}} />
           </IconButton>
         </Paper>
       </div>
-      <CreatePostForm open={dialogOpen} handleClose={handleCloseDialog}>
-        <Form currentId={currentId} setCurrentId={setCurrentId} closeDialog={handleCloseDialog} />
-      </CreatePostForm>
+      <CreatePostForm isDialogOpen={isCreateFormOpen} handleClose={handleCloseForm(setIsCreateFormOpen)} />
+      <SearchForm isDialogOpen={isSearchFormOpen} handleClose={handleCloseForm(setIsSearchFormOpen)}  />
     </div>
   )
 }

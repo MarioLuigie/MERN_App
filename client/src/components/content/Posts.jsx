@@ -46,7 +46,7 @@ export default function Posts({
               spacing={3}
             >
               {postsList?.map((post) => (
-                <Grid item xs={12} sm={12} md={6} lg={4} key={post._id}>
+                <Grid item xs={12} sm={6} md={4} lg={3} key={post._id}>
                   <Post post={post} postSupport={postSupport} />
                 </Grid>
               ))}

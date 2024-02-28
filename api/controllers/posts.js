@@ -34,7 +34,7 @@ export const getPost = async (req, res) => {
 }
 
 export const getPosts = async (req, res) => {
-  const { query = "", tags = "", page = 1, limit = 6 } = req.body;//get searchParams from client
+  const { query = "", tags = "", page = 1, limit = 8 } = req.body;//get searchParams from client
 
   // console.log("***", req.body);
 

@@ -8,7 +8,7 @@ import  { useDispatch } from "react-redux";
 import Home from "../pages/Home";
 import Auth from "../auth/Auth";
 import LandingPage from "../pages/LandingPage";
-import PostDetails from '../content/PostDetails/PostDetails';
+import PostDetails from '../pages/PostDetails';
 import { useAppContext } from '../../context/context';
 import * as actions from "../../redux/actions/posts.js";
 

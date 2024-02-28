@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { 
   TextField,
-  Paper, 
   Typography,
   Button
 } from "@mui/material";
@@ -23,13 +22,6 @@ const styles = css`
     display: flex;
     flex-direction: column;
     gap: 20px;
-  }
-
-  .searchTitle {
-    display: flex;
-    gap: 5px;
-    align-items: center;
-    padding-bottom: 18px;
   }
 
   .btns {
@@ -59,7 +51,9 @@ const styles = css`
   }
 `
 
-export default function Search() {
+export default function Search({
+  handleCloseDialog
+}) {
 
   const [ searchValue, setSearchValue ] = useState("");
   const [ tags, setTags ] = useState([]);
@@ -82,6 +76,7 @@ export default function Search() {
       // console.log("FALSE");
       navigate("/home");
     }
+    handleCloseDialog();
   }
 
   const handleChange = (evt) => {
@@ -98,17 +93,12 @@ export default function Search() {
   const handleClear = () => {
     setSearchValue("");
     setTags([]);
+    handleCloseDialog();
   }
 
   return (
     <div css={styles}>
-      <Paper position="flex" color="inherit" className="searchWrapper" elevation={4}>
-        <div className="searchTitle">
-          <Typography variant="h6">
-            Search
-          </Typography>
-          <SearchIcon />
-        </div>
+      <div position="flex" color="inherit" className="searchWrapper" elevation={4}>
         <div className="searchInputs">
           <TextField 
             fullWidth
@@ -148,7 +138,7 @@ export default function Search() {
               Clear
             </Button>
         </div>
-      </Paper>
+      </div>
     </div>
   )
 }

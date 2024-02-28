@@ -1,21 +1,17 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import ReactDOM from 'react-dom';
-import { useState } from "react";
 import { styled } from '@mui/material/styles';
 import { 
-  Button,
   Dialog,
   DialogTitle,
-  DialogContent,
-  DialogActions,
-  Typography
+  DialogContent
 } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import SearchIcon from '@mui/icons-material/Search';
 
-import Form from "../content/Form";
-import { useAppContext } from '../../context/context';
+import Search from "../content/Search";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -30,9 +26,10 @@ const styles = css`
 
 `
 
-export default function CreatePostForm({ isDialogOpen, handleClose }) {
-
-  const { currentId, setCurrentId } = useAppContext();
+export default function SearchForm({
+  isDialogOpen,
+  handleClose
+}) {
 
   return (
     <div css={styles}>
@@ -42,8 +39,11 @@ export default function CreatePostForm({ isDialogOpen, handleClose }) {
           aria-labelledby="customized-dialog-title"
           open={isDialogOpen}
         >
-          <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-            Create Editorial
+          <DialogTitle sx={{ m: 0, p: 2, display: "flex", gap: "5px", alignItems: "center" }} id="customized-dialog-title">
+            <div>
+              Search
+            </div>
+            <SearchIcon />
           </DialogTitle>
           <IconButton
             aria-label="close"
@@ -58,7 +58,7 @@ export default function CreatePostForm({ isDialogOpen, handleClose }) {
             <CloseIcon />
           </IconButton>
           <DialogContent dividers>
-            <Form currentId={currentId} setCurrentId={setCurrentId} closeDialog={handleClose} />
+            <Search handleCloseDialog={handleClose} />
           </DialogContent>
         </BootstrapDialog>,
       document.getElementById("portal"))}
