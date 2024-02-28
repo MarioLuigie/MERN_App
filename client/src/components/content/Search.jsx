@@ -14,8 +14,10 @@ import qs from "qs";
 import InputTags from "../ui/InputTags";
 
 const styles = css`
+
   .searchWrapper {
     padding: 15px 15px 35px;
+
   }
 
   .searchInputs {

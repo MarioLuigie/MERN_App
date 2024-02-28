@@ -8,45 +8,34 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
-import CreatePostForm from '../dialogs/CreatePostForm';
 
-import SearchForm from "../dialogs/SearchForm";
+
+import { useAppContext } from '../../context/context';
 
 const styles = css`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 15px;
+  /* background-color: green; */
 
 .buttons {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 15px;
-}
-
-.addBtn {
-
-}
-
-.searchBtn {
-
+  /* background-color: red; */
 }
 
 `
 
 export default function MainMenu() {
 
-  const [ isCreateFormOpen, setIsCreateFormOpen ] = useState(false);
-  const [ isSearchFormOpen, setIsSearchFormOpen ] = useState(false);
-
-  const handleOpenForm = (setState) => () => {
-    setState(true);
-  };
-
-  const handleCloseForm = (setState) => () => {
-    setState(false);
-  };
+  const {
+    setIsCreateFormOpen,
+    setIsSearchFormOpen,
+    handleOpenForm,
+   } = useAppContext();
 
   return (
     <div css={styles}>
@@ -67,8 +56,6 @@ export default function MainMenu() {
           </IconButton>
         </Paper>
       </div>
-      <CreatePostForm isDialogOpen={isCreateFormOpen} handleClose={handleCloseForm(setIsCreateFormOpen)} />
-      <SearchForm isDialogOpen={isSearchFormOpen} handleClose={handleCloseForm(setIsSearchFormOpen)}  />
     </div>
   )
 }

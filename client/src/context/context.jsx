@@ -7,9 +7,21 @@ export const useAppContext = () => useContext(Context);
 export const ContextProvider = ({ children }) => {
 
   const [ user, setUser ] = useState(JSON.parse(localStorage.getItem('profile')));
+
   const [currentLocation, setCurrentLocation ] = useState("");
   const [currentId, setCurrentId] = useState(null);
   const [navbarHeight, setNavbarHeight ] = useState(0);
+
+  const [ isCreateFormOpen, setIsCreateFormOpen ] = useState(false);
+  const [ isSearchFormOpen, setIsSearchFormOpen ] = useState(false);
+
+  const handleOpenForm = (setState) => () => {
+    setState(true);
+  };
+
+  const handleCloseForm = (setState) => () => {
+    setState(false);
+  };
 
   return (
     <Context.Provider value={{ 
@@ -20,7 +32,13 @@ export const ContextProvider = ({ children }) => {
       currentId,
       setCurrentId,
       navbarHeight,
-      setNavbarHeight
+      setNavbarHeight,
+      isCreateFormOpen, 
+      setIsCreateFormOpen, 
+      isSearchFormOpen, 
+      setIsSearchFormOpen,
+      handleOpenForm,
+      handleCloseForm
       }}
     >
       {children}

@@ -4,11 +4,9 @@ import ReactDOM from 'react-dom';
 import { useState } from "react";
 import { styled } from '@mui/material/styles';
 import { 
-  Button,
   Dialog,
   DialogTitle,
   DialogContent,
-  DialogActions,
   Typography
 } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
@@ -27,7 +25,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const styles = css`
-
+  position: absolute;
 `
 
 export default function CreatePostForm({ isDialogOpen, handleClose }) {
@@ -43,7 +41,7 @@ export default function CreatePostForm({ isDialogOpen, handleClose }) {
           open={isDialogOpen}
         >
           <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-            Create Editorial
+            {currentId ? "Edit Editorial" : "Create Editorial"}
           </DialogTitle>
           <IconButton
             aria-label="close"

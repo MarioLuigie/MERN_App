@@ -23,7 +23,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const styles = css`
-
+  position: absolute;
 `
 
 export default function SearchForm({
