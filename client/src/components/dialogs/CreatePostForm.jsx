@@ -1,19 +1,17 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import ReactDOM from 'react-dom';
-import { useState } from "react";
 import { styled } from '@mui/material/styles';
 import { 
   Dialog,
   DialogTitle,
-  DialogContent,
-  Typography
+  DialogContent
 } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import { useSelector } from "react-redux";
 
 import Form from "../content/Form";
-import { useAppContext } from '../../context/context';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -26,22 +24,23 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 const styles = css`
   position: absolute;
+  z-index: 100;
 `
 
 export default function CreatePostForm({ isDialogOpen, handleClose }) {
 
-  const { currentId, setCurrentId } = useAppContext();
+  const { currentPostId } = useSelector(store => store.app);
 
   return (
     <div css={styles}>
-      {ReactDOM.createPortal(
+
         <BootstrapDialog
           onClose={handleClose}
           aria-labelledby="customized-dialog-title"
           open={isDialogOpen}
         >
           <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-            {currentId ? "Edit Editorial" : "Create Editorial"}
+            {currentPostId ? "Edit Editorial" : "Create Editorial"}
           </DialogTitle>
           <IconButton
             aria-label="close"
@@ -56,10 +55,9 @@ export default function CreatePostForm({ isDialogOpen, handleClose }) {
             <CloseIcon />
           </IconButton>
           <DialogContent dividers>
-            <Form currentId={currentId} setCurrentId={setCurrentId} closeDialog={handleClose} />
+            <Form currentPostId={currentPostId} closeDialog={handleClose} />
           </DialogContent>
-        </BootstrapDialog>,
-      document.getElementById("portal"))}
+        </BootstrapDialog>
     </div>
   )
 }

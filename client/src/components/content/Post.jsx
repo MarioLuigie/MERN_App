@@ -7,19 +7,16 @@ import {
   CardActions, 
   CardContent, 
   CardMedia, 
-  IconButton,
   Typography,
   ButtonBase,
   Avatar
 } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import MoreIcon from "@mui/icons-material/MoreHoriz";
 import moment from "moment";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAppContext } from '../../context/context.jsx';
 import Like from "./Like.jsx";
+import PostSettings from "./PostSettings.jsx";
 // import image from "../../../../api/uploads/1703801554909.jpg"
 
 const styles = (isOwn) => css`
@@ -115,11 +112,8 @@ const styles = (isOwn) => css`
 `
 
 export default function Post({ 
-  post,
-  postSupport
+  post
 }) {
-
-  const { handleEditPost, handleDeletePost } = postSupport;
 
   const navigate = useNavigate();
   const { user } = useAppContext();
@@ -187,12 +181,7 @@ export default function Post({
             <Like post={post} />
             {isOwn ?
               <div className="buttons">
-                <IconButton className="button" size="small" onClick={handleEditPost(post._id)}>
-                  <MoreIcon />
-                </IconButton>
-                <IconButton className="button" size="small" onClick={handleDeletePost(post._id)}>
-                  <DeleteIcon />
-                </IconButton>
+                <PostSettings post={post} />
               </div> 
               : null
             }

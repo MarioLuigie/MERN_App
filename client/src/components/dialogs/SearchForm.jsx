@@ -33,7 +33,6 @@ export default function SearchForm({
 
   return (
     <div css={styles}>
-      {ReactDOM.createPortal(
         <BootstrapDialog
           onClose={handleClose}
           aria-labelledby="customized-dialog-title"
@@ -60,8 +59,7 @@ export default function SearchForm({
           <DialogContent dividers>
             <Search handleCloseDialog={handleClose} />
           </DialogContent>
-        </BootstrapDialog>,
-      document.getElementById("portal"))}
+        </BootstrapDialog>
     </div>
   )
 }

@@ -16,6 +16,7 @@ import StyledDropzone from "./StyledDropzone";
 import * as actions from "../../redux/actions/posts.js";
 import { useAppContext } from '../../context/context.jsx';
 import InputTags from "../ui/InputTags";
+import * as app from "../../redux/actions/app"
 
 const styles = css`
   padding: 20px 15px 35px;
@@ -57,28 +58,30 @@ const styles = css`
 `
 
 export default function Form({
-  currentId,
-  setCurrentId,
+  currentPostId,
   closeDialog
 }) {
+  
   const initPostData = {
     title: "",
     message: ""
   }
+
+  const { isCreatePostFormOpen } = useSelector(store => store.app);
 
   const [tags, setTags ] = useState([]);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [refusedFiles, setRefusedFiles] = useState([]);
   const [postData, setPostData] = useState(initPostData);
   const dispatch = useDispatch();
-  const titleInputRef = useRef(null);
   const navigate = useNavigate();
+  const titleInputRef = useRef(null);
 
   const { user } = useAppContext();
 
   const editedPost = useSelector(store => 
-    currentId 
-      ? store.posts.postsList.find(post => post._id === currentId) 
+    currentPostId 
+      ? store.posts.postsList.find(post => post._id === currentPostId) 
       : null
   );
 
@@ -92,10 +95,10 @@ export default function Form({
   }, [editedPost]);
 
   useEffect(() => {
-    if (currentId && titleInputRef.current) {
+    if (currentPostId && titleInputRef.current) {
       titleInputRef.current.focus();
     }
-  }, [currentId]);
+  }, [currentPostId]);
 
   const handleChange = (evt) => {
     setPostData({
@@ -108,19 +111,25 @@ export default function Form({
     setPostData(initPostData);
     setUploadedFiles([]);
     setRefusedFiles([]);
-    setCurrentId(null);
+    dispatch(app.updateCurrentPostId(null));
     setTags([]);
     closeDialog();
     // console.log("clear");
   }
+
+  useEffect(() => {
+    if (!isCreatePostFormOpen) {
+      handleClear();
+    }
+  }, [isCreatePostFormOpen]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     // console.log(postData, "from submit");
     // console.log("TAGS FROM SUBMIT:", tags);
 
-    if (currentId) {
-      dispatch(actions.updatePost(currentId, {...postData, name: user?.result?.name, tags}));
+    if (currentPostId) {
+      dispatch(actions.updatePost(currentPostId, {...postData, name: user?.result?.name, tags}));
     } else {
       const files = uploadedFiles;
       // console.log("UploadeFiles:", files);
@@ -210,6 +219,6 @@ export default function Form({
 }
 
 Form.propTypes = {
-  currentId: PropTypes.string,
-  setCurrentId: PropTypes.func
+  currentPostId: PropTypes.string,
+  closeDialog: PropTypes.func
 }

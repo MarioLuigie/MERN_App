@@ -1,6 +1,6 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { 
   IconButton,
   Paper
@@ -11,6 +11,7 @@ import Diversity1Icon from '@mui/icons-material/Diversity1';
 import CreatePostForm from '../dialogs/CreatePostForm';
 
 import SearchForm from "../dialogs/SearchForm";
+import * as actions from "../../redux/actions/app";
 
 const styles = css`
   display: flex;
@@ -31,15 +32,24 @@ const styles = css`
 
 export default function MainMenu() {
 
-  const [ isCreateFormOpen, setIsCreateFormOpen ] = useState(false);
-  const [ isSearchFormOpen, setIsSearchFormOpen ] = useState(false);
+  const dispatch = useDispatch();
 
-  const handleOpenForm = (setState) => () => {
-    setState(true);
+  const { isSearchFormOpen, isCreatePostFormOpen} = useSelector(store => store.app);
+
+  const handleOpenCreatePostForm = () => {
+    dispatch(actions.updateCreatePostFormOpen(true));
   };
 
-  const handleCloseForm = (setState) => () => {
-    setState(false);
+  const handleOpenSearchForm = () => {
+    dispatch(actions.updateSearchFormOpen(true));
+  };
+
+  const handleCloseCreatePostForm = () => {
+    dispatch(actions.updateCreatePostFormOpen(false));
+  };
+
+  const handleCloseSearchForm = () => {
+    dispatch(actions.updateSearchFormOpen(false));
   };
 
   return (
@@ -50,19 +60,19 @@ export default function MainMenu() {
             <Diversity1Icon fontSize="medium" sx={{color: "#000000"}} />
           </IconButton>
         </Paper>
-        <Paper elevation={6} sx={{borderRadius: 1, backgroundColor: "#ffcd2a"}} onClick={handleOpenForm(setIsCreateFormOpen)}>
+        <Paper elevation={6} sx={{borderRadius: 1, backgroundColor: "#ffcd2a"}} onClick={handleOpenCreatePostForm}>
           <IconButton size="large">
             <AddIcon fontSize="medium" sx={{color: "#000000"}}/>
           </IconButton>
         </Paper>
-        <Paper elevation={6} sx={{borderRadius: 1}} onClick={handleOpenForm(setIsSearchFormOpen)}>
+        <Paper elevation={6} sx={{borderRadius: 1}} onClick={handleOpenSearchForm}>
           <IconButton size="medium">
             <SearchIcon fontSize="medium" sx={{color: "#000000"}} />
           </IconButton>
         </Paper>
       </div>
-      <CreatePostForm isDialogOpen={isCreateFormOpen} handleClose={handleCloseForm(setIsCreateFormOpen)} />
-      <SearchForm isDialogOpen={isSearchFormOpen} handleClose={handleCloseForm(setIsSearchFormOpen)}  />
+      <CreatePostForm isDialogOpen={isCreatePostFormOpen} handleClose={handleCloseCreatePostForm} />
+      <SearchForm isDialogOpen={isSearchFormOpen} handleClose={handleCloseSearchForm}  />
     </div>
   )
 }

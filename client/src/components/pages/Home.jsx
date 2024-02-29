@@ -59,9 +59,7 @@ const styles = (navbarHeight) => css`
   }
 `
 
-export default function Home({
-  postSupport
-}) {
+export default function Home() {
 
   const { navbarHeight } = useAppContext();
 
@@ -100,9 +98,7 @@ export default function Home({
               </div>
             </Grid>
             <Grid item xs={12}>
-              <Posts 
-                postSupport={postSupport}
-              />
+              <Posts />
             </Grid>
             <Grid item xs={12}>
               <div className="paginateWrapper">

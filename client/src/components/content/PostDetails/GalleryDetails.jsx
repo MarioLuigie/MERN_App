@@ -6,15 +6,15 @@ import {
   Typography,
   Divider
 } from "@mui/material";
-import EditNoteIcon from '@mui/icons-material/EditNote';
-import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Comments from "./Comments";
 import Creator from "../../ui/Creator";
-import Settings from "../../ui/ListMenu";
+import PostSettings from "../PostSettings";
 import Like from "../Like";
+import { useAppContext } from '../../../context/context';
+import CreatePostForm from '../../dialogs/CreatePostForm';
+import * as actions from "../../../redux/actions/app";
 
 const styles = css`
   height: 100%;
@@ -71,11 +71,20 @@ const styles = css`
 export default function GalleryDetails({
   formatDate,
   handleBack, 
-  post,
-  postSupport
+  post
 }) {
 
-  const { handleEditPost, handleDeletePost } = postSupport;
+  const { user } = useAppContext();
+
+  const dispatch = useDispatch();
+
+  const isOwn = String(post.creator._id) === String(user?.result?._id);
+
+  const { isCreatePostFormOpen } = useSelector(store => store.app);
+
+  const handleCloseCreatePostForm = () => {
+    dispatch(actions.updateCreatePostFormOpen(false));
+  };
 
   return (
     <div css={styles}>
@@ -88,31 +97,7 @@ export default function GalleryDetails({
                 textColor="black"
                 purpleSize="21px"
               />
-              <Settings 
-                options={[
-                  {
-                    icon: <EditNoteIcon fontSize="small"/>, 
-                    text: "Edit post", 
-                    onHandle: handleEditPost(post?._id)
-                  },
-                  {
-                    icon: <VerifiedUserIcon fontSize="small"/>, 
-                    text: "Private post", 
-                    onHandle: () => {console.log("Private post");}
-                  },
-                  {
-                    icon: <VisibilityOffIcon fontSize="small"/>, 
-                    text: "Hide post", 
-                    onHandle: () => {console.log("Hide post")}
-                  },
-                  {
-                    icon: <DeleteSweepIcon fontSize="small"/>, 
-                    text: "Delete post", 
-                    onHandle: handleDeletePost(post?._id)
-                  },
-                ]}
-                anchor={null}
-              />
+              {isOwn && <PostSettings post={post} />}
             </div>
             <Typography 
             variant="h3" 
@@ -168,6 +153,7 @@ export default function GalleryDetails({
           </Button>
         </div>
       </Paper>
+      <CreatePostForm isDialogOpen={isCreatePostFormOpen} handleClose={handleCloseCreatePostForm} />
     </div>
   )
 }
