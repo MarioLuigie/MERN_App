@@ -64,6 +64,7 @@ export default function Home({
 }) {
 
   const { navbarHeight } = useAppContext();
+  const { setCurrentLocation } = useAppContext();
 
   const query = useQuery();
   const dispatch = useDispatch();
@@ -81,8 +82,6 @@ export default function Home({
     }));
     setCurrentLocation(`${location.pathname}${location.search}`);
   }, [query, page, tags]);
-
-  const { setCurrentLocation } = useAppContext();
 
   // setTimeout(() => {
   //   console.log("LOCATION:", currentLocation);

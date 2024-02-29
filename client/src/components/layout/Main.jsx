@@ -28,13 +28,15 @@ export default function Main() {
 
   const handleDeletePost = (postId) => () => {
     dispatch(actions.deletePost(postId));
-    navigate("/home?page=1");
+    navigate("/home");
   }
 
   const postSupport = {
     handleEditPost,
     handleDeletePost
   }
+
+  console.log("MAIN");
 
   return (
     <main css={styles}>

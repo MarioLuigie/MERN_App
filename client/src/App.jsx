@@ -4,6 +4,8 @@ import Footer from "./components/layout/Footer";
 
 export default function App() {
 
+  console.log("APP");
+
   return (
     <>
       <Header />

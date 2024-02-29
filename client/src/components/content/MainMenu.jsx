@@ -9,6 +9,7 @@ import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
 import CreatePostForm from '../dialogs/CreatePostForm';
+import { useAppContext } from '../../context/context';
 
 import SearchForm from "../dialogs/SearchForm";
 
@@ -33,6 +34,8 @@ export default function MainMenu() {
 
   const [ isCreateFormOpen, setIsCreateFormOpen ] = useState(false);
   const [ isSearchFormOpen, setIsSearchFormOpen ] = useState(false);
+
+  // const { isSearchFormOpen, setIsSearchFormOpen, isCreateFormOpen, setIsCreateFormOpen } = useAppContext();
 
   const handleOpenForm = (setState) => () => {
     setState(true);
