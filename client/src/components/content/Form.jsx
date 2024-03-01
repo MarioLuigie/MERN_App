@@ -68,6 +68,7 @@ export default function Form({
   }
 
   const { isCreatePostFormOpen } = useSelector(store => store.app);
+  const { postsList } = useSelector(store => store.posts);
 
   const [tags, setTags ] = useState([]);
   const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -81,11 +82,13 @@ export default function Form({
 
   const editedPost = useSelector(store => 
     currentPostId 
-      ? store.posts.postsList.find(post => post._id === currentPostId) 
+      ? store.posts.postsList?.find(post => post?._id === currentPostId) 
       : null
   );
 
-  // console.log("Edited post:", editedPost);
+  console.log("Edited Post:", editedPost);
+  console.log("currentPostId:", currentPostId);
+  console.log("postsList:", postsList);
 
   useEffect(() => {
     if (editedPost) {
@@ -119,7 +122,8 @@ export default function Form({
 
   useEffect(() => {
     if (!isCreatePostFormOpen) {
-      handleClear();
+      setPostData(initPostData);
+      setTags([]);
     }
   }, [isCreatePostFormOpen]);
 
@@ -157,9 +161,6 @@ export default function Form({
   return (
     <div css={styles}>
       <form className="form" autoComplete="off" noValidate onSubmit={handleSubmit}>
-        {/* <Typography variant="h6">
-          {currentId ? "Edit Editorial" : "Create Editorial"}
-        </Typography> */}
         <TextField 
           inputRef={titleInputRef}
           name="title" 
@@ -200,7 +201,7 @@ export default function Form({
             type="submit" 
             fullWidth
           >
-            {editedPost ? "Update" : "Create"}
+            {currentPostId ? "Update" : "Create"}
           </Button>
           <Button 
             className="clearBtn" 

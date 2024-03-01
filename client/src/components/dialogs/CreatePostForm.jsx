@@ -1,6 +1,5 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import ReactDOM from 'react-dom';
 import { styled } from '@mui/material/styles';
 import { 
   Dialog,
@@ -33,31 +32,30 @@ export default function CreatePostForm({ isDialogOpen, handleClose }) {
 
   return (
     <div css={styles}>
-
-        <BootstrapDialog
-          onClose={handleClose}
-          aria-labelledby="customized-dialog-title"
-          open={isDialogOpen}
+      <BootstrapDialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={isDialogOpen}
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+          {currentPostId ? "Edit Editorial" : "Create Editorial"}
+        </DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
         >
-          <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-            {currentPostId ? "Edit Editorial" : "Create Editorial"}
-          </DialogTitle>
-          <IconButton
-            aria-label="close"
-            onClick={handleClose}
-            sx={{
-              position: 'absolute',
-              right: 8,
-              top: 8,
-              color: (theme) => theme.palette.grey[500],
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-          <DialogContent dividers>
-            <Form currentPostId={currentPostId} closeDialog={handleClose} />
-          </DialogContent>
-        </BootstrapDialog>
+          <CloseIcon />
+        </IconButton>
+        <DialogContent dividers>
+          <Form currentPostId={currentPostId} closeDialog={handleClose} />
+        </DialogContent>
+      </BootstrapDialog>
     </div>
   )
 }

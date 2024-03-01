@@ -56,6 +56,7 @@ export default function PostDetails() {
   useEffect(() => {
     const fetchPost = async () => {
       await dispatch(actions.getPost(params.id));
+      await dispatch(actions.getPosts());
       setDataLoaded(true);
     }
     fetchPost();
@@ -64,10 +65,6 @@ export default function PostDetails() {
   const handleBack = () => {
     navigate(-1);
   }
-
-  useEffect(() => {
-
-  }, [post]);
 
   const formatDate = (dateString) => {
     if (!dateString) return ''; 
@@ -112,3 +109,37 @@ export default function PostDetails() {
     </div>
   );
 }
+
+// Dane są pobierane w funkcji fetchPost, która jest wywoływana przez useEffect w momencie montowania lub re-renderowania komponentu. Oto kroki, jakie się dzieją:
+
+//     useEffect zostaje uruchomiony, ponieważ jest zależny od params.id.
+
+// javascript
+
+// useEffect(() => {
+//   const fetchPost = async () => {
+//     await dispatch(actions.getPost(params.id));
+//     setDataLoaded(true);
+//   }
+//   fetchPost();
+// }, [params.id]);
+
+//     Wewnątrz fetchPost używane jest dispatch do wywołania akcji getPost z parametrem params.id. Akcja ta prawdopodobnie jest częścią Redux i ma na celu pobranie danych posta z odpowiedniego źródła, na przykład z API.
+
+// javascript
+
+// await dispatch(actions.getPost(params.id));
+
+//     Po pomyślnym pobraniu danych (asynchronicznie), ustawiane jest setDataLoaded(true). To z kolei wpływa na renderowanie komponentu, zwłaszcza w warunku sprawdzającym czy dane są już załadowane:
+
+// javascript
+
+// if (isLoading || !dataLoaded) {
+//   return (
+//     <div css={styles}>
+//       <CircularProgress />
+//     </div>
+//   );
+// }
+
+// W tym momencie, jeśli dane są już pobrane (dataLoaded === true), komponent będzie renderował widok szczegółów posta. Dane posta są wykorzystywane w sekcji renderowania komponentu, na przykład do przekazania ich do komponentu Gallery i GalleryDetails. W tych komponentach są prawdopodobnie używane do wyświetlenia zdjęć i szczegółów posta.

@@ -31,6 +31,8 @@ export const getPost = (id) => async (dispatch) => {
     dispatch({type: type.READ_POST, data});
 
     dispatch({type: type.END_LOADING});
+
+    console.log("PostDetails:", data);
     
   } catch (err) {
     console.error("Something went wrong...READ ERROR", err.message);
