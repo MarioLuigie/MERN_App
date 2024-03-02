@@ -18,7 +18,7 @@ export default function PostSettings({
 
   const handleEditPost = () => {
     dispatch(app.updateCurrentPostId(post._id));
-    dispatch(app.updateCreatePostFormOpen(true));
+    dispatch(app.updatePostFormOpen(true));
   }
 
   const handleDeletePost = () => {

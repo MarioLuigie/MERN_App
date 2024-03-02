@@ -26,7 +26,7 @@ const styles = css`
   z-index: 100;
 `
 
-export default function CreatePostForm({ isDialogOpen, handleClose }) {
+export default function PostForm({ isDialogOpen, handleClose }) {
 
   const { currentPostId } = useSelector(store => store.app);
 

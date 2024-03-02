@@ -8,10 +8,11 @@ import { PropTypes } from "prop-types";
 import Post from "./Post";
 
 const styles = css`
-  padding-bottom: 20px;
-  
-  .postsContainer {
 
+  .postsContainer {
+    /* padding-top: 0;
+    margin-top: 0; */
+    /* background-color: red; */
   }
 
   .progress {

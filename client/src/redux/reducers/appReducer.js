@@ -2,7 +2,7 @@ import * as type from "../../constants/actions.js";
 
 const initState = {
   currentPostId: "",
-  isCreatePostFormOpen: false,
+  isPostFormOpen: false,
   isSearchFormOpen: false
 }
 
@@ -16,10 +16,10 @@ const appReducer = (state = initState, action) => {
         currentPostId: action.data
       };
     
-    case type.CREATE_POST_FORM_OPEN:
+    case type.POST_FORM_OPEN:
       return {
         ...state,
-        isCreatePostFormOpen: action.data
+        isPostFormOpen: action.data
       }
 
     case type.SEARCH_FORM_OPEN:

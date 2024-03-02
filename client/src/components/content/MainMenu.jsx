@@ -8,10 +8,10 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
-import CreatePostForm from '../dialogs/CreatePostForm';
+import PostForm from '../dialogs/PostForm';
 
 import SearchForm from "../dialogs/SearchForm";
-import * as actions from "../../redux/actions/app";
+import * as app from "../../redux/actions/app";
 
 const styles = css`
   display: flex;
@@ -34,22 +34,22 @@ export default function MainMenu() {
 
   const dispatch = useDispatch();
 
-  const { isSearchFormOpen, isCreatePostFormOpen} = useSelector(store => store.app);
+  const { isSearchFormOpen, isPostFormOpen} = useSelector(store => store.app);
 
-  const handleOpenCreatePostForm = () => {
-    dispatch(actions.updateCreatePostFormOpen(true));
+  const handleOpenPostForm = () => {
+    dispatch(app.updatePostFormOpen(true));
   };
 
   const handleOpenSearchForm = () => {
-    dispatch(actions.updateSearchFormOpen(true));
+    dispatch(app.updateSearchFormOpen(true));
   };
 
-  const handleCloseCreatePostForm = () => {
-    dispatch(actions.updateCreatePostFormOpen(false));
+  const handleClosePostForm = () => {
+    dispatch(app.updatePostFormOpen(false));
   };
 
   const handleCloseSearchForm = () => {
-    dispatch(actions.updateSearchFormOpen(false));
+    dispatch(app.updateSearchFormOpen(false));
   };
 
   return (
@@ -60,7 +60,7 @@ export default function MainMenu() {
             <Diversity1Icon fontSize="medium" sx={{color: "#000000"}} />
           </IconButton>
         </Paper>
-        <Paper elevation={6} sx={{borderRadius: 1, backgroundColor: "#ffcd2a"}} onClick={handleOpenCreatePostForm}>
+        <Paper elevation={6} sx={{borderRadius: 1, backgroundColor: "#ffcd2a"}} onClick={handleOpenPostForm}>
           <IconButton size="large">
             <AddIcon fontSize="medium" sx={{color: "#000000"}}/>
           </IconButton>
@@ -71,7 +71,7 @@ export default function MainMenu() {
           </IconButton>
         </Paper>
       </div>
-      <CreatePostForm isDialogOpen={isCreatePostFormOpen} handleClose={handleCloseCreatePostForm} />
+      <PostForm isDialogOpen={isPostFormOpen} handleClose={handleClosePostForm} />
       <SearchForm isDialogOpen={isSearchFormOpen} handleClose={handleCloseSearchForm}  />
     </div>
   )

@@ -1,9 +1,9 @@
 /* eslint-disable react/no-unknown-property */
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { 
   Container,
   Grow,
@@ -11,9 +11,7 @@ import {
 } from "@mui/material";
 
 import Posts from "../content/Posts";
-import Form from "../content/Form";
 import Paginate from "../content/Paginate";
-import Search from "../content/Search";
 import MainMenu from "../content/MainMenu";
 import * as actions from "../../redux/actions/posts.js";
 import { useAppContext } from '../../context/context';
@@ -23,25 +21,26 @@ function useQuery() {
 }
 
 const styles = (navbarHeight) => css`
-  padding-top: calc(${navbarHeight}px + 10px);
+  padding-top: calc(${navbarHeight}px);
   /* padding-bottom: 40px; */
+  /* background-color: red; */
 
-  .searchWrapper {
+  /* .searchWrapper {
     padding: 15px 15px 35px;
-  }
+  } */
 
-  .searchInputs {
+  /* .searchInputs {
     display: flex;
     flex-direction: column;
     gap: 20px;
-  }
+  } */
 
-  .searchTitle {
+  /* .searchTitle {
     display: flex;
     gap: 5px;
     align-items: center;
     padding-bottom: 18px;
-  }
+  } */
 
   .paginateWrapper {
     padding: 25px 15px 25px;
@@ -54,7 +53,7 @@ const styles = (navbarHeight) => css`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 13px;
+    padding: 30px 13px 5px;
     /* background-color: green; */
   }
 `

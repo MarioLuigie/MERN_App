@@ -13,8 +13,8 @@ import Creator from "../../ui/Creator";
 import PostSettings from "../PostSettings";
 import Like from "../Like";
 import { useAppContext } from '../../../context/context';
-import CreatePostForm from '../../dialogs/CreatePostForm';
-import * as actions from "../../../redux/actions/app";
+import PostForm from '../../dialogs/PostForm';
+import * as app from "../../../redux/actions/app";
 
 const styles = css`
   height: 100%;
@@ -80,10 +80,10 @@ export default function GalleryDetails({
 
   const isOwn = String(post.creator._id) === String(user?.result?._id);
 
-  const { isCreatePostFormOpen } = useSelector(store => store.app);
+  const { isPostFormOpen } = useSelector(store => store.app);
 
   const handleCloseCreatePostForm = () => {
-    dispatch(actions.updateCreatePostFormOpen(false));
+    dispatch(app.updatePostFormOpen(false));
   };
 
   return (
@@ -153,7 +153,7 @@ export default function GalleryDetails({
           </Button>
         </div>
       </Paper>
-      <CreatePostForm isDialogOpen={isCreatePostFormOpen} handleClose={handleCloseCreatePostForm} />
+      <PostForm isDialogOpen={isPostFormOpen} handleClose={handleCloseCreatePostForm} />
     </div>
   )
 }

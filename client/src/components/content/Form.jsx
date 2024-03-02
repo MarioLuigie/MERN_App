@@ -14,9 +14,9 @@ import { PropTypes } from "prop-types";
 
 import StyledDropzone from "./StyledDropzone";
 import * as actions from "../../redux/actions/posts.js";
+import * as app from "../../redux/actions/app"
 import { useAppContext } from '../../context/context.jsx';
 import InputTags from "../ui/InputTags";
-import * as app from "../../redux/actions/app"
 
 const styles = css`
   padding: 20px 15px 35px;
@@ -67,7 +67,7 @@ export default function Form({
     message: ""
   }
 
-  const { isCreatePostFormOpen } = useSelector(store => store.app);
+  const { isPostFormOpen } = useSelector(store => store.app);
   const { postsList } = useSelector(store => store.posts);
 
   const [tags, setTags ] = useState([]);
@@ -80,7 +80,7 @@ export default function Form({
 
   const { user } = useAppContext();
 
-  const editedPost = useSelector(store => 
+  let editedPost = useSelector(store => 
     currentPostId 
       ? store.posts.postsList?.find(post => post?._id === currentPostId) 
       : null
@@ -121,11 +121,13 @@ export default function Form({
   }
 
   useEffect(() => {
-    if (!isCreatePostFormOpen) {
+    if (!isPostFormOpen) {
       setPostData(initPostData);
       setTags([]);
+      editedPost = null;
+      dispatch(app.updateCurrentPostId(""));
     }
-  }, [isCreatePostFormOpen]);
+  }, [isPostFormOpen]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();

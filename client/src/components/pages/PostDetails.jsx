@@ -25,7 +25,7 @@ const styles = (navbarHeight) => css`
   background-color: rgb(22, 22, 22);
 
   .gridContainer {
-    max-height: calc(100vh - ${navbarHeight}px);
+    height: calc(100vh - ${navbarHeight}px);
   }
 
   .gridItem {

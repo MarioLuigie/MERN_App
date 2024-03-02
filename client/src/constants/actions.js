@@ -21,5 +21,5 @@ export const LOGOUT = "LOGOUT";
 
 //APP
 export const CURRENT_POST_ID = "CURRENT_POST_ID";
-export const CREATE_POST_FORM_OPEN = "CREATE_POST_FORM_OPEN";
+export const POST_FORM_OPEN = "POST_FORM_OPEN";
 export const SEARCH_FORM_OPEN = "SEARCH_FORM_OPEN";

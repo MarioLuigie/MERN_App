@@ -97,6 +97,7 @@ export default function Comments({
         </Avatar>
         <div className="input">
           <TextField 
+            type="text"
             fullWidth
             value={commentValue}
             onChange={handleChange}
