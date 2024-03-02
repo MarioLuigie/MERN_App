@@ -1,9 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import  { useDispatch } from "react-redux";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Home from "../pages/Home";
 import Auth from "../auth/Auth";

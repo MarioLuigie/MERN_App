@@ -82,8 +82,8 @@ export default function GalleryDetails({
 
   const { isPostFormOpen } = useSelector(store => store.app);
 
-  const handleCloseCreatePostForm = () => {
-    dispatch(app.updatePostFormOpen(false));
+  const handleClosePostForm = () => {
+    dispatch(app.updateIsPostFormOpen(false));
   };
 
   return (
@@ -153,7 +153,7 @@ export default function GalleryDetails({
           </Button>
         </div>
       </Paper>
-      <PostForm isDialogOpen={isPostFormOpen} handleClose={handleCloseCreatePostForm} />
+      <PostForm isDialogOpen={isPostFormOpen} handleClose={handleClosePostForm} />
     </div>
   )
 }

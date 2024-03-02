@@ -37,19 +37,19 @@ export default function MainMenu() {
   const { isSearchFormOpen, isPostFormOpen} = useSelector(store => store.app);
 
   const handleOpenPostForm = () => {
-    dispatch(app.updatePostFormOpen(true));
+    dispatch(app.updateIsPostFormOpen(true));
   };
 
   const handleOpenSearchForm = () => {
-    dispatch(app.updateSearchFormOpen(true));
+    dispatch(app.updateIsSearchFormOpen(true));
   };
 
   const handleClosePostForm = () => {
-    dispatch(app.updatePostFormOpen(false));
+    dispatch(app.updateIsPostFormOpen(false));
   };
 
   const handleCloseSearchForm = () => {
-    dispatch(app.updateSearchFormOpen(false));
+    dispatch(app.updateIsSearchFormOpen(false));
   };
 
   return (
