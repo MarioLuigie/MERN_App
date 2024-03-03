@@ -81,7 +81,7 @@ export default function Comments({
     <div css={styles}>
       <Typography variant="body1" className="commentsTitle">Comments</Typography>
       <div className="commentsWrapper">
-        {post.comments?.map((comment, i) => (
+        {post?.comments?.map((comment, i) => (
           <Comment 
             post={post}
             comment={comment} 
@@ -104,6 +104,7 @@ export default function Comments({
             value={commentValue}
             onChange={handleChange}
             placeholder="Write a comment"
+            sx={{backgroundColor: "#e7e7e7"}}
           />
           <div className="sendBtnWrapper">
             <IconButton onClick={handleComment} title="Comment">

@@ -11,7 +11,7 @@ export const getPosts = (searchParams) => async (dispatch) => {
     //   currentPage: number, 
     //   numbOfPages: number
     // }
-    // console.log("Zasoby z bazy mDB", data);
+    console.log("Zasoby z bazy mDB", data);
 
     dispatch({type: type.READ_POSTS, data});
 

@@ -89,7 +89,7 @@ export default function PostDetails() {
 
   return (
     <div css={styles(navbarHeight)}>
-      <Container className="container">
+      <Container className="container" maxWidth="xl">
         <Grid container justifyContent="center" spacing={2} className="gridContainer">
           <Grid item xs={12} sm={12} md={7} lg={8} xl={9} className="gridItem">
             <Gallery post={post} />

@@ -7,6 +7,7 @@ import {
   Divider
 } from "@mui/material";
 import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from "react";
 
 import Comments from "./Comments";
 import Creator from "../../ui/Creator";
@@ -102,7 +103,7 @@ export default function GalleryDetails({
                 textColor="black"
                 purpleSize="21px"
               />
-              {isOwn && <PostSettings post={post} />}
+              <PostSettings post={post} isOwn={isOwn} />
             </div>
             <Typography 
             variant="h3" 

@@ -179,12 +179,9 @@ export default function Post({
         <div>
           <CardActions className="actions">
             <Like post={post} />
-            {isOwn ?
               <div className="buttons">
-                <PostSettings post={post} />
+                <PostSettings post={post} isOwn={isOwn}/>
               </div> 
-              : null
-            }
           </CardActions>
         </div>
       </Card>

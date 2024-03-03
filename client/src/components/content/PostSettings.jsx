@@ -4,13 +4,15 @@ import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import FlagIcon from '@mui/icons-material/Flag';
 
 import ListMenu from "../ui/ListMenu";
 import * as actions from "../../redux/actions/posts";
 import * as app from "../../redux/actions/app";
 
 export default function PostSettings({
-  post
+  post,
+  isOwn
 }) {
 
   const dispatch = useDispatch();
@@ -24,6 +26,25 @@ export default function PostSettings({
   const handleDeletePost = () => {
     dispatch(actions.deletePost(post._id));
     navigate("/home?page=1");
+  }
+
+  const handleReport = () => {
+    console.warn("Report Editorial:", {report: "warning!", editorialId: post._id, creatorId: post.creator._id});
+  }
+
+  if (!isOwn) {
+    return (
+      <ListMenu                 
+      options={[
+        {
+          icon: <FlagIcon fontSize="small"/>, 
+          text: "Report editorial", 
+          onHandle: handleReport
+        }
+      ]}
+      anchor={null}
+    />
+    )
   }
 
   return (
