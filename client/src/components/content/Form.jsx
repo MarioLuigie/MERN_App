@@ -15,7 +15,7 @@ import { PropTypes } from "prop-types";
 import StyledDropzone from "./StyledDropzone";
 import * as actions from "../../redux/actions/posts.js";
 import * as app from "../../redux/actions/app"
-import { useAppContext } from '../../context/context.jsx';
+import { useAppContext } from '../../context/Context.jsx';
 import InputTags from "../ui/InputTags";
 
 const styles = css`
@@ -86,9 +86,9 @@ export default function Form({
       : null
   );
 
-  console.log("Edited Post:", editedPost);
-  console.log("currentPostId:", currentPostId);
-  console.log("postsList:", postsList);
+  // console.log("Edited Post:", editedPost);
+  // console.log("currentPostId:", currentPostId);
+  // console.log("postsList:", postsList);
 
   useEffect(() => {
     if (editedPost) {

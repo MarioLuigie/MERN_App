@@ -3,8 +3,9 @@ import { css } from '@emotion/react';
 import { 
   Paper
 } from "@mui/material";
+import { useAppContext } from '../../../context/Context';
 
-const styles = css`
+const styles = (navbarHeight) => css`
   height: 100%;
 
   .images {
@@ -14,16 +15,23 @@ const styles = css`
     justify-content: center;
     align-items: center;
     background-color: rgb(20, 20, 20);
-  }
+    min-height: none;
+
+    @media screen and (min-width: 900px) {
+      min-height: calc(100vh - ${navbarHeight}px);
+    }
+  } 
 `
 
 export default function Gallery({
   post
 }) {
 
+  const { navbarHeight } = useAppContext();
+
   return (
-    <div css={styles}>
-      <Paper className="images" elevation={4} style={{height: "100%"}}>
+    <div css={styles(navbarHeight)}>
+      <Paper className="images" elevation={0}>
         <img 
           src={post.files.length > 0 ? post.files[0] : ""} 
           alt="" 

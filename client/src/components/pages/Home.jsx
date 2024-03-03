@@ -14,33 +14,15 @@ import Posts from "../content/Posts";
 import Paginate from "../content/Paginate";
 import MainMenu from "../content/MainMenu";
 import * as actions from "../../redux/actions/posts.js";
-import { useAppContext } from '../../context/context';
+import { useAppContext } from '../../context/Context';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
 const styles = (navbarHeight) => css`
-  padding-top: calc(${navbarHeight}px);
+  margin-top: ${navbarHeight}px;
   /* padding-bottom: 40px; */
-  /* background-color: red; */
-
-  /* .searchWrapper {
-    padding: 15px 15px 35px;
-  } */
-
-  /* .searchInputs {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  } */
-
-  /* .searchTitle {
-    display: flex;
-    gap: 5px;
-    align-items: center;
-    padding-bottom: 18px;
-  } */
 
   .paginateWrapper {
     padding: 25px 15px 25px;

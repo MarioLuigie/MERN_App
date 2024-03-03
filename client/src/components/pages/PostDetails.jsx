@@ -11,21 +11,20 @@ import {
 import moment from "moment";
 
 import * as actions from "../../redux/actions/posts";
-import { useAppContext } from '../../context/context';
+import { useAppContext } from '../../context/Context';
 import GalleryDetails from "../content/PostDetails/GalleryDetails";
 import Gallery from "../content/PostDetails/Gallery";
 
 const styles = (navbarHeight) => css`
-  /* padding: 30px 0; */
-  height: calc(100vh - ${navbarHeight}px);
+  /* height: calc(100vh - ${navbarHeight}px);
   min-height: calc(100vh - ${navbarHeight}px);
-  max-height: calc(100vh - ${navbarHeight}px);
-  margin-top: calc(${navbarHeight}px);
+  max-height: calc(100vh - ${navbarHeight}px); */
+  margin-top: ${navbarHeight}px;
   width: 100%;
   background-color: rgb(22, 22, 22);
 
   .gridContainer {
-    height: calc(100vh - ${navbarHeight}px);
+    /* max-height: calc(100vh - ${navbarHeight}px); */
   }
 
   .gridItem {
@@ -33,9 +32,7 @@ const styles = (navbarHeight) => css`
   }
 
   .container {
-    /* background-color: green; */
     height: 100%;
-    padding-top: 10px;
     width: 100%;
     max-width: 1920px;
   }

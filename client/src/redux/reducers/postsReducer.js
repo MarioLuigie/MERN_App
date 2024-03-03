@@ -24,7 +24,7 @@ const postsReducer = (state = initState, action) => {
       };
 
     case type.READ_POST:
-      console.log("Post from reducer", action.data);
+      // console.log("Post from reducer", action.data);
       return {
         ...state,
         post: action.data

@@ -14,7 +14,7 @@ import {
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 
-import { useAppContext } from '../../context/context.jsx';
+import { useAppContext } from '../../context/Context.jsx';
 import Like from "./Like.jsx";
 import PostSettings from "./PostSettings.jsx";
 // import image from "../../../../api/uploads/1703801554909.jpg"

@@ -14,7 +14,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { jwtDecode } from "jwt-decode";
 
-import { useAppContext } from '../../context/context.jsx';
+import { useAppContext } from '../../context/Context.jsx';
 import * as type from "../../constants/actions.js";
 import jsonData from "../../constants/textContent.json";
 import LoggedUser from "../ui/Creator.jsx";

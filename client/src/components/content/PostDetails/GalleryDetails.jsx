@@ -12,15 +12,19 @@ import Comments from "./Comments";
 import Creator from "../../ui/Creator";
 import PostSettings from "../PostSettings";
 import Like from "../Like";
-import { useAppContext } from '../../../context/context';
+import { useAppContext } from '../../../context/Context';
 import PostForm from '../../dialogs/PostForm';
 import * as app from "../../../redux/actions/app";
 
-const styles = css`
+const styles = (navbarHeight) => css`
   height: 100%;
+  overflow: auto;
+  max-height: calc(100vh - ${navbarHeight}px); 
+  background-color: #ffffff; 
 
   .paper {
     height: 100%;
+    min-height: calc(100vh - ${navbarHeight}px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -75,6 +79,7 @@ export default function GalleryDetails({
 }) {
 
   const { user } = useAppContext();
+  const { navbarHeight } = useAppContext();
 
   const dispatch = useDispatch();
 
@@ -87,8 +92,8 @@ export default function GalleryDetails({
   };
 
   return (
-    <div css={styles}>
-      <Paper elevation={4} className="paper">
+    <div css={styles(navbarHeight)}>
+      <Paper elevation={0} className="paper">
         <div className="card">
           <div className="info">
             <div className="creator">
