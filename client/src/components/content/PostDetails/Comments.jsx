@@ -105,6 +105,8 @@ export default function Comments({
             onChange={handleChange}
             placeholder="Write a comment"
             sx={{backgroundColor: "#e7e7e7"}}
+            multiline
+            rows={2}
           />
           <div className="sendBtnWrapper">
             <IconButton onClick={handleComment} title="Comment">

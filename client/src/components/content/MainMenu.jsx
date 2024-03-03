@@ -55,17 +55,17 @@ export default function MainMenu() {
   return (
     <div css={styles}>
       <div className="buttons">
-        <Paper elevation={6} sx={{borderRadius: 1}}>
+        <Paper elevation={4} sx={{borderRadius: 1}}>
           <IconButton size="medium">
             <Diversity1Icon fontSize="medium" sx={{color: "#000000"}} />
           </IconButton>
         </Paper>
-        <Paper elevation={6} sx={{borderRadius: 1, backgroundColor: "#ffcd2a"}} onClick={handleOpenPostForm}>
+        <Paper elevation={4} sx={{borderRadius: 1, backgroundColor: "#ffcd2a"}} onClick={handleOpenPostForm}>
           <IconButton size="large">
             <AddIcon fontSize="medium" sx={{color: "#000000"}}/>
           </IconButton>
         </Paper>
-        <Paper elevation={6} sx={{borderRadius: 1}} onClick={handleOpenSearchForm}>
+        <Paper elevation={4} sx={{borderRadius: 1}} onClick={handleOpenSearchForm}>
           <IconButton size="medium">
             <SearchIcon fontSize="medium" sx={{color: "#000000"}} />
           </IconButton>

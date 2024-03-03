@@ -11,7 +11,7 @@ export const getPosts = (searchParams) => async (dispatch) => {
     //   currentPage: number, 
     //   numbOfPages: number
     // }
-    console.log("Zasoby z bazy mDB", data);
+    // console.log("Zasoby z bazy mDB", data);
 
     dispatch({type: type.READ_POSTS, data});
 
@@ -103,7 +103,7 @@ export const updatePost = (id, editedPost) => async (dispatch) => {
   // console.log("Edited post from redux action:", editedPost.tags);
   try {
     const { data } = await api.updatePost(id, editedPost);
-    console.log(data);
+    // console.log(data);
 
     dispatch({type: type.UPDATE_POST, data});
 

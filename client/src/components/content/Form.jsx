@@ -114,7 +114,7 @@ export default function Form({
     setPostData(initPostData);
     setUploadedFiles([]);
     setRefusedFiles([]);
-    dispatch(app.updateCurrentPostId(null));
+    dispatch(app.updateCurrentPostId(""));
     setTags([]);
     closeDialog();
     // console.log("clear");
@@ -129,7 +129,7 @@ export default function Form({
     }
   }, [isPostFormOpen]);
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
     // console.log(postData, "from submit");
     // console.log("TAGS FROM SUBMIT:", tags);
@@ -137,9 +137,9 @@ export default function Form({
     console.log("CURRENTPOSTID:", currentPostId);
 
     if (currentPostId) {
-      dispatch(actions.updatePost(currentPostId, {...postData, name: user?.result?.name, tags}));
-      dispatch(actions.getPosts());//For refresh GalleryDetails.jsx
-      dispatch(actions.getPost(currentPostId));//For refresh GalleryDetails.jsx
+      await dispatch(actions.updatePost(currentPostId, {...postData, name: user?.result?.name, tags}));
+      await dispatch(actions.getPosts());//For refresh GalleryDetails.jsx
+      await dispatch(actions.getPost(currentPostId));//For refresh GalleryDetails.jsx
     } else {
       const files = uploadedFiles;
       // console.log("UploadeFiles:", files);
