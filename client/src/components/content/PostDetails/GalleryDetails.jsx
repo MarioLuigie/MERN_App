@@ -16,6 +16,7 @@ import Like from "../Like";
 import { useAppContext } from '../../../context/Context';
 import PostForm from '../../dialogs/PostForm';
 import * as app from "../../../redux/actions/app";
+import CloseButton from "../../ui/CloseButton";
 
 const styles = (navbarHeight) => css`
   height: 100%;
@@ -71,6 +72,10 @@ const styles = (navbarHeight) => css`
       border-color: #1b1b1b;
     }
   }
+
+  .controlls {
+    display: flex;
+  }
 `
 
 export default function GalleryDetails({
@@ -103,7 +108,10 @@ export default function GalleryDetails({
                 textColor="black"
                 purpleSize="21px"
               />
-              <PostSettings post={post} isOwn={isOwn} />
+              <div className="controlls">
+                <PostSettings post={post} isOwn={isOwn} />
+                <CloseButton onClick={handleBack}/>
+              </div>
             </div>
             <Typography 
             variant="h3" 
@@ -148,7 +156,7 @@ export default function GalleryDetails({
             <Comments post={post} />
           </div>
         </div>
-        <div className="btnWrapper">
+        {/* <div className="btnWrapper">
           <Button 
             className="btn"
             variant="outlined" 
@@ -157,7 +165,7 @@ export default function GalleryDetails({
           >
             Back
           </Button>
-        </div>
+        </div> */}
       </Paper>
       <PostForm isDialogOpen={isPostFormOpen} handleClose={handleClosePostForm} />
     </div>
