@@ -14,7 +14,8 @@ import { PropTypes } from "prop-types";
 
 import StyledDropzone from "./StyledDropzone";
 import * as actions from "../../redux/actions/posts.js";
-import { useAppContext } from '../../context/context.jsx';
+import * as app from "../../redux/actions/app"
+import { useAppContext } from '../../context/Context.jsx';
 import InputTags from "../ui/InputTags";
 
 const styles = css`
@@ -57,32 +58,37 @@ const styles = css`
 `
 
 export default function Form({
-  currentId,
-  setCurrentId,
+  currentPostId,
   closeDialog
 }) {
+  
   const initPostData = {
     title: "",
     message: ""
   }
+
+  const { isPostFormOpen } = useSelector(store => store.app);
+  const { postsList } = useSelector(store => store.posts);
 
   const [tags, setTags ] = useState([]);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [refusedFiles, setRefusedFiles] = useState([]);
   const [postData, setPostData] = useState(initPostData);
   const dispatch = useDispatch();
-  const titleInputRef = useRef(null);
   const navigate = useNavigate();
+  const titleInputRef = useRef(null);
 
   const { user } = useAppContext();
 
-  const editedPost = useSelector(store => 
-    currentId 
-      ? store.posts.postsList.find(post => post._id === currentId) 
+  let editedPost = useSelector(store => 
+    currentPostId 
+      ? store.posts.postsList?.find(post => post?._id === currentPostId) 
       : null
   );
 
-  // console.log("Edited post:", editedPost);
+  // console.log("Edited Post:", editedPost);
+  // console.log("currentPostId:", currentPostId);
+  // console.log("postsList:", postsList);
 
   useEffect(() => {
     if (editedPost) {
@@ -92,10 +98,10 @@ export default function Form({
   }, [editedPost]);
 
   useEffect(() => {
-    if (currentId && titleInputRef.current) {
+    if (currentPostId && titleInputRef.current) {
       titleInputRef.current.focus();
     }
-  }, [currentId]);
+  }, [currentPostId]);
 
   const handleChange = (evt) => {
     setPostData({
@@ -108,19 +114,32 @@ export default function Form({
     setPostData(initPostData);
     setUploadedFiles([]);
     setRefusedFiles([]);
-    setCurrentId(null);
+    dispatch(app.updateCurrentPostId(""));
     setTags([]);
     closeDialog();
     // console.log("clear");
   }
 
-  const handleSubmit = (evt) => {
+  useEffect(() => {
+    if (!isPostFormOpen) {
+      setPostData(initPostData);
+      setTags([]);
+      editedPost = null;
+      dispatch(app.updateCurrentPostId(""));
+    }
+  }, [isPostFormOpen]);
+
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
     // console.log(postData, "from submit");
     // console.log("TAGS FROM SUBMIT:", tags);
 
-    if (currentId) {
-      dispatch(actions.updatePost(currentId, {...postData, name: user?.result?.name, tags}));
+    console.log("CURRENTPOSTID:", currentPostId);
+
+    if (currentPostId) {
+      await dispatch(actions.updatePost(currentPostId, {...postData, name: user?.result?.name, tags}));
+      await dispatch(actions.getPosts());//For refresh GalleryDetails.jsx
+      await dispatch(actions.getPost(currentPostId));//For refresh GalleryDetails.jsx
     } else {
       const files = uploadedFiles;
       // console.log("UploadeFiles:", files);
@@ -148,9 +167,6 @@ export default function Form({
   return (
     <div css={styles}>
       <form className="form" autoComplete="off" noValidate onSubmit={handleSubmit}>
-        {/* <Typography variant="h6">
-          {currentId ? "Edit Editorial" : "Create Editorial"}
-        </Typography> */}
         <TextField 
           inputRef={titleInputRef}
           name="title" 
@@ -191,7 +207,7 @@ export default function Form({
             type="submit" 
             fullWidth
           >
-            {editedPost ? "Update" : "Create"}
+            {currentPostId ? "Update" : "Create"}
           </Button>
           <Button 
             className="clearBtn" 
@@ -210,6 +226,6 @@ export default function Form({
 }
 
 Form.propTypes = {
-  currentId: PropTypes.string,
-  setCurrentId: PropTypes.func
+  currentPostId: PropTypes.string,
+  closeDialog: PropTypes.func
 }

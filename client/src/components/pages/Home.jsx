@@ -1,9 +1,9 @@
 /* eslint-disable react/no-unknown-property */
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { 
   Container,
   Grow,
@@ -11,37 +11,18 @@ import {
 } from "@mui/material";
 
 import Posts from "../content/Posts";
-import Form from "../content/Form";
 import Paginate from "../content/Paginate";
-import Search from "../content/Search";
 import MainMenu from "../content/MainMenu";
 import * as actions from "../../redux/actions/posts.js";
-import { useAppContext } from '../../context/context';
+import { useAppContext } from '../../context/Context';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
 const styles = (navbarHeight) => css`
-  padding-top: calc(${navbarHeight}px + 10px);
+  margin-top: ${navbarHeight}px;
   /* padding-bottom: 40px; */
-
-  .searchWrapper {
-    padding: 15px 15px 35px;
-  }
-
-  .searchInputs {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .searchTitle {
-    display: flex;
-    gap: 5px;
-    align-items: center;
-    padding-bottom: 18px;
-  }
 
   .paginateWrapper {
     padding: 25px 15px 25px;
@@ -54,14 +35,12 @@ const styles = (navbarHeight) => css`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 13px;
+    padding: 30px 13px 5px;
     /* background-color: green; */
   }
 `
 
-export default function Home({
-  postSupport
-}) {
+export default function Home() {
 
   const { navbarHeight } = useAppContext();
   const { setCurrentLocation } = useAppContext();
@@ -99,9 +78,7 @@ export default function Home({
               </div>
             </Grid>
             <Grid item xs={12}>
-              <Posts 
-                postSupport={postSupport}
-              />
+              <Posts />
             </Grid>
             <Grid item xs={12}>
               <div className="paginateWrapper">

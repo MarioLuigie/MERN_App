@@ -31,6 +31,8 @@ export const getPost = (id) => async (dispatch) => {
     dispatch({type: type.READ_POST, data});
 
     dispatch({type: type.END_LOADING});
+
+    // console.log("PostDetails:", data);
     
   } catch (err) {
     console.error("Something went wrong...READ ERROR", err.message);
@@ -101,7 +103,7 @@ export const updatePost = (id, editedPost) => async (dispatch) => {
   // console.log("Edited post from redux action:", editedPost.tags);
   try {
     const { data } = await api.updatePost(id, editedPost);
-    console.log(data);
+    // console.log(data);
 
     dispatch({type: type.UPDATE_POST, data});
 

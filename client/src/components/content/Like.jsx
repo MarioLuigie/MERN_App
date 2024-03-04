@@ -2,14 +2,13 @@
 import { css } from '@emotion/react';
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { 
   IconButton
 } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbUpOffIcon from '@mui/icons-material/ThumbUpOffAlt';
 
-import { useAppContext } from '../../context/context.jsx';
+import { useAppContext } from '../../context/Context.jsx';
 import LikersList from "./LikersList.jsx";
 import * as actions from "../../redux/actions/posts.js";
 
@@ -40,7 +39,6 @@ export default function Like({
   const [ isLiked, setIsLiked ] = useState(false);
   const [ isLikersListHidden, setIsLikersListHidden ] = useState(true);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   let youAsLiker = "";
   let otherUsers = "users";

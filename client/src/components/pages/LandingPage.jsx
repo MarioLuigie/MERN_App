@@ -10,7 +10,7 @@ import {
 import Slider from "../content/Slider";
 import videoSource from "../../assets/videos/landingPage02_FHD.mp4";
 import jsonData from "../../constants/textContent.json";
-import { useAppContext } from '../../context/context';
+import { useAppContext } from '../../context/Context';
 import Footer from "../layout/Footer";
 
 const styles = css`

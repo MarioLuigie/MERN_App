@@ -1,8 +1,8 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useAppContext } from '../../../context/context';
+import { useAppContext } from '../../../context/Context';
 import { 
   Typography,
   TextField,
@@ -16,9 +16,11 @@ import Comment from "./Comment";
 
 const styles = css`
   padding-top: 5px;
+  height: 100%;
 
   .commentsTitle {
     padding-left: 20px;
+    padding-bottom: 10px;
     font-size: 18px;
   }
 
@@ -27,8 +29,8 @@ const styles = css`
     flex-direction: column;
     gap: 15px;
     margin-top: 10px;
-    min-height: 180px;
-    max-height: 250px;
+    min-height: 150px;
+    max-height: 220px;
     height: 100%;
     overflow: auto;
     border-radius: 5px;
@@ -79,7 +81,7 @@ export default function Comments({
     <div css={styles}>
       <Typography variant="body1" className="commentsTitle">Comments</Typography>
       <div className="commentsWrapper">
-        {post.comments?.map((comment, i) => (
+        {post?.comments?.map((comment, i) => (
           <Comment 
             post={post}
             comment={comment} 
@@ -97,10 +99,14 @@ export default function Comments({
         </Avatar>
         <div className="input">
           <TextField 
+            type="text"
             fullWidth
             value={commentValue}
             onChange={handleChange}
-            placeholder='Write a comment'
+            placeholder="Write a comment"
+            sx={{backgroundColor: "#e7e7e7"}}
+            multiline
+            rows={2}
           />
           <div className="sendBtnWrapper">
             <IconButton onClick={handleComment} title="Comment">

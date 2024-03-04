@@ -45,9 +45,9 @@ export default function Paginate({
             shape="rounded"
             sx={{
               '&.Mui-selected': {
-                backgroundColor: '#3f3f3f'
+                backgroundColor: '#c7c7c7cf'
               }, 
-              color: 'white',
+              color: 'black',
             }}
           />
         )}

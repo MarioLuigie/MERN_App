@@ -6,21 +6,27 @@ import {
   Typography,
   Divider
 } from "@mui/material";
-import EditNoteIcon from '@mui/icons-material/EditNote';
-import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from "react";
 
 import Comments from "./Comments";
 import Creator from "../../ui/Creator";
-import Settings from "../../ui/ListMenu";
+import PostSettings from "../PostSettings";
 import Like from "../Like";
+import { useAppContext } from '../../../context/Context';
+import PostForm from '../../dialogs/PostForm';
+import * as app from "../../../redux/actions/app";
+import CloseButton from "../../ui/CloseButton";
 
-const styles = css`
+const styles = (navbarHeight) => css`
   height: 100%;
+  overflow: auto;
+  max-height: calc(100vh - ${navbarHeight}px); 
+  background-color: #ffffff; 
 
   .paper {
     height: 100%;
+    min-height: calc(100vh - ${navbarHeight}px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -66,20 +72,34 @@ const styles = css`
       border-color: #1b1b1b;
     }
   }
+
+  .controlls {
+    display: flex;
+  }
 `
 
 export default function GalleryDetails({
   formatDate,
   handleBack, 
-  post,
-  postSupport
+  post
 }) {
 
-  const { handleEditPost, handleDeletePost } = postSupport;
+  const { user } = useAppContext();
+  const { navbarHeight } = useAppContext();
+
+  const dispatch = useDispatch();
+
+  const isOwn = String(post.creator._id) === String(user?.result?._id);
+
+  const { isPostFormOpen } = useSelector(store => store.app);
+
+  const handleClosePostForm = () => {
+    dispatch(app.updateIsPostFormOpen(false));
+  };
 
   return (
-    <div css={styles}>
-      <Paper elevation={4} className="paper">
+    <div css={styles(navbarHeight)}>
+      <Paper elevation={0} className="paper">
         <div className="card">
           <div className="info">
             <div className="creator">
@@ -88,31 +108,10 @@ export default function GalleryDetails({
                 textColor="black"
                 purpleSize="21px"
               />
-              <Settings 
-                options={[
-                  {
-                    icon: <EditNoteIcon fontSize="small"/>, 
-                    text: "Edit post", 
-                    onHandle: handleEditPost(post?._id)
-                  },
-                  {
-                    icon: <VerifiedUserIcon fontSize="small"/>, 
-                    text: "Private post", 
-                    onHandle: () => {console.log("Private post");}
-                  },
-                  {
-                    icon: <VisibilityOffIcon fontSize="small"/>, 
-                    text: "Hide post", 
-                    onHandle: () => {console.log("Hide post")}
-                  },
-                  {
-                    icon: <DeleteSweepIcon fontSize="small"/>, 
-                    text: "Delete post", 
-                    onHandle: handleDeletePost(post?._id)
-                  },
-                ]}
-                anchor={null}
-              />
+              <div className="controlls">
+                <PostSettings post={post} isOwn={isOwn} />
+                <CloseButton onClick={handleBack}/>
+              </div>
             </div>
             <Typography 
             variant="h3" 
@@ -157,7 +156,7 @@ export default function GalleryDetails({
             <Comments post={post} />
           </div>
         </div>
-        <div className="btnWrapper">
+        {/* <div className="btnWrapper">
           <Button 
             className="btn"
             variant="outlined" 
@@ -166,8 +165,9 @@ export default function GalleryDetails({
           >
             Back
           </Button>
-        </div>
+        </div> */}
       </Paper>
+      <PostForm isDialogOpen={isPostFormOpen} handleClose={handleClosePostForm} />
     </div>
   )
 }

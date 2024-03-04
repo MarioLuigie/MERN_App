@@ -11,21 +11,20 @@ import {
 import moment from "moment";
 
 import * as actions from "../../redux/actions/posts";
-import { useAppContext } from '../../context/context';
+import { useAppContext } from '../../context/Context';
 import GalleryDetails from "../content/PostDetails/GalleryDetails";
 import Gallery from "../content/PostDetails/Gallery";
 
 const styles = (navbarHeight) => css`
-  /* padding: 30px 0; */
-  height: calc(100vh - ${navbarHeight}px);
+  /* height: calc(100vh - ${navbarHeight}px);
   min-height: calc(100vh - ${navbarHeight}px);
-  max-height: calc(100vh - ${navbarHeight}px);
-  margin-top: calc(${navbarHeight}px);
+  max-height: calc(100vh - ${navbarHeight}px); */
+  margin-top: ${navbarHeight}px;
   width: 100%;
   background-color: rgb(22, 22, 22);
 
   .gridContainer {
-    max-height: calc(100vh - ${navbarHeight}px);
+    /* max-height: calc(100vh - ${navbarHeight}px); */
   }
 
   .gridItem {
@@ -33,17 +32,13 @@ const styles = (navbarHeight) => css`
   }
 
   .container {
-    /* background-color: green; */
     height: 100%;
-    padding-top: 10px;
     width: 100%;
     max-width: 1920px;
   }
 `
 
-export default function PostDetails({
-  postSupport
-}) {
+export default function PostDetails() {
 
   const params = useParams();
   const navigate = useNavigate();
@@ -58,6 +53,7 @@ export default function PostDetails({
   useEffect(() => {
     const fetchPost = async () => {
       await dispatch(actions.getPost(params.id));
+      await dispatch(actions.getPosts());
       setDataLoaded(true);
     }
     fetchPost();
@@ -93,7 +89,7 @@ export default function PostDetails({
 
   return (
     <div css={styles(navbarHeight)}>
-      <Container className="container">
+      <Container className="container" maxWidth="xl">
         <Grid container justifyContent="center" spacing={2} className="gridContainer">
           <Grid item xs={12} sm={12} md={7} lg={8} xl={9} className="gridItem">
             <Gallery post={post} />
@@ -103,7 +99,6 @@ export default function PostDetails({
               post={post} 
               handleBack={handleBack} 
               formatDate={formatDate}
-              postSupport={postSupport}
             />
           </Grid>
         </Grid>
@@ -111,3 +106,37 @@ export default function PostDetails({
     </div>
   );
 }
+
+// Dane są pobierane w funkcji fetchPost, która jest wywoływana przez useEffect w momencie montowania lub re-renderowania komponentu. Oto kroki, jakie się dzieją:
+
+//     useEffect zostaje uruchomiony, ponieważ jest zależny od params.id.
+
+// javascript
+
+// useEffect(() => {
+//   const fetchPost = async () => {
+//     await dispatch(actions.getPost(params.id));
+//     setDataLoaded(true);
+//   }
+//   fetchPost();
+// }, [params.id]);
+
+//     Wewnątrz fetchPost używane jest dispatch do wywołania akcji getPost z parametrem params.id. Akcja ta prawdopodobnie jest częścią Redux i ma na celu pobranie danych posta z odpowiedniego źródła, na przykład z API.
+
+// javascript
+
+// await dispatch(actions.getPost(params.id));
+
+//     Po pomyślnym pobraniu danych (asynchronicznie), ustawiane jest setDataLoaded(true). To z kolei wpływa na renderowanie komponentu, zwłaszcza w warunku sprawdzającym czy dane są już załadowane:
+
+// javascript
+
+// if (isLoading || !dataLoaded) {
+//   return (
+//     <div css={styles}>
+//       <CircularProgress />
+//     </div>
+//   );
+// }
+
+// W tym momencie, jeśli dane są już pobrane (dataLoaded === true), komponent będzie renderował widok szczegółów posta. Dane posta są wykorzystywane w sekcji renderowania komponentu, na przykład do przekazania ich do komponentu Gallery i GalleryDetails. W tych komponentach są prawdopodobnie używane do wyświetlenia zdjęć i szczegółów posta.

@@ -8,7 +8,9 @@ import {
   MenuItem,
   ButtonBase,
   Divider, 
-  Typography
+  Typography,
+  createTheme,
+  ThemeProvider
 } from "@mui/material";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -17,6 +19,8 @@ import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import Switch from '@mui/material/Switch';
+
+import Creator from "../ui/Creator";
 
 
 const styles = css`
@@ -101,8 +105,9 @@ export default function ListMenu({
     setAnchorEl(null);
   }
 
-  const handleSwitchMode = () => {
-    setIsDarkMode(prevState => !prevState);
+  const handleSwitchMode = (evt) => {
+    setIsDarkMode(evt.target.checked);
+    console.log("Switch mode", isDarkMode);
   }
 
   return (
@@ -156,7 +161,16 @@ export default function ListMenu({
               </div>
             </div>
             <div>
-              <Switch {...label} />
+              <Switch {...label} 
+                sx={{
+                  "& .MuiSwitch-switchBase.Mui-checked": { color: "#222222"},
+                  "& .MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track": {backgroundColor: "#000000"}
+                }}
+                inputProps={{"aria-label": "dark mode switch"}}
+                name="darkModeSwitch"
+                checked={isDarkMode}
+                onChange={handleSwitchMode}
+              />
             </div>
           </div>
         </div>

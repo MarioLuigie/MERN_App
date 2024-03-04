@@ -2,13 +2,10 @@
 import { css } from '@emotion/react';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { 
   TextField,
-  Typography,
   Button
 } from "@mui/material";
-import SearchIcon from '@mui/icons-material/Search';
 import qs from "qs";
 
 import InputTags from "../ui/InputTags";
