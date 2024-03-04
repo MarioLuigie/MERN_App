@@ -10,7 +10,7 @@ import SendIcon from '@mui/icons-material/Send';
 import moment from "moment";
 import { useDispatch } from "react-redux";
 
-import { useAppContext } from '../../../context/Context';
+import { useAppContext } from '../../../context/context';
 import * as actions from "../../../redux/actions/posts";
 import CommentControl from "../../ui/ListMenu";
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';

@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store/store.js";
 import { BrowserRouter as Router } from "react-router-dom";
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { ContextProvider } from "./context/Context.jsx";
+import { ContextProvider } from "./context/context.jsx";
 
 import App from './App.jsx';
 import "./index.scss";

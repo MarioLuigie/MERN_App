@@ -7,7 +7,7 @@ import Home from "../pages/Home";
 import Auth from "../auth/Auth";
 import LandingPage from "../pages/LandingPage";
 import PostDetails from '../pages/PostDetails';
-import { useAppContext } from '../../context/Context';
+import { useAppContext } from '../../context/context';
 
 const styles = css`
 

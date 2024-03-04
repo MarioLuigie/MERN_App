@@ -13,7 +13,7 @@ import Comments from "./Comments";
 import Creator from "../../ui/Creator";
 import PostSettings from "../PostSettings";
 import Like from "../Like";
-import { useAppContext } from '../../../context/Context';
+import { useAppContext } from '../../../context/context';
 import PostForm from '../../dialogs/PostForm';
 import * as app from "../../../redux/actions/app";
 import CloseButton from "../../ui/CloseButton";

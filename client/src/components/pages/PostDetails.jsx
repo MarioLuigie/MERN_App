@@ -11,7 +11,7 @@ import {
 import moment from "moment";
 
 import * as actions from "../../redux/actions/posts";
-import { useAppContext } from '../../context/Context';
+import { useAppContext } from '../../context/context';
 import GalleryDetails from "../content/PostDetails/GalleryDetails";
 import Gallery from "../content/PostDetails/Gallery";
 

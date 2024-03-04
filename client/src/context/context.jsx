@@ -9,7 +9,6 @@ export const ContextProvider = ({ children }) => {
   const [ user, setUser ] = useState(JSON.parse(localStorage.getItem('profile')));
   
   const [currentLocation, setCurrentLocation ] = useState("");
-  const [currentId, setCurrentId] = useState(null);
   const [navbarHeight, setNavbarHeight ] = useState(0);
 
   return (
@@ -18,8 +17,6 @@ export const ContextProvider = ({ children }) => {
       setUser, 
       currentLocation, 
       setCurrentLocation,
-      currentId,
-      setCurrentId,
       navbarHeight,
       setNavbarHeight
       }}

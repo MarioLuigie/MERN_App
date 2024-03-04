@@ -6,7 +6,7 @@ import {
 } from "@mui/material";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { useAppContext } from '../../../context/Context';
+import { useAppContext } from '../../../context/context';
 
 const styles = (navbarHeight) => css`
   height: 100%;
