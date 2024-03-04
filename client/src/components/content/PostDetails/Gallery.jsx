@@ -67,9 +67,9 @@ export default function Gallery({
   return (
     <div css={styles(navbarHeight)}>
       <Paper className="images" elevation={0}>
-        <Button className="navigateWrapper navigateWrapper--left"       
-          TouchRippleProps={{style: { color: "#a8a8a8" },
-          }}
+        <Button 
+          className="navigateWrapper navigateWrapper--left"       
+          TouchRippleProps={{style: { color: "#a8a8a8" }}}
         >
           <ArrowBackIosNewIcon className="navigateIcon" />
         </Button>
@@ -78,9 +78,9 @@ export default function Gallery({
           alt="" 
           style={{maxHeight: "100%", maxWidth: "100%"}}
         />
-        <Button className="navigateWrapper navigateWrapper--right"
-          TouchRippleProps={{style: { color: "#a8a8a8" },
-          }}
+        <Button 
+          className="navigateWrapper navigateWrapper--right"
+          TouchRippleProps={{style: { color: "#a8a8a8" }}}
         >
           <ArrowForwardIosIcon className="navigateIcon" />
         </Button>
