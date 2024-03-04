@@ -8,12 +8,7 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
-<<<<<<< HEAD
-import CreatePostForm from '../dialogs/CreatePostForm';
-import { useAppContext } from '../../context/context';
-=======
 import PostForm from '../dialogs/PostForm';
->>>>>>> 12_CreateAppReducer
 
 import SearchForm from "../dialogs/SearchForm";
 import * as app from "../../redux/actions/app";
@@ -39,17 +34,10 @@ export default function MainMenu() {
 
   const dispatch = useDispatch();
 
-<<<<<<< HEAD
-  // const { isSearchFormOpen, setIsSearchFormOpen, isCreateFormOpen, setIsCreateFormOpen } = useAppContext();
-
-  const handleOpenForm = (setState) => () => {
-    setState(true);
-=======
   const { isSearchFormOpen, isPostFormOpen} = useSelector(store => store.app);
 
   const handleOpenPostForm = () => {
     dispatch(app.updateIsPostFormOpen(true));
->>>>>>> 12_CreateAppReducer
   };
 
   const handleOpenSearchForm = () => {

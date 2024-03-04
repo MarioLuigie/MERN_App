@@ -7,35 +7,14 @@ import Home from "../pages/Home";
 import Auth from "../auth/Auth";
 import LandingPage from "../pages/LandingPage";
 import PostDetails from '../pages/PostDetails';
-import { useAppContext } from '../../context/Context';
+import { useAppContext } from '../../context/context';
 
 const styles = css`
 
 `
 export default function Main() {
 
-<<<<<<< HEAD
-  const { user, setCurrentId } = useAppContext();
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const handleEditPost = (postId) => () => {
-    setCurrentId(postId);
-  }
-
-  const handleDeletePost = (postId) => () => {
-    dispatch(actions.deletePost(postId));
-    navigate("/home");
-  }
-
-  const postSupport = {
-    handleEditPost,
-    handleDeletePost
-  }
-=======
   const { user } = useAppContext();
->>>>>>> 12_CreateAppReducer
 
   console.log("MAIN");
 

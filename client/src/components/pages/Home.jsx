@@ -14,7 +14,7 @@ import Posts from "../content/Posts";
 import Paginate from "../content/Paginate";
 import MainMenu from "../content/MainMenu";
 import * as actions from "../../redux/actions/posts.js";
-import { useAppContext } from '../../context/Context';
+import { useAppContext } from '../../context/context';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
