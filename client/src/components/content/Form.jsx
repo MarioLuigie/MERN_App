@@ -138,8 +138,8 @@ export default function Form({
 
     if (currentPostId) {
       await dispatch(actions.updatePost(currentPostId, {...postData, name: user?.result?.name, tags}));
-      await dispatch(actions.getPosts());//For refresh GalleryDetails.jsx
-      await dispatch(actions.getPost(currentPostId));//For refresh GalleryDetails.jsx
+      // await dispatch(actions.getPosts());//For refresh GalleryDetails.jsx
+      // await dispatch(actions.getPost(currentPostId));//For refresh GalleryDetails.jsx
     } else {
       const files = uploadedFiles;
       // console.log("UploadeFiles:", files);

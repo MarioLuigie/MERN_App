@@ -51,6 +51,16 @@ const postsReducer = (state = initState, action) => {
       };
 
     case type.UPDATE_POST:
+      console.log("updatePost:", action.data);
+      return {
+        ...state,
+        postsList: state.postsList.map(post => (
+          post._id === action.data._id
+            ? {...post, ...action.data}
+            : post
+        )),
+        post: {...state.post, ...action.data}
+      }
 
     case type.UPDATE_LIKES:
       return {

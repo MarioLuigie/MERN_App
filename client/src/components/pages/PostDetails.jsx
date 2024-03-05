@@ -52,6 +52,8 @@ export default function PostDetails() {
 
   const [ dataLoaded, setDataLoaded ] = useState(false);
 
+  console.log("***", post);
+
   useEffect(() => {
     const fetchPost = async () => {
       await dispatch(actions.getPost(params.id));
