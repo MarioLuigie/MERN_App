@@ -64,6 +64,7 @@ export default function PostDetails() {
   const handleGoHome = () => {
     console.log("GO HOME");
     navigate(lastHomePagination);
+    dispatch(app.updateCurrentImageIndex(0));
   }
 
   const handleBack = () => {
