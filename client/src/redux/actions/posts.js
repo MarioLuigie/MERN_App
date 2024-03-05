@@ -6,7 +6,7 @@ export const getPosts = (searchParams) => async (dispatch) => {
     dispatch({type: type.START_LOADING});
 
     const { data } = await api.getPosts(searchParams);
-    // data to { 
+    // data to - { 
     //   postsList: [{}, {}], 
     //   currentPage: number, 
     //   numbOfPages: number
@@ -39,23 +39,6 @@ export const getPost = (id) => async (dispatch) => {
   }
 }
 
-// export const getPostsBySearch = (searchQuery) => async (dispatch) => {
-//   try {
-//     dispatch({type: type.START_LOADING});
-
-//     const { data } = await api.getPostsBySearch(searchQuery);
-
-//     console.log(data);
-
-//     dispatch({type: type.READ_POSTS_BY_SEARCH, data});
-
-//     dispatch({type: type.END_LOADING});
-
-//   } catch (err) {
-//     console.error("Something went wrong...READ BY SEARCH ERROR", err);
-//   }
-// }
-
 export const createPost = (newPost, navigate) => async (dispatch) => {
   const { name, title, message, tags, files } = newPost;
 
@@ -86,7 +69,7 @@ export const createPost = (newPost, navigate) => async (dispatch) => {
     const { data } = await api.createPost(formData);
     console.log(data);
 
-    navigate(`/home/${data._id}`)
+    navigate(`/home/${data._id}/${data.files[0]}`)
 
     dispatch({type: type.CREATE_POST, data});
 

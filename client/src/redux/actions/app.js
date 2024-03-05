@@ -18,3 +18,7 @@ export const updateIsSearchFormOpen = (bool) => (dispatch) => {
 export const updateCurrentImageIndex = (index) => (dispatch) => {
   dispatch({type: type.CURRENT_IMAGE_INDEX, data: index});
 }
+
+export const updateLastHomePagination = (path) => (dispatch) => {
+  dispatch({type: type.LAST_HOME_PAGINATION, data: path});
+}

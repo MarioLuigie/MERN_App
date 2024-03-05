@@ -48,7 +48,7 @@ export default function PostDetails() {
   const { navbarHeight } = useAppContext();
 
   const { post, isLoading } = useSelector(store => store.posts);
-  const { currentImageIndex } = useSelector(store => store.app);
+  const { currentImageIndex, lastHomePagination } = useSelector(store => store.app);
 
   const [ dataLoaded, setDataLoaded ] = useState(false);
 
@@ -63,6 +63,7 @@ export default function PostDetails() {
 
   const handleGoHome = () => {
     console.log("GO HOME");
+    navigate(lastHomePagination);
   }
 
   const handleBack = () => {

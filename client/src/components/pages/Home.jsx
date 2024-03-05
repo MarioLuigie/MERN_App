@@ -14,6 +14,7 @@ import Posts from "../content/Posts";
 import Paginate from "../content/Paginate";
 import MainMenu from "../content/MainMenu";
 import * as actions from "../../redux/actions/posts.js";
+import * as app from "../../redux/actions/app.js";
 import { useAppContext } from '../../context/context';
 
 function useQuery() {
@@ -66,6 +67,10 @@ export default function Home() {
   //   console.log("LOCATION:", currentLocation);
   //   console.log("LOCATION:", location);
   // }, 3000);
+
+  useEffect(() => {
+    dispatch(app.updateLastHomePagination(`${location.pathname}${location.search}`))
+  }, [page])
 
   return (
     <div css={styles(navbarHeight)}>

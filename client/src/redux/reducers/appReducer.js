@@ -3,6 +3,7 @@ import * as type from "../../constants/actions.js";
 const initState = {
   currentPostId: "",
   currentImageIndex: 0,
+  lastHomePagination: "/home",
   isPostFormOpen: false,
   isSearchFormOpen: false
 }
@@ -22,6 +23,13 @@ const appReducer = (state = initState, action) => {
       return {
         ...state,
         currentImageIndex: action.data
+      };
+
+    case type.LAST_HOME_PAGINATION:
+      console.log("LAST HOME PAGINATION:", action.data);
+      return {
+        ...state,
+        lastHomePagination: action.data
       };
     
     case type.POST_FORM_OPEN:
