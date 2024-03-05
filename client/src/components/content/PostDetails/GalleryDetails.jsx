@@ -80,7 +80,7 @@ const styles = (navbarHeight) => css`
 
 export default function GalleryDetails({
   formatDate,
-  handleBack, 
+  handleGoHome, 
   post
 }) {
 
@@ -110,7 +110,7 @@ export default function GalleryDetails({
               />
               <div className="controlls">
                 <PostSettings post={post} isOwn={isOwn} />
-                <CloseButton onClick={handleBack}/>
+                <CloseButton onClick={handleGoHome}/>
               </div>
             </div>
             <Typography 
@@ -156,16 +156,6 @@ export default function GalleryDetails({
             <Comments post={post} />
           </div>
         </div>
-        {/* <div className="btnWrapper">
-          <Button 
-            className="btn"
-            variant="outlined" 
-            onClick={handleBack}
-            fullWidth
-          >
-            Back
-          </Button>
-        </div> */}
       </Paper>
       <PostForm isDialogOpen={isPostFormOpen} handleClose={handleClosePostForm} />
     </div>

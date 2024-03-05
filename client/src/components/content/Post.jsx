@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import { useAppContext } from '../../context/context.jsx';
 import Like from "./Like.jsx";
@@ -117,6 +118,7 @@ export default function Post({
 
   const navigate = useNavigate();
   const { user } = useAppContext();
+  const { currentImageIndex } = useSelector(store => store.app);
   // const [ likes, setLikes ] = useState([]);
 
   const isOwn = String(post.creator._id) === String(user?.result?._id);
@@ -129,7 +131,7 @@ export default function Post({
   const handleOpenPostDetails = (evt) => {
     // console.log("DETAILS");
     evt.stopPropagation();
-    navigate(`/home/${post._id}`);
+    navigate(`/home/${post._id}/${post.files[currentImageIndex]}`);
   }
 
   const shortText = (text, numb) => {

@@ -14,3 +14,7 @@ export const updateIsSearchFormOpen = (bool) => (dispatch) => {
 
   dispatch({type: type.SEARCH_FORM_OPEN, data: bool});
 }
+
+export const updateCurrentImageIndex = (index) => (dispatch) => {
+  dispatch({type: type.CURRENT_IMAGE_INDEX, data: index});
+}

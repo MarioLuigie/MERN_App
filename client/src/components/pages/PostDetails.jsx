@@ -1,7 +1,7 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useEffect, useState } from "react";
-import { useParams, useNavigate} from "react-router-dom";
+import { useParams, useNavigate, Routes, Route} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { 
   CircularProgress, 
@@ -10,7 +10,8 @@ import {
 } from "@mui/material";
 import moment from "moment";
 
-import * as actions from "../../redux/actions/posts";
+import * as actions from "../../redux/actions/posts.js";
+import * as app from "../../redux/actions/app.js";
 import { useAppContext } from '../../context/context';
 import GalleryDetails from "../content/PostDetails/GalleryDetails";
 import Gallery from "../content/PostDetails/Gallery";
@@ -47,6 +48,7 @@ export default function PostDetails() {
   const { navbarHeight } = useAppContext();
 
   const { post, isLoading } = useSelector(store => store.posts);
+  const { currentImageIndex } = useSelector(store => store.app);
 
   const [ dataLoaded, setDataLoaded ] = useState(false);
 
@@ -59,8 +61,24 @@ export default function PostDetails() {
     fetchPost();
   }, [params.id]);
 
+  const handleGoHome = () => {
+    console.log("GO HOME");
+  }
+
   const handleBack = () => {
-    navigate(-1);
+    // navigate(-1);
+    const newIndex = currentImageIndex - 1;
+    if (newIndex >= 0) {
+      dispatch(app.updateCurrentImageIndex(newIndex));
+      navigate(`/home/${post._id}/${post.files[newIndex]}`);
+    }
+  }
+
+  const handleForward = () => {
+    console.log("FORWARD", currentImageIndex);
+    const newIndex = (currentImageIndex + 1) % post.files.length;
+    dispatch(app.updateCurrentImageIndex(newIndex));
+    navigate(`/home/${post._id}/${post.files[newIndex]}`);
   }
 
   const formatDate = (dateString) => {
@@ -70,6 +88,8 @@ export default function PostDetails() {
   
     return formattedDate;
   };
+
+    // console.log(post?.files);
 
   if (isLoading || !dataLoaded) {
     return (
@@ -92,12 +112,24 @@ export default function PostDetails() {
       <Container className="container" maxWidth="xl">
         <Grid container justifyContent="center" spacing={2} className="gridContainer">
           <Grid item xs={12} sm={12} md={7} lg={8} xl={9} className="gridItem">
-            <Gallery post={post} />
+            <Routes>
+              <Route 
+                path={`/${post.files[currentImageIndex]}`} 
+                element={
+                  <Gallery 
+                    post={post} 
+                    currentImageIndex={currentImageIndex} 
+                    handleForward={handleForward}
+                    handleBack={handleBack}
+                  />
+                } 
+              />
+            </Routes>
           </Grid>
           <Grid item xs={12} sm={12} md={5} lg={4} xl={3}>
             <GalleryDetails 
               post={post} 
-              handleBack={handleBack} 
+              handleGoHome={handleGoHome} 
               formatDate={formatDate}
             />
           </Grid>

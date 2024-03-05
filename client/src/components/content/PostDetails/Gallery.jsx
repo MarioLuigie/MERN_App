@@ -55,11 +55,18 @@ const styles = (navbarHeight) => css`
   .navigateIcon {
     color: #8d8d8d;
     font-size: 50px;
+
+    &--disabled {
+      color: #2c2c2c;
+    }
   }
 `
 
 export default function Gallery({
-  post
+  post,
+  currentImageIndex,
+  handleForward,
+  handleBack
 }) {
 
   const { navbarHeight } = useAppContext();
@@ -70,17 +77,20 @@ export default function Gallery({
         <Button 
           className="navigateWrapper navigateWrapper--left"       
           TouchRippleProps={{style: { color: "#a8a8a8" }}}
+          onClick={handleBack}
+          disabled={currentImageIndex === 0 ? true : false}
         >
-          <ArrowBackIosNewIcon className="navigateIcon" />
+          <ArrowBackIosNewIcon className={currentImageIndex !== 0 ? "navigateIcon" : "navigateIcon navigateIcon--disabled"} />
         </Button>
         <img 
-          src={post.files.length > 0 ? post.files[0] : ""} 
+          src={post.files.length > 0 ? post.files[currentImageIndex] : ""} 
           alt="" 
           style={{maxHeight: "100%", maxWidth: "100%"}}
         />
         <Button 
           className="navigateWrapper navigateWrapper--right"
           TouchRippleProps={{style: { color: "#a8a8a8" }}}
+          onClick={handleForward}
         >
           <ArrowForwardIosIcon className="navigateIcon" />
         </Button>
