@@ -57,11 +57,11 @@ export default function PostDetails() {
   useEffect(() => {
     const fetchPost = async () => {
       await dispatch(actions.getPost(params.id));
-      await dispatch(actions.getPosts());
+      // await dispatch(actions.getPosts());
       setDataLoaded(true);
     }
     fetchPost();
-  }, [params.id]);
+  }, []);
 
   const handleGoHome = () => {
     console.log("GO HOME");
@@ -74,15 +74,15 @@ export default function PostDetails() {
     const newIndex = currentImageIndex - 1;
     if (newIndex >= 0) {
       dispatch(app.updateCurrentImageIndex(newIndex));
-      navigate(`/home/${post._id}/${post.files[newIndex]}`);
+      navigate(`/home/${post?._id}/${post?.files[newIndex]}`);
     }
   }
 
   const handleForward = () => {
     console.log("FORWARD", currentImageIndex);
-    const newIndex = (currentImageIndex + 1) % post.files.length;
+    const newIndex = (currentImageIndex + 1) % post?.files?.length;
     dispatch(app.updateCurrentImageIndex(newIndex));
-    navigate(`/home/${post._id}/${post.files[newIndex]}`);
+    navigate(`/home/${post?._id}/${post?.files[newIndex]}`);
   }
 
   const formatDate = (dateString) => {
@@ -118,7 +118,7 @@ export default function PostDetails() {
           <Grid item xs={12} sm={12} md={7} lg={8} xl={9} className="gridItem">
             <Routes>
               <Route 
-                path={`/${post.files[currentImageIndex]}`} 
+                path={`/${post?.files[currentImageIndex]}`} 
                 element={
                   <Gallery 
                     post={post} 

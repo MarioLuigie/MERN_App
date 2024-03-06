@@ -83,7 +83,7 @@ export default function Gallery({
           <ArrowBackIosNewIcon className={currentImageIndex !== 0 ? "navigateIcon" : "navigateIcon navigateIcon--disabled"} />
         </Button>
         <img 
-          src={post.files.length > 0 ? post.files[currentImageIndex] : 0} 
+          src={post?.files?.length > 0 ? post?.files[currentImageIndex] : 0} 
           alt="" 
           style={{maxHeight: "100%", maxWidth: "100%"}}
         />
