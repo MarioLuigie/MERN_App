@@ -73,7 +73,7 @@ export const createPost = (newPost, navigate) => async (dispatch) => {
 
     await dispatch({type: type.END_LOADING});
 
-    // navigate(`/home/${data._id}/${data.files[0]}`);
+    navigate(`/home/${data._id}/${data.files[0]}`);
 
   } catch (err) {
     console.error("Something went wrong...CREATE ERROR", err.message);
