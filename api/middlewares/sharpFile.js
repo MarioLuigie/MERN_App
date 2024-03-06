@@ -21,7 +21,7 @@ const sharpFile = async (req, res, next) => {
     const s3Client = new S3Client({
       region: 'eu-north-1',
       credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY,
+        accessKeyId: process.env.AWS_ACCESS_CODE,
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
       }
     });
