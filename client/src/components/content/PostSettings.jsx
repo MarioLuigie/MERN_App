@@ -25,7 +25,7 @@ export default function PostSettings({
 
   const handleDeletePost = () => {
     dispatch(actions.deletePost(post._id));
-    navigate("/home?page=1");
+    // navigate("/home?page=1");
   }
 
   const handleReport = () => {

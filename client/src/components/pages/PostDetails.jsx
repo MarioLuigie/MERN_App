@@ -61,7 +61,7 @@ export default function PostDetails() {
       setDataLoaded(true);
     }
     fetchPost();
-  }, []);
+  }, [params.id]);
 
   const handleGoHome = () => {
     console.log("GO HOME");

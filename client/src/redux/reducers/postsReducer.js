@@ -47,7 +47,7 @@ const postsReducer = (state = initState, action) => {
     case type.CREATE_POST:
       return {
         ...state,
-        postsList: [...state.postsList, action.data]
+        postsList: [action.data, ...state.postsList]
       };
 
     case type.UPDATE_POST:

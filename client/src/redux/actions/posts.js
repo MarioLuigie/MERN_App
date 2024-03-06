@@ -69,11 +69,11 @@ export const createPost = (newPost, navigate) => async (dispatch) => {
     const { data } = await api.createPost(formData);
     console.log(data);
 
-    navigate(`/home/${data._id}/${data.files[0]}`)
+    await dispatch({type: type.CREATE_POST, data});
 
-    dispatch({type: type.CREATE_POST, data});
+    await dispatch({type: type.END_LOADING});
 
-    dispatch({type: type.END_LOADING});
+    // navigate(`/home/${data._id}/${data.files[0]}`);
 
   } catch (err) {
     console.error("Something went wrong...CREATE ERROR", err.message);

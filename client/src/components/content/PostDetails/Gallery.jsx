@@ -2,7 +2,8 @@
 import { css } from '@emotion/react';
 import { 
   Paper,
-  Button
+  Button,
+  CircularProgress
 } from "@mui/material";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -70,6 +71,14 @@ export default function Gallery({
 }) {
 
   const { navbarHeight } = useAppContext();
+
+  if (!post || Object.keys(post).length === 0) {
+    return (
+      <div css={styles}>
+        <CircularProgress />
+      </div>
+    );
+  }
 
   return (
     <div css={styles(navbarHeight)}>
