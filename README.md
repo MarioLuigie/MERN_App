@@ -1,6 +1,6 @@
 # yourEditorials - The complete platform for sharing own fashion photos.
 
-![Opis obrazu](url_do_grafiki.jpg)
+![Application intro](https://raw.githubusercontent.com/MarioLuigie/MERN_App/main/client/public/readme-intro.jpg)
 
 ## Introduction
 
