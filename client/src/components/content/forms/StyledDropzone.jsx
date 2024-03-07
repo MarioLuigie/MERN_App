@@ -13,7 +13,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import DoneIcon from '@mui/icons-material/Done';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 
-import { countBytes } from "../../utils/counters.js";
+import { countBytes } from "../../../utils/counters.js";
 
 const styles = css`
   display: flex;

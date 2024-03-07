@@ -6,9 +6,9 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import FlagIcon from '@mui/icons-material/Flag';
 
-import ListMenu from "../ui/ListMenu";
-import * as actions from "../../redux/actions/posts";
-import * as app from "../../redux/actions/app";
+import ListMenu from "../../ui/ListMenu";
+import * as actions from "../../../redux/actions/posts";
+import * as app from "../../../redux/actions/app";
 
 export default function PostSettings({
   post,

@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import qs from "qs";
 
-import InputTags from "../ui/InputTags";
+import InputTags from "../../ui/InputTags";
 
 const styles = css`
 

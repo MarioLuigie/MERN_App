@@ -6,8 +6,8 @@ import {
   Grid
 } from "@mui/material";
 
-import FooterItem from "../content/FooterItem";
-import FooterSocial from "../content/FooterSocial";
+import FooterItem from "../content/footer/FooterItem";
+import FooterSocial from "../content/footer/FooterSocial";
 import jsonData from "../../constants/textContent.json";
 
 const styles = css`

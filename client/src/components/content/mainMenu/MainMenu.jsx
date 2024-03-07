@@ -8,10 +8,10 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
-import PostForm from '../dialogs/PostForm';
+import PostForm from '../../dialogs/PostForm';
 
-import SearchForm from "../dialogs/SearchForm";
-import * as app from "../../redux/actions/app";
+import SearchForm from "../../dialogs/SearchForm";
+import * as app from "../../../redux/actions/app";
 
 const styles = css`
   display: flex;

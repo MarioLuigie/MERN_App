@@ -10,9 +10,9 @@ import {
   Grid
 } from "@mui/material";
 
-import Posts from "../content/Posts";
+import Posts from "../content/posts/Posts";
 import Paginate from "../content/Paginate";
-import MainMenu from "../content/MainMenu";
+import MainMenu from "../content/mainMenu/MainMenu";
 import * as actions from "../../redux/actions/posts.js";
 import * as app from "../../redux/actions/app.js";
 import { useAppContext } from '../../context/context';

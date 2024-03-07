@@ -8,9 +8,9 @@ import {
 import ThumbUpIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbUpOffIcon from '@mui/icons-material/ThumbUpOffAlt';
 
-import { useAppContext } from '../../context/context.jsx';
+import { useAppContext } from '../../../context/context.jsx';
 import LikersList from "./LikersList.jsx";
-import * as actions from "../../redux/actions/posts.js";
+import * as actions from "../../../redux/actions/posts.js";
 
 const styles = css`
 

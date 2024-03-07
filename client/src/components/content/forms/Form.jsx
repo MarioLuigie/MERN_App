@@ -13,10 +13,10 @@ import {
 import { PropTypes } from "prop-types";
 
 import StyledDropzone from "./StyledDropzone";
-import * as actions from "../../redux/actions/posts.js";
-import * as app from "../../redux/actions/app"
-import { useAppContext } from '../../context/context.jsx';
-import InputTags from "../ui/InputTags";
+import * as actions from "../../../redux/actions/posts.js";
+import * as app from "../../../redux/actions/app"
+import { useAppContext } from '../../../context/context.jsx';
+import InputTags from "../../ui/InputTags";
 
 const styles = css`
   padding: 20px 15px 35px;

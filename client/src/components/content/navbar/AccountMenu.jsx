@@ -20,7 +20,7 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import Switch from '@mui/material/Switch';
 
-import Creator from "../ui/Creator";
+import Creator from "../../ui/Creator";
 
 
 const styles = css`

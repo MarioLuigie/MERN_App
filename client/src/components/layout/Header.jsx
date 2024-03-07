@@ -2,7 +2,7 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import Navbar from "../content/Navbar";
+import Navbar from "../content/navbar/Navbar";
 
 const styles = css`
 `

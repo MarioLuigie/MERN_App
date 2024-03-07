@@ -7,7 +7,7 @@ import {
   Grid
 } from "@mui/material";
 
-import Slider from "../content/Slider";
+import Slider from "../content/landingPage/Slider";
 import videoSource from "../../assets/videos/landingPage02_FHD.mp4";
 import jsonData from "../../constants/textContent.json";
 import { useAppContext } from '../../context/context';

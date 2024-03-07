@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { useSelector } from "react-redux";
 
-import Form from "../content/Form";
+import Form from "../content/forms/Form";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {

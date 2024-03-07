@@ -10,8 +10,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Comments from "./Comments";
 import Creator from "../../ui/Creator";
-import PostSettings from "../PostSettings";
-import Like from "../Like";
+import PostSettings from "../posts/PostSettings";
+import Like from "../posts/Like";
 import { useAppContext } from '../../../context/context';
 import PostForm from '../../dialogs/PostForm';
 import * as app from "../../../redux/actions/app";
