@@ -1,5 +1,7 @@
 # yourEditorials - The complete platform for sharing own fashion photos.
 
+![Opis obrazu](url_do_grafiki.jpg)
+
 ## Introduction
 
 **yourEditorials** is a platform that allows users to share photos from their fashion sessions, build portfolios, and find inspiration from other users. The application is built on the MERN stack (MongoDB, Express.js, React, Node.js) and offers a responsive user interface.
