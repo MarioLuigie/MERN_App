@@ -13,7 +13,7 @@ import moment from "moment";
 import * as actions from "../../redux/actions/posts.js";
 import * as app from "../../redux/actions/app.js";
 import { useAppContext } from '../../context/context';
-import GalleryDetails from "../content/postDetails/GalleryDetails";
+import GalleryDetails from "../content/postDetails/GalleryDetails.jsx";
 import Gallery from "../content/postDetails/Gallery";
 
 const styles = (navbarHeight) => css`
