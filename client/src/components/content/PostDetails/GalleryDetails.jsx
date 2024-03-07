@@ -1,13 +1,12 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { 
-  Button, 
   Paper, 
   Typography,
   Divider
 } from "@mui/material";
+import PublicIcon from '@mui/icons-material/Public';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from "react";
 
 import Comments from "./Comments";
 import Creator from "../../ui/Creator";
@@ -39,9 +38,22 @@ const styles = (navbarHeight) => css`
   }
 
   .postTitle {
-    padding-top: 30px;
+    padding: 30px 0 13px;
     font-weight: bold;
     line-height: 0.9;
+  }
+
+  .dateWrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 5px;
+  }
+
+  .date {
+    color: #949494;
+    letter-spacing: 1px;
+    font-size: 12px;
   }
 
   .info {
@@ -119,13 +131,10 @@ export default function GalleryDetails({
             >
               {post?.title}
             </Typography>
-            <Typography 
-              variant="overline" 
-              color="textSecondary" 
-              className="date"
-            >
-              {formatDate(post?.createdAt)}
-            </Typography>
+            <div className="dateWrapper">
+              <div className="date" >{formatDate(post?.createdAt)}</div>
+              <PublicIcon color="disabled" fontSize="small" />
+            </div>
             <Typography 
               variant="body1" 
               pt="25px" 
