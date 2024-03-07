@@ -75,48 +75,52 @@ You can try it out here: **[https://yourmemories.vercel.app/](https://yourmemori
 - `/MERN-APP`
   - `/client` 
     - `/node_modules`          
-    - `/public`
-    - `/src/`
-      - `/assets/`
-        - `/icons/`
-        - `/images/`
-        - `/videos/`
-      - `/components/`
-        - `/auth/`
-        - `/content/`
-          - `/footer/`
-          - `/forms/`
-          - `/landingPage/`
-          - `/mainMenu/`
-          - `/navbar/`
-          - `/postDetails/`
-          - `/posts/`
-        - `/dialogs/`
-        - `/layout/`
-        - `/pages/`
-        - `/ui/`
-      - `/config/`
-      - `/constants/`
-      - `/context/`
-      - `/redux/`
-      - `/utils/`
-      - `/App.jsx`
-      - `/index.jsx`
-      - `/index.scss`
-      - `/index.html`
+    - `/public`- Public files served by the development server
+    - `/src/`- Source files of the application
+      - `/assets/`- Static files
+        - `/icons/`- Icons files
+        - `/images/`- Graphics files
+        - `/videos/`- Videos files
+      - `/components/`- Reusable UI components
+        - `/auth/`- Components for authentication
+        - `/content/`- General components
+          - `/footer/`- Footer components
+          - `/forms/`- Forms components
+          - `/landingPage/`- Landing page intro components
+          - `/mainMenu/`- Main menu components
+          - `/navbar/`- Navbar components
+          - `/postDetails/`- Post details components
+          - `/posts/`- Posts components
+        - `/dialogs/`- Dialogs components
+        - `/layout/`- Layout-related UI components
+        - `/pages/`- Pages components
+        - `/ui/`- Components specific to the Shadcn library
+      - `/config/`- Configuration files used in the application
+      - `/constants/`- Constant values
+      - `/context/`- Context files
+      - `/redux/`- Redux folders
+        - `/api/`- Root folder for handling API-related code
+        - `/actions/`- CRUD-related actions
+        - `/reducers/`- Application`s state
+        - `/store/`- Application state storage
+      - `/utils/`- Tools to use throughout the application
+      - `/App.jsx`- General component
+      - `/index.jsx`- Entry point for the client-side application
+      - `/index.scss`-Global styles and styling utilities for the application
+      - `/index.html`- HTML template for the client application.
   - `/api/              
-    - `/controllers/`
-    - `/middlewares/`
-    - `/models/`
-    - `/routes/`
-    - `/index.js`  
-    - `/package.json`          
-  - `/node_modules/        
-  - `/.gitignore`            
-  - `/package.json`   
-  - `/package-lock.json`        
-  - `/README.md`  
-  - `/vercel.json` 
+    - `/controllers/`- Controllers responsible for handling CRUD operations.
+    - `/middlewares/`- Middlewares related to CRUD operations.
+    - `/models/`- Data models used in the application
+    - `/routes/`- Route definitions for API endpoints
+    - `/index.js`- Entry point for setting up and exporting the API
+    - `/package.json`- Configuration file for managing API dependencies         
+  - `/node_modules/`- Folder containing npm dependencies (automatically generated)        
+  - `/.gitignore`- Configuration file specifying files and folders to be ignored by Git          
+  - `/package.json`- Configuration file for managing project-level dependencies and scripts  
+  - `/package-lock.json`- Automatically generated file locking dependencies versions        
+  - `/README.md`- Project documentation providing an overview of the project structure and instructions for developers  
+  - `/vercel.json`- Configuration file for Vercel deployment.
 
 ## Setup
 
