@@ -8,7 +8,7 @@ import {
   Container, 
   Grid
 } from "@mui/material";
-import moment from "moment";
+import moment from "moment"
 
 import * as actions from "../../redux/actions/posts.js";
 import * as app from "../../redux/actions/app.js";
