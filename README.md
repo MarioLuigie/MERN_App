@@ -109,9 +109,9 @@ You can try it out here: **[https://yourmemories.vercel.app/](https://yourmemori
       - `/App.jsx`- General component
       - `/index.jsx`- Entry point for the client-side application
       - `/index.scss`-Global styles and styling utilities for the application
-      - `/index.html`- HTML template for the client application.
+      - `/index.html`- HTML template for the client application
   - `/api/`              
-    - `/controllers/`- Controllers responsible for handling CRUD operations.
+    - `/controllers/`- Controllers responsible for handling CRUD operations
     - `/middlewares/`- Middlewares related to CRUD operations.
     - `/models/`- Data models used in the application
     - `/routes/`- Route definitions for API endpoints
@@ -122,7 +122,7 @@ You can try it out here: **[https://yourmemories.vercel.app/](https://yourmemori
   - `/package.json`- Configuration file for managing project-level dependencies and scripts  
   - `/package-lock.json`- Automatically generated file locking dependencies versions        
   - `/README.md`- Project documentation providing an overview of the project structure and instructions for developers  
-  - `/vercel.json`- Configuration file for Vercel deployment.
+  - `/vercel.json`- Configuration file for Vercel deployment
 
 ## Setup
 
