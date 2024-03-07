@@ -8,13 +8,13 @@ import {
   Container, 
   Grid
 } from "@mui/material";
-import moment from "moment"
+import moment from "moment";
 
 import * as actions from "../../redux/actions/posts.js";
 import * as app from "../../redux/actions/app.js";
 import { useAppContext } from '../../context/context';
 import GalleryDetails from "../content/hostDetails/GalleryDetails.jsx";
-import Gallery from "../content/hostDetails/Gallery.js";
+import Gallery from "../content/hostDetails/Gallery.jsx";
 
 const styles = (navbarHeight) => css`
   /* height: calc(100vh - ${navbarHeight}px);
