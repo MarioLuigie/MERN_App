@@ -108,7 +108,7 @@ You can try it out here: **[https://yourmemories.vercel.app/](https://yourmemori
       - `/index.jsx`- Entry point for the client-side application
       - `/index.scss`-Global styles and styling utilities for the application
       - `/index.html`- HTML template for the client application.
-  - `/api/              
+  - `/api/`              
     - `/controllers/`- Controllers responsible for handling CRUD operations.
     - `/middlewares/`- Middlewares related to CRUD operations.
     - `/models/`- Data models used in the application
