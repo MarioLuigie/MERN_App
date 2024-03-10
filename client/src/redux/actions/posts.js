@@ -40,6 +40,7 @@ export const getPost = (id) => async (dispatch) => {
 }
 
 export const createPost = (newPost, navigate) => async (dispatch) => {
+
   const { name, title, message, tags, files } = newPost;
 
   console.log(files);
@@ -64,14 +65,15 @@ export const createPost = (newPost, navigate) => async (dispatch) => {
   });//[content]
   
   try {
-    dispatch({type: type.START_LOADING});
+    
+    // dispatch({type: type.START_LOADING});
 
     const { data } = await api.createPost(formData);
     console.log(data);
 
     await dispatch({type: type.CREATE_POST, data});
 
-    await dispatch({type: type.END_LOADING});
+    // await dispatch({type: type.END_LOADING});
 
     navigate(`/home/${data._id}/${data.files[0]}`);
 

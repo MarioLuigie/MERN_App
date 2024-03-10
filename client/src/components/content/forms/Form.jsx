@@ -69,7 +69,8 @@ export default function Form({
 
   const { user } = useAppContext();
 
-  const { isPostFormOpen } = useSelector(store => store.app);
+  const { isPostFormOpen, currentImageIndex } = useSelector(store => store.app);
+  const { post } = useSelector(store => store.posts);
 
   const [tags, setTags ] = useState([]);
   const [uploadedFiles, setUploadedFiles] = useState([]);

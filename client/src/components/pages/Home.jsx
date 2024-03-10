@@ -59,7 +59,11 @@ export default function Home() {
       tags: tags,
       page: page || 1
     }));
+
     dispatch(app.updateLastHomePagination(`${location.pathname}${location.search}`));
+
+    if (location.pathname === "/home") dispatch(app.updateCurrentImageIndex(0));
+    
   }, [query, page, tags]);
 
   return (

@@ -13,8 +13,9 @@ import {
 } from "@mui/material";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
+import * as app from "../../../redux/actions/app";
 import { useAppContext } from '../../../context/context.jsx';
 import Like from "./Like.jsx";
 import PostSettings from "./PostSettings.jsx";
@@ -116,6 +117,7 @@ export default function Post({
   post
 }) {
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useAppContext();
   const { currentImageIndex } = useSelector(store => store.app);
@@ -129,9 +131,8 @@ export default function Post({
   // console.log("POST likers:", post.likers);
 
   const handleOpenPostDetails = (evt) => {
-    // console.log("DETAILS");
     evt.stopPropagation();
-    navigate(`/home/${post._id}/${post.files[currentImageIndex]}`);
+    navigate(`/home/${post?._id}/${post?.files[currentImageIndex]}`);
   }
 
   const shortText = (text, numb) => {

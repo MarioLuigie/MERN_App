@@ -38,16 +38,11 @@ const postsReducer = (state = initState, action) => {
         numbOfPages: action.data.numbOfPages
       };
 
-    // case type.READ_POSTS_BY_SEARCH:
-    //   return {
-    //     ...state,
-    //     postsList: action.data.postsList
-    //   };
-
     case type.CREATE_POST:
       return {
         ...state,
-        postsList: [action.data, ...state.postsList]
+        postsList: [action.data, ...state.postsList],
+        post: action.data
       };
 
     case type.UPDATE_POST:

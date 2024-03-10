@@ -108,7 +108,7 @@ export default function PostDetails() {
     );
   }
 
-  console.log("***", post?._id);
+  console.log("***", post);
 
   return (
     <div css={styles(navbarHeight)}>

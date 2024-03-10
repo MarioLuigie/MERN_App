@@ -72,14 +72,6 @@ export default function Gallery({
 
   const { navbarHeight } = useAppContext();
 
-  if (!post || Object.keys(post).length === 0) {
-    return (
-      <div css={styles}>
-        <CircularProgress />
-      </div>
-    );
-  }
-
   return (
     <div css={styles(navbarHeight)}>
       <Paper className="images" elevation={0}>
@@ -92,7 +84,7 @@ export default function Gallery({
           <ArrowBackIosNewIcon className={currentImageIndex !== 0 ? "navigateIcon" : "navigateIcon navigateIcon--disabled"} />
         </Button>
         <img 
-          src={post?.files?.length > 0 ? post?.files[currentImageIndex] : 0} 
+          src={post?.files?.length > 0 ? post?.files[currentImageIndex] : post?.files[0]} 
           alt="" 
           style={{maxHeight: "100%", maxWidth: "100%"}}
         />
