@@ -160,18 +160,18 @@ Create a new file named `.env` in the api catalog and add the following content:
 PORT=
 
 #MONGODB
-- MONGODB_URI=
+MONGODB_URI=
 
 #AWS
-- AWS_ACCESS_CODE=
-- AWS_SECRET_ACCESS_KEY=
+AWS_ACCESS_CODE=
+AWS_SECRET_ACCESS_KEY=
 ```
 
 Create a new file named `.env.production` in the client catalog and add the following content:
 
 ```env
 #REACT VITE
-- VITE_REACT_APP_API_URL=
+VITE_REACT_APP_API_URL=
 ```
 
 Fill in the environmental variable values with your actual credentials.
