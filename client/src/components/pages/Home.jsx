@@ -44,7 +44,6 @@ const styles = (navbarHeight) => css`
 export default function Home() {
 
   const { navbarHeight } = useAppContext();
-  // const { setCurrentLocation } = useAppContext();
 
   const query = useQuery();
   const dispatch = useDispatch();
@@ -60,18 +59,8 @@ export default function Home() {
       tags: tags,
       page: page || 1
     }));
-    // setCurrentLocation(`${location.pathname}${location.search}`);
     dispatch(app.updateLastHomePagination(`${location.pathname}${location.search}`));
   }, [query, page, tags]);
-
-  // setTimeout(() => {
-  //   console.log("LOCATION:", currentLocation);
-  //   console.log("LOCATION:", location);
-  // }, 3000);
-
-  // useEffect(() => {
-  //   dispatch(app.updateLastHomePagination(`${location.pathname}${location.search}`));
-  // }, [page, query, tags])
 
   return (
     <div css={styles(navbarHeight)}>

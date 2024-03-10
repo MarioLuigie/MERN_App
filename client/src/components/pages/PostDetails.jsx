@@ -52,12 +52,9 @@ export default function PostDetails() {
 
   const [ dataLoaded, setDataLoaded ] = useState(false);
 
-  console.log("***", post);
-
   useEffect(() => {
     const fetchPost = async () => {
       await dispatch(actions.getPost(params.id));
-      // await dispatch(actions.getPosts());
       setDataLoaded(true);
     }
     fetchPost();
@@ -69,8 +66,8 @@ export default function PostDetails() {
     dispatch(app.updateCurrentImageIndex(0));
   }
 
-  const handleBack = () => {
-    // navigate(-1);
+  const handleBack = (evt) => {
+    evt.stopPropagation();
     const newIndex = currentImageIndex - 1;
     if (newIndex >= 0) {
       dispatch(app.updateCurrentImageIndex(newIndex));
@@ -78,8 +75,8 @@ export default function PostDetails() {
     }
   }
 
-  const handleForward = () => {
-    console.log("FORWARD", currentImageIndex);
+  const handleForward = (evt) => {
+    evt.stopPropagation();
     const newIndex = (currentImageIndex + 1) % post?.files?.length;
     dispatch(app.updateCurrentImageIndex(newIndex));
     navigate(`/home/${post?._id}/${post?.files[newIndex]}`);
@@ -110,6 +107,8 @@ export default function PostDetails() {
       </div>
     );
   }
+
+  console.log("***", post?._id);
 
   return (
     <div css={styles(navbarHeight)}>

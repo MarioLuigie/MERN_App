@@ -64,9 +64,3 @@ export default function FooterItem({
 FooterItem.propTypes = {
   section: PropTypes.object
 }
-
-{/* <Grid item xs={12} sm={6} md={3}>
-<Typography variant='h6' sx={{color: "white"}} gutterBottom>
-  yourMEMORIES
-</Typography>
-</Grid> */}

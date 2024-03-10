@@ -11,12 +11,11 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useEffect, useRef } from 'react';
 import { Link } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { jwtDecode } from "jwt-decode";
 
 import { useAppContext } from '../../../context/context.jsx';
 import * as type from "../../../constants/actions.js";
-import * as app from "../../../redux/actions/app.js";
 import jsonData from "../../../constants/textContent.json";
 import LoggedUser from "../../ui/Creator.jsx";
 import AccountMenu from "../navbar/AccountMenu.jsx";
@@ -110,22 +109,19 @@ const styles = css`
 `
 
 export default function Navbar() {
+
   const { navbar } = jsonData;
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const navbarRef = useRef(null);
-
-  const { user } = useSelector(store => store.app);
-
-  const { navbarHeight, setNavbarHeight } = useAppContext();
+  const { user, setUser, navbarHeight, setNavbarHeight } = useAppContext();
   // console.log("User auth", user);
 
   const logout = () => {
     dispatch({type: type.LOGOUT})
     navigate("/");
-    // setUser(null);
-    dispatch(app.setUser(null));
+    setUser(null);
   }
 
   useEffect(() => {
@@ -163,8 +159,7 @@ export default function Navbar() {
       if (decodedToken.exp * 1000 < new Date().getTime()) logout();
     }
 
-    // setUser(JSON.parse(localStorage.getItem("profile")));
-    dispatch(app.setUser(JSON.parse(localStorage.getItem("profile"))));
+    setUser(JSON.parse(localStorage.getItem("profile")));
   }, [location]);
 
   return (

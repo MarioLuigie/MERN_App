@@ -16,6 +16,7 @@ import StyledDropzone from "./StyledDropzone";
 import * as actions from "../../../redux/actions/posts.js";
 import * as app from "../../../redux/actions/app"
 import InputTags from "../../ui/InputTags";
+import { useAppContext } from '../../../context/context';
 
 const styles = css`
   padding: 20px 15px 35px;
@@ -66,8 +67,9 @@ export default function Form({
     message: ""
   }
 
-  const { isPostFormOpen, user } = useSelector(store => store.app);
-  const { postsList } = useSelector(store => store.posts);
+  const { user } = useAppContext();
+
+  const { isPostFormOpen } = useSelector(store => store.app);
 
   const [tags, setTags ] = useState([]);
   const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -85,7 +87,6 @@ export default function Form({
 
   // console.log("Edited Post:", editedPost);
   // console.log("currentPostId:", currentPostId);
-  // console.log("postsList:", postsList);
 
   useEffect(() => {
     if (editedPost) {
@@ -134,9 +135,9 @@ export default function Form({
     console.log("CURRENTPOSTID:", currentPostId);
 
     if (currentPostId) {
+
       await dispatch(actions.updatePost(currentPostId, {...postData, name: user?.result?.name, tags}));
-      // await dispatch(actions.getPosts());//For refresh GalleryDetails.jsx
-      // await dispatch(actions.getPost(currentPostId));//For refresh GalleryDetails.jsx
+      
     } else {
       const files = uploadedFiles;
       // console.log("UploadeFiles:", files);

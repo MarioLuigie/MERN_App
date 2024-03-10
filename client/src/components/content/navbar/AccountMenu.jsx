@@ -8,9 +8,7 @@ import {
   MenuItem,
   ButtonBase,
   Divider, 
-  Typography,
-  createTheme,
-  ThemeProvider
+  Typography
 } from "@mui/material";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -19,9 +17,6 @@ import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import Switch from '@mui/material/Switch';
-
-import Creator from "../../ui/Creator";
-
 
 const styles = css`
 
