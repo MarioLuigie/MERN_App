@@ -1,5 +1,10 @@
 import * as type from "../../constants/actions.js";
 
+export const setUser = (user) => (dispatch) => {
+
+  dispatch({type: type.SET_USER, data: user});
+}
+
 export const updateCurrentPostId = (currentPostId) => (dispatch) => {
 
   dispatch({type: type.CURRENT_POST_ID, data: currentPostId});

@@ -1,6 +1,7 @@
 import * as type from "../../constants/actions.js";
 
 const initState = {
+  user: JSON.parse(localStorage.getItem('profile')),
   currentPostId: "",
   currentImageIndex: 0,
   lastHomePagination: "/home",
@@ -11,6 +12,12 @@ const initState = {
 const appReducer = (state = initState, action) => {
 
   switch(action.type) {
+
+    case type.SET_USER:
+      return {
+        ...state,
+        user: action.data
+      }
     
     case type.CURRENT_POST_ID:
       return {

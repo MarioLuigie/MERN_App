@@ -15,7 +15,6 @@ import { PropTypes } from "prop-types";
 import StyledDropzone from "./StyledDropzone";
 import * as actions from "../../../redux/actions/posts.js";
 import * as app from "../../../redux/actions/app"
-import { useAppContext } from '../../../context/context.jsx';
 import InputTags from "../../ui/InputTags";
 
 const styles = css`
@@ -67,7 +66,7 @@ export default function Form({
     message: ""
   }
 
-  const { isPostFormOpen } = useSelector(store => store.app);
+  const { isPostFormOpen, user } = useSelector(store => store.app);
   const { postsList } = useSelector(store => store.posts);
 
   const [tags, setTags ] = useState([]);
@@ -77,8 +76,6 @@ export default function Form({
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const titleInputRef = useRef(null);
-
-  const { user } = useAppContext();
 
   let editedPost = useSelector(store => 
     currentPostId 
