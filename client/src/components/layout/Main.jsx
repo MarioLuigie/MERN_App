@@ -10,8 +10,8 @@ import PostDetails from '../pages/PostDetails';
 import { useAppContext } from '../../context/context';
 
 const styles = css`
-
 `
+
 export default function Main() {
 
   const { user } = useAppContext();
@@ -25,8 +25,9 @@ export default function Main() {
         <Route exact path="/home" element={!user ? <Auth /> : <Home />} />
         <Route exact path="/home/search" element={!user ? <Auth /> : <Home />} />
         <Route exact path="/auth" element={!user ? <Auth /> : <Navigate to="/home" />} />
-        <Route exact path="/home/:id/*" element={<PostDetails />} />
+        <Route exact path="/home/:id/*" element={<PostDetails /> }/>
       </Routes>
     </main>
   )
 }
+

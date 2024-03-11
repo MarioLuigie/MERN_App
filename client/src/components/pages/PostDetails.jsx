@@ -39,6 +39,14 @@ const styles = (navbarHeight) => css`
   }
 `
 
+const suspense = css`
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+`
+
 export default function PostDetails() {
 
   const params = useParams();
@@ -92,9 +100,9 @@ export default function PostDetails() {
 
     // console.log(post?.files);
 
-  if (isLoading || !dataLoaded) {
+  if (!dataLoaded) {
     return (
-      <div css={styles}>
+      <div css={suspense}>
         <CircularProgress />
       </div>
     );
@@ -102,7 +110,7 @@ export default function PostDetails() {
 
   if (!post || Object.keys(post).length === 0) {
     return (
-      <div css={styles}>
+      <div css={suspense}>
         <p>NO DATA...</p>
       </div>
     );
