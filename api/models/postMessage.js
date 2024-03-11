@@ -23,7 +23,8 @@ const postSchema = mongoose.Schema({
   title: String,
   message: String,
   tags: [String],
-  files: [String],
+  files: [String], 
+  thumbFile: String,
   likers: {
     type: [{
       type: mongoose.Schema.Types.ObjectId,
