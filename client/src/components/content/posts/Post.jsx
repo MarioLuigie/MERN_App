@@ -26,7 +26,7 @@ const styles = (isOwn) => css`
 
  .card {
   position: relative;
-  border: ${isOwn ? "#bdbdbd solid 1px" : "none"};
+  border: ${isOwn ? "#bdbdbd solid 1px" : "#bdbdbd solid 1px"};
   cursor: pointer;
   height: 100%;
   display: flex;
@@ -142,7 +142,7 @@ export default function Post({
 
   return (
     <div css={styles(isOwn)}>
-      <Card className="card" elevation={isOwn ? 6 : 3}>
+      <Card className="card" elevation={isOwn ? 3 : 3}>
         <ButtonBase className="buttonBase" onClick={handleOpenPostDetails}>
           <CardMedia 
             className="media"

@@ -22,6 +22,7 @@ const styles = css`
   width: 100%;
   border-radius: 5px;
   padding: 18px 5px;
+  border-color: #bdbdbd;
 
 .buttons {
   display: flex;
@@ -56,19 +57,19 @@ export default function MainMenu() {
   };
 
   return (
-    <Paper css={styles} elevation={2}>
+    <Paper css={styles} variant='outlined'>
       <div className="buttons">
-        <Paper elevation={3} sx={{borderRadius: 15}}>
+        <Paper elevation={2} sx={{borderRadius: 15}}>
           <IconButton size="medium">
             <Diversity1Icon fontSize="medium" sx={{color: "#000000"}} />
           </IconButton>
         </Paper>
-        <Paper elevation={3} sx={{borderRadius: 15, backgroundColor: "#ebebeb"}} onClick={handleOpenPostForm}>
-          <IconButton size="large">
-            <AddIcon fontSize="large" sx={{color: "#1d1d1d"}}/>
+        <Paper elevation={2} sx={{borderRadius: 15, backgroundColor: "#ebebeb"}} onClick={handleOpenPostForm}>
+          <IconButton size="medium">
+            <AddIcon fontSize="medium" sx={{color: "#000000"}}/>
           </IconButton>
         </Paper>
-        <Paper elevation={3} sx={{borderRadius: 15}} onClick={handleOpenSearchForm}>
+        <Paper elevation={2} sx={{borderRadius: 15}} onClick={handleOpenSearchForm}>
           <IconButton size="medium">
             <SearchIcon fontSize="medium" sx={{color: "#000000"}} />
           </IconButton>

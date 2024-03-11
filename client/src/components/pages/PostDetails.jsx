@@ -40,7 +40,7 @@ const styles = (navbarHeight) => css`
 `
 
 const suspense = css`
-    background-color: white;
+    background-color: rgb(22, 22, 22);
     display: flex;
     justify-content: center;
     align-items: center;
