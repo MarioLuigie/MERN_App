@@ -16,7 +16,7 @@ export default function Main() {
 
   const { user } = useAppContext();
 
-  console.log("MAIN");
+  // console.log("MAIN");
 
   return (
     <main css={styles}>

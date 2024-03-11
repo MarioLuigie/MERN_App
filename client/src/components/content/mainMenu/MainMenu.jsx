@@ -18,7 +18,10 @@ const styles = css`
   justify-content: center;
   align-items: center;
   gap: 15px;
-  /* background-color: green; */
+  /* background-color: green;  */
+  width: 100%;
+  border-radius: 5px;
+  padding: 18px 5px;
 
 .buttons {
   display: flex;
@@ -53,19 +56,19 @@ export default function MainMenu() {
   };
 
   return (
-    <div css={styles}>
+    <Paper css={styles} elevation={2}>
       <div className="buttons">
-        <Paper elevation={4} sx={{borderRadius: 1}}>
+        <Paper elevation={3} sx={{borderRadius: 15}}>
           <IconButton size="medium">
             <Diversity1Icon fontSize="medium" sx={{color: "#000000"}} />
           </IconButton>
         </Paper>
-        <Paper elevation={4} sx={{borderRadius: 1, backgroundColor: "#ffcd2a"}} onClick={handleOpenPostForm}>
+        <Paper elevation={3} sx={{borderRadius: 15, backgroundColor: "#ebebeb"}} onClick={handleOpenPostForm}>
           <IconButton size="large">
-            <AddIcon fontSize="medium" sx={{color: "#000000"}}/>
+            <AddIcon fontSize="large" sx={{color: "#1d1d1d"}}/>
           </IconButton>
         </Paper>
-        <Paper elevation={4} sx={{borderRadius: 1}} onClick={handleOpenSearchForm}>
+        <Paper elevation={3} sx={{borderRadius: 15}} onClick={handleOpenSearchForm}>
           <IconButton size="medium">
             <SearchIcon fontSize="medium" sx={{color: "#000000"}} />
           </IconButton>
@@ -73,6 +76,6 @@ export default function MainMenu() {
       </div>
       <PostForm isDialogOpen={isPostFormOpen} handleClose={handleClosePostForm} />
       <SearchForm isDialogOpen={isSearchFormOpen} handleClose={handleCloseSearchForm}  />
-    </div>
+    </Paper>
   )
 }

@@ -69,7 +69,7 @@ export default function PostDetails() {
   }, [params.id]);
 
   const handleGoHome = () => {
-    console.log("GO HOME");
+    // console.log("GO HOME");
     navigate(lastHomePagination);
     dispatch(app.updateCurrentImageIndex(0));
   }
@@ -116,7 +116,7 @@ export default function PostDetails() {
     );
   }
 
-  console.log("***", post);
+  // console.log("***", post);
 
   return (
     <div css={styles(navbarHeight)}>

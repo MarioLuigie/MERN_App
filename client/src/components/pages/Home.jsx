@@ -36,7 +36,8 @@ const styles = (navbarHeight) => css`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px 13px 5px;
+    padding: 20px 0 0;
+    margin-bottom: 18px;
     /* background-color: green; */
   }
 `
@@ -76,7 +77,7 @@ export default function Home() {
                 <MainMenu />
               </div>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sx={{"&.MuiGrid-item": {paddingTop: "0px"}}}>
               <Posts />
             </Grid>
             <Grid item xs={12}>
