@@ -40,7 +40,7 @@ export default function Creator({
         <Avatar 
           className="purple" 
           alt={user?.name}
-          src={String(user?.picture)}
+          src={user?.picture ? String(user?.picture) : ""}
         >
           {!user?.picture ? user?.name.charAt(0) : ""}
         </Avatar>

@@ -116,7 +116,7 @@ export default function Comment({
         <Avatar 
           className="purple" 
           alt={comment?.author?.name}
-          src={`${comment?.author?.picture}`}
+          src={comment?.author?.picture ? `${comment?.author?.picture}` : ""}
         >
           {!comment.author.picture ? comment?.author?.name.charAt(0) : ""}
         </Avatar>

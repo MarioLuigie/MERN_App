@@ -93,7 +93,7 @@ export default function Comments({
         <Avatar 
           className="purple" 
           alt={user?.result?.name}
-          src={`${user?.result?.picture}`}
+          src={user?.result?.picture ? `${user?.result?.picture}` : ""}
         >
           {!user.result.picture ? user?.result?.name.charAt(0) : ""}
         </Avatar>
