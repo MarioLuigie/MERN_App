@@ -7,18 +7,23 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { ContextProvider } from "./context/context.jsx";
 
 import App from './App.jsx';
-import "./index.scss";
+import "./styles/index.scss";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <GoogleOAuthProvider clientId="988570206494-hma6hf4h3t5sudsbdfs9186vhhjodp13.apps.googleusercontent.com">
-      <ContextProvider>      
-        <Provider store={store}>
-          <Router>
-            <App />
-          </Router>
-        </Provider>
-      </ContextProvider>
-    </GoogleOAuthProvider>
-  </React.StrictMode>,
-)
+const Root = () => {
+
+  return (
+    <React.StrictMode>
+      <GoogleOAuthProvider clientId="988570206494-hma6hf4h3t5sudsbdfs9186vhhjodp13.apps.googleusercontent.com">
+        <ContextProvider>      
+          <Provider store={store}>
+            <Router>
+              <App />
+            </Router>
+          </Provider>
+        </ContextProvider>
+      </GoogleOAuthProvider>
+    </React.StrictMode>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Root />)

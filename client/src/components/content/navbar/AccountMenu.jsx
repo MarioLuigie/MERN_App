@@ -101,7 +101,8 @@ export default function ListMenu({
   }
 
   const handleSwitchMode = (evt) => {
-    setIsDarkMode(evt.target.checked);
+    // setIsDarkMode(evt.target.checked);
+    setIsDarkMode(prevState => !prevState);
     console.log("Switch mode", isDarkMode);
   }
 
