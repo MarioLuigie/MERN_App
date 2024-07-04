@@ -6,7 +6,7 @@
 
 **yourEditorials** is a platform that allows users to share photos from their fashion sessions, build portfolios, and find inspiration from other users. The application is built on the MERN stack (MongoDB, Express.js, React, Node.js) and offers a responsive user interface.
 
-You can try it out here: **[https://yourmemories.vercel.app/](https://yourmemories.vercel.app/)**
+You can try it out here: **[https://youreditorials.vercel.app/](https://youreditorials.vercel.app/)**
 
 ## Technologies
 
