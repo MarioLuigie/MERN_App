@@ -1,6 +1,6 @@
 # yourEditorials - The complete platform for sharing own fashion photos.
 
-[![Application intro](https://raw.githubusercontent.com/MarioLuigie/MERN_App/main/client/public/readme-intro.jpg)](https://yourmemories.vercel.app/)
+[![Application intro](https://raw.githubusercontent.com/MarioLuigie/MERN_App/main/client/public/readme-intro.jpg)](https://youreditorials.vercel.app/)
 
 ## Introduction
 
